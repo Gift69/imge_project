@@ -701,6 +701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5051998518196322267, guid: f3861bee10bc52e40b81cabf0dd39f1a, type: 3}
+      propertyPath: ConnectionData.ServerListenAddress
+      value: 0.0.0.0
+      objectReference: {fileID: 0}
     - target: {fileID: 5672983817283130209, guid: f3861bee10bc52e40b81cabf0dd39f1a, type: 3}
       propertyPath: NetworkConfig.PlayerPrefab
       value: 
