@@ -1,0 +1,57 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Michi_UI/Ingame_UI.uss?fileID=7433441132597879392&amp;guid=3b30b9a2cd3125d4fa735e2a1f8e5202&amp;type=3#Ingame_UI" />
+    <ui:VisualElement name="root" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="Actions" style="flex-grow: 1; width: 25%; height: 100%;">
+            <ui:VisualElement name="Actions" style="flex-grow: 1; width: 100%; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_1" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_2" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_3" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_4" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_5" class="noMarginAndPadding actionButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Actionorder" style="flex-grow: 1; width: 100%; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_1" class="noMarginAndPadding actionButton" style="justify-content: flex-start; align-self: auto; -unity-text-align: middle-center;" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_2" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_3" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_4" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_5" class="noMarginAndPadding actionButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Scene" style="flex-grow: 1; width: 50%; height: 100%;" />
+        <ui:VisualElement name="Right_Side" style="flex-grow: 1; width: 25%; height: 100%;">
+            <ui:VisualElement name="Time" style="flex-grow: 1; width: 100%; height: 20%;">
+                <ui:Label tabindex="-1" text="0:10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time_Label" class="noMarginAndPadding" style="width: 100%; height: 100%; -unity-text-align: middle-center; font-size: 30px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Enemy_Actions" style="flex-grow: 1; width: 100%; height: 90%;">
+                <ui:VisualElement name="Enemy_1" style="flex-grow: 1; width: 100%; height: 25%;">
+                    <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
+                        <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 20px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Enemy_2" style="flex-grow: 1; width: 100%; height: 25%;">
+                    <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
+                        <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 20px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Enemy_3" style="flex-grow: 1; width: 100%; height: 25%;">
+                    <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
+                        <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 20px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Enemy_4" style="flex-grow: 1; width: 100%; height: 25%;">
+                    <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
+                        <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 20px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
