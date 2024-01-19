@@ -1,0 +1,9 @@
+.noMarginAndPadding {
+    margin: 0px;
+    padding:0px;
+}
+
+.actionButton{
+   width:33%;
+   height:52px;
+}
