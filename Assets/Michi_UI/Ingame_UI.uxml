@@ -2,15 +2,6 @@
     <Style src="project://database/Assets/Michi_UI/Ingame_UI.uss?fileID=7433441132597879392&amp;guid=3b30b9a2cd3125d4fa735e2a1f8e5202&amp;type=3#Ingame_UI" />
     <ui:VisualElement name="root" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="Actions" style="flex-grow: 1; width: 25%; height: 100%;">
-            <ui:VisualElement name="Actions" style="flex-grow: 1; width: 100%; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
-                <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_1" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_2" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_3" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_4" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_5" class="noMarginAndPadding actionButton" />
-                </ui:VisualElement>
-            </ui:VisualElement>
             <ui:VisualElement name="Actionorder" style="flex-grow: 1; width: 100%; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
                     <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_1" class="noMarginAndPadding actionButton" style="justify-content: flex-start; align-self: auto; -unity-text-align: middle-center;" />
@@ -18,6 +9,15 @@
                     <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_3" class="noMarginAndPadding actionButton" />
                     <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_4" class="noMarginAndPadding actionButton" />
                     <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_5" class="noMarginAndPadding actionButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Actions" style="flex-grow: 1; width: 100%; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
+                <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_1" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_2" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_3" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_4" class="noMarginAndPadding actionButton" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_5" class="noMarginAndPadding actionButton" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
