@@ -9,6 +9,7 @@ public class HexField : MonoBehaviour
 {
     public int radius;
     public GameObject cellPrefab;
+    public GameObject playerPrefab;
 
     private GameObject[][] cells;
 
@@ -42,17 +43,12 @@ public class HexField : MonoBehaviour
             new(0, -1)
         };
 
+    public Vector3 DELTA_X = new Vector3(1.0f, 0, 0);
+    public Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3));
+
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 deltaX = new Vector3(1.0f, 0, 0);
-        Vector3 deltaY = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3));
-        Vector3 deltaZ = deltaX + deltaY;
-
-        Debug.Log(deltaY);
-
-        Coord c = new(1);
-
         cells = new GameObject[radius * 2 + 1][];
         for (int i = 0; i < cells.Length; i++)
         {
@@ -63,7 +59,7 @@ public class HexField : MonoBehaviour
         Coord coord = new Coord(0);
 
         set(coord, Instantiate(cellPrefab, transform));
-        at(coord).transform.position = coord.x * deltaX + coord.y * deltaY;
+        at(coord).transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
 
         for (int i = 1; i <= radius; i++)
         {
@@ -74,26 +70,21 @@ public class HexField : MonoBehaviour
                 for (int j = 0; j < i; j++)
                 {
                     set(coord, Instantiate(cellPrefab, transform));
-                    at(coord).transform.position = coord.x * deltaX + coord.y * deltaY;
+                    var obj = at(coord);
+                    obj.transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+                    obj.GetComponent<Cell>().setCoord(coord);
                     coord += CIRCLE_DELTAS[k];
                 }
 
             }
         }
 
-        GameObject[] s;
+        var player = Instantiate(playerPrefab);
+        cellAt(2, 0).placeBoardPiece(player.GetComponent<Player>());
 
-        s = getSequence(new(radius - 1), new(0, 0, -1));
-        foreach(GameObject obj in s)
-        {
-            obj.transform.position = obj.transform.position + Vector3.up * 0.5f;
-        }
+        var player2 = Instantiate(playerPrefab);
+        cellAt(-2, 0).placeBoardPiece(player2.GetComponent<Player>());
 
-        s = getArea(new(0, 0), 2);
-        foreach (GameObject obj in s)
-        {
-            obj.transform.position = obj.transform.position + Vector3.down * 0.5f;
-        }
     }
 
     public GameObject at(int x, int y = 0, int z = 0)
@@ -127,24 +118,31 @@ public class HexField : MonoBehaviour
         return at(coord).GetComponent<Cell>();
     }
 
-    public GameObject[] getSequence(Coord start, Coord delta)
+    public Cell[] getSequence(Coord start, Coord delta, int maxCount = -1)
     {
-        List<GameObject> sequence = new List<GameObject>();
-        while(isValidCoord(start))
-        {
-            sequence.Add(at(start));
-            start += delta;
-        }
+        List<Cell> sequence = new List<Cell>();
+        if (maxCount < 0)
+            while (isValidCoord(start))
+            {
+                sequence.Add(cellAt(start));
+                start += delta;
+            }
+        else
+            while (sequence.Count <= maxCount && isValidCoord(start))
+            {
+                sequence.Add(cellAt(start));
+                start += delta;
+            }
 
         return sequence.ToArray();
     }
 
-    public GameObject[] getArea(Coord center, int radius)
+    public Cell[] getArea(Coord center, int radius)
     {
-        List<GameObject> sequence = new List<GameObject>();
+        List<Cell> sequence = new List<Cell>();
 
         if (isValidCoord(center))
-            sequence.Add(at(center));
+            sequence.Add(cellAt(center));
         for (int i = 1; i <= radius; i++)
         {
             center.x++;
@@ -153,7 +151,7 @@ public class HexField : MonoBehaviour
                 for (int j = 0; j < i; j++)
                 {
                     if (isValidCoord(center))
-                        sequence.Add(at(center));
+                        sequence.Add(cellAt(center));
                     center += CIRCLE_DELTAS[k];
                 }
             }
@@ -161,14 +159,37 @@ public class HexField : MonoBehaviour
         return sequence.ToArray();
     }
 
-    private bool isValidCoord(Coord coord)
+    public bool isValidCoord(Coord coord)
     {
         return Math.Abs(coord.x) <= radius && Math.Abs(coord.y) <= radius && Math.Abs(coord.x - coord.y) <= radius;
+    }
+
+    public void removeHighlight()
+    {
+        for(int i = 0; i < cells.Length; i++)
+        {
+            for(int j = 0; j < cells[i].Length; j++)
+                if (cells[i][j] != null)
+                    cells[i][j].GetComponent<Cell>().removeHighlight();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            removeHighlight();
+            Cell.highlight(getSequence(new(2, 0), new(0, 0, 1)));
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            removeHighlight();
+            Cell.highlight(getArea(new(2, 0), 2));
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            removeHighlight();
+        }
     }
 }

@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class BoardPiece : MonoBehaviour
 {
-    private int x, y;
-
-    public enum Type
-    {
-
-    };
-
+    public Cell cell;
     // Start is called before the first frame update
     void Start()
     {

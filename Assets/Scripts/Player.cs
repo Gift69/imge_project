@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : BoardPiece
 {
     private int score = 0;
     // Start is called before the first frame update
@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            transform.parent.GetComponent<Cell>().getCoord();
+        }
     }
 }
