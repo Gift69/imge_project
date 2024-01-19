@@ -246,7 +246,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 5
   cellPrefab: {fileID: 2176404642092952621, guid: 0b1e1a97a8ead2845bda18676b77b2ef, type: 3}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
+  DELTA_X: {x: 1, y: 0, z: 0}
+  DELTA_Y: {x: -0.50000006, y: 0, z: 0.8660254}
 --- !u!4 &1179776027
 Transform:
   m_ObjectHideFlags: 0
