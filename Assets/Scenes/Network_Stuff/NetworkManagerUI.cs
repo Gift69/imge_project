@@ -43,6 +43,7 @@ public class NetworkManagerUI : MonoBehaviour
                 break;
             }
         }
+        Debug.Log("hallo, " + myAddressLocal);
         iP.text = myAddressLocal;
         iP.color = Color.black;
     }
