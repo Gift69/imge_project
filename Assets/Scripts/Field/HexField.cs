@@ -1,0 +1,335 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using static HexField;
+
+public class HexField : MonoBehaviour
+{
+    public int radius;
+    public GameObject cellPrefab;
+    public GameObject playerPrefab;
+    public GameObject vPlayerPrefab;
+
+    private GameObject[][] cells;
+
+    private Player player1, player2;
+    private Player currentPlayer;
+    private VirtualPlayer vPlayer;
+
+    public class Selection
+    {
+        public Action action;
+        public ActionSelection actionSelection;
+        public VirtualPlayer vPlayer;
+
+        public Selection(Action action, ActionSelection actionSelection, VirtualPlayer vPlayer)
+        {
+            this.action = action;
+            this.actionSelection = actionSelection;
+            this.vPlayer = vPlayer;
+        }
+    }
+
+    private Selection selection = null;
+
+
+    public struct Coord
+    {
+        public int x, y;
+
+        public static readonly Coord[] BASE_COORDS = {
+            new(1, 0, 0),
+            new(0, -1, 0),
+            new(0, 0, -1),
+            new(-1, 0, 0),
+            new(0, 1, 0),
+            new(0, 0, 1)
+        };
+
+        public Coord(int x, int y = 0, int z = 0)
+        {
+            this.x = x + z;
+            this.y = y + z;
+        }
+
+        public static Coord operator +(Coord c1, Coord c2)
+        {
+            return new(c1.x + c2.x, c1.y + c2.y);
+        }
+
+        public static Coord operator -(Coord c1, Coord c2)
+        {
+            return new(c1.x - c2.x, c1.y - c2.y);
+        }
+
+        public static bool operator ==(Coord c1, Coord c2)
+        {
+            return c1.x == c2.x && c1.y == c2.y; ;
+        }
+
+        public static bool operator !=(Coord c1, Coord c2)
+        {
+            return !(c1 == c2);
+        }
+    }
+
+    [System.NonSerialized]
+    public Vector3 DELTA_X = new Vector3(1.0f, 0, 0);
+    [System.NonSerialized]
+    public Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3));
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        cells = new GameObject[radius * 2 + 1][];
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i] = new GameObject[radius * 2 + 1];
+        }
+
+
+        Coord coord = new Coord(0);
+
+        set(coord, Instantiate(cellPrefab, transform));
+        at(coord).transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+
+        for (int i = 1; i <= radius; i++)
+        {
+            coord.y++;
+
+            for (int k = 0; k < Coord.BASE_COORDS.Length; k++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    set(coord, Instantiate(cellPrefab, transform));
+                    var obj = at(coord);
+                    obj.transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+                    obj.GetComponent<Cell>().setCoord(coord);
+                    coord += Coord.BASE_COORDS[k];
+                }
+
+            }
+        }
+
+        var player = Instantiate(playerPrefab);
+        player1 = player.GetComponent<Player>();
+        cellAt(2, 0).placeBoardPiece(player1);
+
+        player = Instantiate(playerPrefab);
+        player2 = player.GetComponent<Player>();
+        cellAt(-2, 0).placeBoardPiece(player2);
+
+        player = Instantiate(vPlayerPrefab);
+        vPlayer = player.GetComponent<VirtualPlayer>();
+        cellAt(0, 1, 1).placeBoardPiece(vPlayer);
+
+        currentPlayer = player1;
+    }
+
+    public GameObject at(int x, int y = 0, int z = 0)
+    {
+        return at(new Coord(x, y, z));
+
+    }
+
+    public GameObject at(Coord coord)
+    {
+        return cells[coord.x + radius][coord.y + radius];
+    }
+
+    public void set(Coord coord, GameObject cell)
+    {
+        cells[coord.x + radius][coord.y + radius] = cell;
+    }
+
+    public void set(int x, int y, int z, GameObject cell)
+    {
+        cells[x + z + radius][y + z + radius] = cell;
+    }
+
+    public Cell cellAt(int x, int y, int z = 0)
+    {
+        return at(x, y, z).GetComponent<Cell>();
+    }
+
+    public Cell cellAt(Coord coord)
+    {
+        return at(coord).GetComponent<Cell>();
+    }
+
+    public Cell[] getSequence(Coord start, Coord delta, int maxCount = -1)
+    {
+        if (delta.x == 0 && delta.y == 0)
+            if (isValidCoord(start))
+                return new Cell[] { cellAt(start) };
+            else
+                return new Cell[] { };
+        List<Cell> sequence = new List<Cell>();
+        if (maxCount < 0)
+            while (isValidCoord(start))
+            {
+                sequence.Add(cellAt(start));
+                start += delta;
+            }
+        else
+            while (sequence.Count <= maxCount && isValidCoord(start))
+            {
+                sequence.Add(cellAt(start));
+                start += delta;
+            }
+
+        return sequence.ToArray();
+    }
+
+    public Cell[] getArea(Coord center, int radius)
+    {
+        List<Cell> sequence = new List<Cell>();
+
+        if (isValidCoord(center))
+            sequence.Add(cellAt(center));
+        for (int i = 1; i <= radius; i++)
+        {
+            center.y++;
+            for (int k = 0; k < Coord.BASE_COORDS.Length; k++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    if (isValidCoord(center))
+                        sequence.Add(cellAt(center));
+                    center += Coord.BASE_COORDS[k];
+                }
+            }
+        }
+        return sequence.ToArray();
+    }
+
+    public Cell[] getCircle(Coord center, int outerRadius, int innerRadius = 1)
+    {
+        List<Cell> sequence = new List<Cell>();
+
+        center.y += innerRadius;
+        for (int i = innerRadius; i <= outerRadius; i++)
+        {
+            for (int k = 0; k < Coord.BASE_COORDS.Length; k++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    if (isValidCoord(center))
+                        sequence.Add(cellAt(center));
+                    center += Coord.BASE_COORDS[k];
+                }
+            }
+            center.y++;
+        }
+        return sequence.ToArray();
+    }
+
+    public bool isValidCoord(Coord coord)
+    {
+        return Math.Abs(coord.x) <= radius && Math.Abs(coord.y) <= radius && Math.Abs(coord.x - coord.y) <= radius;
+    }
+
+    public void removeOuterIndicators()
+    {
+        for (int i = 0; i < cells.Length; i++)
+        {
+            for (int j = 0; j < cells[i].Length; j++)
+                if (cells[i][j] != null)
+                    cells[i][j].GetComponent<Cell>().removeOuterIndicator();
+        }
+    }
+
+    public void removeInnerIndicators()
+    {
+        for (int i = 0; i < cells.Length; i++)
+        {
+            for (int j = 0; j < cells[i].Length; j++)
+                if (cells[i][j] != null)
+                    cells[i][j].GetComponent<Cell>().removeInnerIndicator();
+        }
+    }
+
+    public void removeIndicators()
+    {
+        for (int i = 0; i < cells.Length; i++)
+        {
+            for (int j = 0; j < cells[i].Length; j++)
+                if (cells[i][j] != null)
+                {
+                    cells[i][j].GetComponent<Cell>().removeOuterIndicator();
+                    cells[i][j].GetComponent<Cell>().removeInnerIndicator();
+                }
+        }
+    }
+
+    public void startSelection(Action action, VirtualPlayer virtualPlayer)
+    {
+        removeIndicators();
+        this.selection = new Selection(action, action.getActionSelection(virtualPlayer), virtualPlayer);
+        Cell.indicateOuter(selection.actionSelection.getOuterIndicatorCells());
+    }
+
+    public void cancelSelection()
+    {
+        removeIndicators();
+        this.selection = null;
+    }
+
+    public void selectionHover(Cell cell)
+    {
+        Cell.indicateInner(selection.actionSelection.getInnerIndicatorCells(cell.getCoord() - selection.vPlayer.cell.getCoord()));
+    }
+
+    public void select(Cell cell)
+    {
+        selection.action.setValue(cell.getCoord() - selection.vPlayer.cell.getCoord());
+        cancelSelection();
+    }
+
+        private MoveAction action = new MoveAction();
+    private SwordSlashAction swordSlashAction = new SwordSlashAction();
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            startSelection(action, vPlayer);
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            startSelection(swordSlashAction, vPlayer);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            cancelSelection();
+        }
+
+        removeInnerIndicators();
+
+        if (selection != null)
+        {
+            if(Input.GetMouseButtonUp(1))
+            {
+                cancelSelection();
+                return;
+            }
+
+            bool click = Input.GetMouseButtonUp(0);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 200))
+            {
+                if (click)
+                    select(hit.transform.GetComponentInParent<Cell>());
+                else
+                    selectionHover(hit.transform.GetComponentInParent<Cell>());
+            }
+            else if (click)
+                cancelSelection();
+        }
+
+        Debug.Log(action.getValue().x + " " + action.getValue().y);
+    }
+}

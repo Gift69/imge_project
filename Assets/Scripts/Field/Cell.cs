@@ -8,7 +8,7 @@ public class Cell : MonoBehaviour
 {
     private HexField.Coord _coord;
     private List<BoardPiece> _boardPieces = new List<BoardPiece>();
-    public GameObject highlightObj;
+    public GameObject outerIndicator, innerIndicator;
 
     public void setCoord(HexField.Coord coord)
     { 
@@ -28,6 +28,11 @@ public class Cell : MonoBehaviour
     public Cell[] getArea(int radius)
     {
         return transform.GetComponentInParent<HexField>().getArea(_coord, radius);
+    }
+
+    public Cell[] getCircle(int outerRadius, int innerRadius = 1)
+    {
+        return transform.GetComponentInParent<HexField>().getCircle(_coord, outerRadius, innerRadius);
     }
 
     public Cell getCellRelative(Coord relCoord)
@@ -51,29 +56,55 @@ public class Cell : MonoBehaviour
         piece.transform.SetParent(transform, false);
     }
 
-    public void highlight()
+    public void indicateOuter()
     {
-        highlightObj.gameObject.SetActive(true);
+        outerIndicator.gameObject.SetActive(true);
     }
 
-    public void removeHighlight()
+    public void removeOuterIndicator()
     {
-        highlightObj.gameObject.SetActive(false);
+        outerIndicator.gameObject.SetActive(false);
     }
 
-    public static void highlight(Cell[] cells)
+    public static void indicateOuter(Cell[] cells)
     {
         foreach (Cell cell in cells)
         {
-            cell.highlight();
+            cell.indicateOuter();
         }
     }
 
-    public static void removeHighlight(Cell[] cells)
+    public static void removeOuterIndicators(Cell[] cells)
     {
         foreach (Cell cell in cells)
         {
-            cell.removeHighlight();
+            cell.removeOuterIndicator();
+        }
+    }
+
+    public void indicateInner()
+    {
+        innerIndicator.gameObject.SetActive(true);
+    }
+
+    public void removeInnerIndicator()
+    {
+        innerIndicator.gameObject.SetActive(false);
+    }
+
+    public static void indicateInner(Cell[] cells)
+    {
+        foreach (Cell cell in cells)
+        {
+            cell.indicateInner();
+        }
+    }
+
+    public static void removeInnerIndicators(Cell[] cells)
+    {
+        foreach (Cell cell in cells)
+        {
+            cell.removeInnerIndicator();
         }
     }
 
