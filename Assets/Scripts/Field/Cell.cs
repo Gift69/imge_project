@@ -20,6 +20,7 @@ public class Cell : MonoBehaviour
     public bool isEdgePiece;
 
     private GameObject piece, outerIndicator, innerIndicator;
+    private MeshCollider _meshCollider;
 
     public void setCoord(HexField.Coord coord)
     {
@@ -73,6 +74,7 @@ public class Cell : MonoBehaviour
     {
         outerIndicator = Instantiate(outerIndicators[Random.Range(0, outerIndicators.Length)], this.transform.position,
             Quaternion.identity, this.transform);
+        _meshCollider.enabled = true;
     }
 
     public void removeOuterIndicator()
@@ -82,6 +84,7 @@ public class Cell : MonoBehaviour
             Destroy(outerIndicator);
             outerIndicator = null;
         }
+        _meshCollider.enabled = false;
     }
 
     public static void indicateOuter(Cell[] cells)
@@ -152,7 +155,8 @@ public class Cell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("dio cale");
+        _meshCollider = GetComponent<MeshCollider>();
+        _meshCollider.enabled = false;
         //indicateInner();
         //indicateOuter();
     }

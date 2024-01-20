@@ -319,7 +319,7 @@ public class HexField : MonoBehaviour
             cancelSelection();
         }
 
-        // removeInnerIndicators();
+        removeInnerIndicators();
 
         if (selection != null)
         {
@@ -334,10 +334,11 @@ public class HexField : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 200))
             {
+                Debug.Log(hit);
                 if (click)
-                    select(hit.transform.GetComponentInParent<Cell>());
+                    select(hit.transform.GetComponent<Cell>());
                 else
-                    selectionHover(hit.transform.GetComponentInParent<Cell>());
+                    selectionHover(hit.transform.GetComponent<Cell>());
             }
             else if (click)
                 cancelSelection();
