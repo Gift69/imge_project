@@ -39,7 +39,8 @@ public class HexField : MonoBehaviour
     {
         public int x, y;
 
-        public static readonly Coord[] BASE_COORDS = {
+        public static readonly Coord[] BASE_COORDS =
+        {
             new(1, 0, 0),
             new(0, -1, 0),
             new(0, 0, -1),
@@ -66,7 +67,8 @@ public class HexField : MonoBehaviour
 
         public static bool operator ==(Coord c1, Coord c2)
         {
-            return c1.x == c2.x && c1.y == c2.y; ;
+            return c1.x == c2.x && c1.y == c2.y;
+            ;
         }
 
         public static bool operator !=(Coord c1, Coord c2)
@@ -75,8 +77,8 @@ public class HexField : MonoBehaviour
         }
     }
 
-    [System.NonSerialized]
-    public Vector3 DELTA_X = new Vector3(1.0f, 0, 0);
+    [System.NonSerialized] public Vector3 DELTA_X = new Vector3(1.0f, 0, 0);
+
     [System.NonSerialized]
     public Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3));
 
@@ -92,8 +94,11 @@ public class HexField : MonoBehaviour
 
         Coord coord = new Coord(0);
 
-        set(coord, Instantiate(cellPrefab, transform));
-        at(coord).transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+        GameObject centerObj = Instantiate(cellPrefab, transform);
+        set(coord, centerObj);
+        centerObj.transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+        centerObj.GetComponent<Cell>().isEdgePiece = false;
+        centerObj.GetComponent<Cell>().setupPiece();
 
         for (int i = 1; i <= radius; i++)
         {
@@ -103,13 +108,16 @@ public class HexField : MonoBehaviour
             {
                 for (int j = 0; j < i; j++)
                 {
-                    set(coord, Instantiate(cellPrefab, transform));
-                    var obj = at(coord);
+                    GameObject obj = Instantiate(cellPrefab, transform);
+
+                    set(coord, obj);
                     obj.transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
-                    obj.GetComponent<Cell>().setCoord(coord);
+                    Cell cellScript = obj.GetComponent<Cell>();
+                    cellScript.setCoord(coord);
+                    cellScript.isEdgePiece = i == radius;
+                    cellScript.setupPiece();
                     coord += Coord.BASE_COORDS[k];
                 }
-
             }
         }
 
@@ -131,7 +139,6 @@ public class HexField : MonoBehaviour
     public GameObject at(int x, int y = 0, int z = 0)
     {
         return at(new Coord(x, y, z));
-
     }
 
     public GameObject at(Coord coord)
@@ -202,6 +209,7 @@ public class HexField : MonoBehaviour
                 }
             }
         }
+
         return sequence.ToArray();
     }
 
@@ -221,8 +229,10 @@ public class HexField : MonoBehaviour
                     center += Coord.BASE_COORDS[k];
                 }
             }
+
             center.y++;
         }
+
         return sequence.ToArray();
     }
 
@@ -279,7 +289,8 @@ public class HexField : MonoBehaviour
 
     public void selectionHover(Cell cell)
     {
-        Cell.indicateInner(selection.actionSelection.getInnerIndicatorCells(cell.getCoord() - selection.vPlayer.cell.getCoord()));
+        Cell.indicateInner(
+            selection.actionSelection.getInnerIndicatorCells(cell.getCoord() - selection.vPlayer.cell.getCoord()));
     }
 
     public void select(Cell cell)
@@ -288,8 +299,10 @@ public class HexField : MonoBehaviour
         cancelSelection();
     }
 
-        private MoveAction action = new MoveAction();
+    private MoveAction action = new MoveAction();
+
     private SwordSlashAction swordSlashAction = new SwordSlashAction();
+
     // Update is called once per frame
     void Update()
     {
@@ -306,11 +319,11 @@ public class HexField : MonoBehaviour
             cancelSelection();
         }
 
-        removeInnerIndicators();
+        // removeInnerIndicators();
 
         if (selection != null)
         {
-            if(Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1))
             {
                 cancelSelection();
                 return;
@@ -330,6 +343,6 @@ public class HexField : MonoBehaviour
                 cancelSelection();
         }
 
-        Debug.Log(action.getValue().x + " " + action.getValue().y);
+        //Debug.Log(action.getValue().x + " " + action.getValue().y);
     }
 }

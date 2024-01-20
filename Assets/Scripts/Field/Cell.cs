@@ -1,17 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.Mathematics;
+using UnityEditor.Build;
 using UnityEngine;
 using static HexField;
+using Random = UnityEngine.Random;
 
 public class Cell : MonoBehaviour
 {
     private HexField.Coord _coord;
     private List<BoardPiece> _boardPieces = new List<BoardPiece>();
-    public GameObject outerIndicator, innerIndicator;
+
+    public GameObject[] outerIndicators;
+    public GameObject[] innerIndicators;
+    public GameObject[] edgePieces;
+    public GameObject[] innerPieces;
+    public bool isEdgePiece;
+
+    private GameObject piece, outerIndicator, innerIndicator;
 
     public void setCoord(HexField.Coord coord)
-    { 
+    {
         this._coord = coord;
     }
 
@@ -42,6 +53,7 @@ public class Cell : MonoBehaviour
         {
             return field.cellAt(_coord + relCoord);
         }
+
         return null;
     }
 
@@ -51,6 +63,7 @@ public class Cell : MonoBehaviour
         {
             piece.cell._boardPieces.Remove(piece);
         }
+
         piece.cell = this;
         _boardPieces.Add(piece);
         piece.transform.SetParent(transform, false);
@@ -58,12 +71,17 @@ public class Cell : MonoBehaviour
 
     public void indicateOuter()
     {
-        outerIndicator.gameObject.SetActive(true);
+        outerIndicator = Instantiate(outerIndicators[Random.Range(0, outerIndicators.Length)], this.transform.position,
+            Quaternion.identity, this.transform);
     }
 
     public void removeOuterIndicator()
     {
-        outerIndicator.gameObject.SetActive(false);
+        if (outerIndicator != null)
+        {
+            Destroy(outerIndicator);
+            outerIndicator = null;
+        }
     }
 
     public static void indicateOuter(Cell[] cells)
@@ -84,12 +102,17 @@ public class Cell : MonoBehaviour
 
     public void indicateInner()
     {
-        innerIndicator.gameObject.SetActive(true);
+        innerIndicator = Instantiate(innerIndicators[Random.Range(0, innerIndicators.Length)], this.transform.position,
+            Quaternion.identity, this.transform);
     }
 
     public void removeInnerIndicator()
     {
-        innerIndicator.gameObject.SetActive(false);
+        if (innerIndicator != null)
+        {
+            Destroy(innerIndicator);
+            innerIndicator = null;
+        }
     }
 
     public static void indicateInner(Cell[] cells)
@@ -108,15 +131,34 @@ public class Cell : MonoBehaviour
         }
     }
 
+    public void setupPiece()
+    {
+        if (piece != null)
+        {
+            return;
+        }
+        if (isEdgePiece)
+        {
+            piece = Instantiate(edgePieces[Random.Range(0, edgePieces.Length)], this.transform.position,
+                Quaternion.identity, this.transform);
+        }
+        else
+        {
+            piece = Instantiate(innerPieces[Random.Range(0, innerPieces.Length)], this.transform.position,
+                quaternion.identity, this.transform);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("dio cale");
+        //indicateInner();
+        //indicateOuter();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

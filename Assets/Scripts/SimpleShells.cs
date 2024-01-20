@@ -47,10 +47,11 @@ public class SimpleShell : MonoBehaviour
     {
         // noise:
         // Blend color from red at 0% to blue at 100%
-        var colors = new GradientColorKey[3];
+        var colors = new GradientColorKey[4];
         colors[0] = new GradientColorKey(new Color(0f, 0.95f, 1f), 0.0f);
         colors[1] = new GradientColorKey(new Color(0.03f, 1f, 0f), 0.526f);
-        colors[2] = new GradientColorKey(new Color(1f, 0.68f, 0f), 1.0f);
+        colors[2] = new GradientColorKey(new Color(0.16f, 1f, 0f), 0.7f);
+        colors[3] = new GradientColorKey(new Color(1f, 1f, 0f), 1.0f);
 
         // Blend alpha from opaque at 0% to transparent at 100
         var alphas = new GradientAlphaKey[2];
