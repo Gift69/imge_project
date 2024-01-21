@@ -20,7 +20,6 @@ public class Cell : MonoBehaviour
     public bool isEdgePiece;
 
     private GameObject piece, outerIndicator, innerIndicator;
-    private MeshCollider _meshCollider;
 
     public void setCoord(HexField.Coord coord)
     {
@@ -72,19 +71,12 @@ public class Cell : MonoBehaviour
 
     public void indicateOuter()
     {
-        outerIndicator = Instantiate(outerIndicators[Random.Range(0, outerIndicators.Length)], this.transform.position,
-            Quaternion.identity, this.transform);
-        _meshCollider.enabled = true;
+        outerIndicator.SetActive(true);
     }
 
     public void removeOuterIndicator()
     {
-        if (outerIndicator != null)
-        {
-            Destroy(outerIndicator);
-            outerIndicator = null;
-        }
-        _meshCollider.enabled = false;
+        outerIndicator.SetActive(false);
     }
 
     public static void indicateOuter(Cell[] cells)
@@ -105,17 +97,12 @@ public class Cell : MonoBehaviour
 
     public void indicateInner()
     {
-        innerIndicator = Instantiate(innerIndicators[Random.Range(0, innerIndicators.Length)], this.transform.position,
-            Quaternion.identity, this.transform);
+        innerIndicator.SetActive(true);
     }
 
     public void removeInnerIndicator()
     {
-        if (innerIndicator != null)
-        {
-            Destroy(innerIndicator);
-            innerIndicator = null;
-        }
+        innerIndicator.SetActive(false);
     }
 
     public static void indicateInner(Cell[] cells)
@@ -150,13 +137,18 @@ public class Cell : MonoBehaviour
             piece = Instantiate(innerPieces[Random.Range(0, innerPieces.Length)], this.transform.position,
                 quaternion.identity, this.transform);
         }
+        innerIndicator = Instantiate(innerIndicators[Random.Range(0, innerIndicators.Length)], this.transform.position,
+            Quaternion.identity, this.transform);
+        innerIndicator.SetActive(false);
+
+        outerIndicator = Instantiate(outerIndicators[Random.Range(0, outerIndicators.Length)], this.transform.position,
+            Quaternion.identity, this.transform);
+        outerIndicator.SetActive(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _meshCollider = GetComponent<MeshCollider>();
-        _meshCollider.enabled = false;
         //indicateInner();
         //indicateOuter();
     }

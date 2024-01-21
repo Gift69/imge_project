@@ -77,10 +77,11 @@ public class HexField : MonoBehaviour
         }
     }
 
-    [System.NonSerialized] public Vector3 DELTA_X = new Vector3(1.0f, 0, 0);
+    [System.NonSerialized]
+    public Vector3 DELTA_X = new Vector3(Mathf.Cos(Mathf.PI / 6), 0, 0);
 
     [System.NonSerialized]
-    public Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3));
+    public Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3)) * Mathf.Cos(Mathf.PI / 6);
 
     // Start is called before the first frame update
     void Start()
@@ -131,7 +132,7 @@ public class HexField : MonoBehaviour
 
         player = Instantiate(vPlayerPrefab);
         vPlayer = player.GetComponent<VirtualPlayer>();
-        cellAt(0, 1, 1).placeBoardPiece(vPlayer);
+        cellAt(0, 2, 1).placeBoardPiece(vPlayer);
 
         currentPlayer = player1;
     }
@@ -331,14 +332,14 @@ public class HexField : MonoBehaviour
 
             bool click = Input.GetMouseButtonUp(0);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction, Color.red);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 200))
             {
-                Debug.Log(hit);
                 if (click)
-                    select(hit.transform.GetComponent<Cell>());
+                    select(hit.transform.parent.GetComponentInParent<Cell>());
                 else
-                    selectionHover(hit.transform.GetComponent<Cell>());
+                    selectionHover(hit.transform.parent.GetComponentInParent<Cell>());
             }
             else if (click)
                 cancelSelection();

@@ -11,6 +11,7 @@ public class Player : BoardPiece
 
     public Action[] selectableActions = new Action[ACTION_COUNT];
     public Action[] selectedAction = new Action[ACTION_COUNT];
+    public List<GameObject> virtualActionObjs = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
