@@ -29,7 +29,6 @@ public class Ingame_UI : MonoBehaviour
 
 
 
-    private Label time;
     public Sprite test;
 
 
@@ -49,7 +48,6 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_4 = _Doc.rootVisualElement.Q<Button>("Ordered_Action_4");
         ordered_Action_5 = _Doc.rootVisualElement.Q<Button>("Ordered_Action_5");
 
-        time = _Doc.rootVisualElement.Q<Label>("Time_Label");
 
         left_Side_o = _Doc.rootVisualElement.Q<VisualElement>("Actionorder");
         left_Side_u = _Doc.rootVisualElement.Q<VisualElement>("Actions");
@@ -82,8 +80,6 @@ public class Ingame_UI : MonoBehaviour
            right_Side_Time.style.width = left_Side_o.resolvedStyle.height;
            _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.width = left_Side_o.resolvedStyle.height;
            _Doc.rootVisualElement.Q<VisualElement>("Time_Label").style.width = left_Side_o.resolvedStyle.height;
-           _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.marginLeft = action_1.resolvedStyle.height * 0.2f;
-           _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.marginRight = action_1.resolvedStyle.height * 0.2f;
 
 
            action_1.style.height = action_1.resolvedStyle.width;
@@ -98,6 +94,8 @@ public class Ingame_UI : MonoBehaviour
            ordered_Action_4.style.height = ordered_Action_4.resolvedStyle.width;
            ordered_Action_5.style.height = ordered_Action_5.resolvedStyle.width;
 
+           _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.marginLeft = action_1.resolvedStyle.height * 0.2f;
+           _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.marginRight = action_1.resolvedStyle.height * 0.2f;
        }
 
        );
