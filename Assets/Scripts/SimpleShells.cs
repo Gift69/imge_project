@@ -36,43 +36,43 @@ public class SimpleShell : MonoBehaviour
     private Material shellMaterial;
     private GameObject[] shells;
 
+
+    // noise
+    private Gradient colorRamp = new Gradient();
+    private float noiseScale = 0.15f;
+    private float noiseXOffset = 80;
+    private float noiseYOffset = 150;
+
     void Awake()
     {
-        /*  if (shellMesh.uv2[0].x != 3f)
-          {
-              Debug.Log("hallo ich bin hier");
-              Vector2[] newuv2 = new Vector2[shellMesh.uv2.Length];
-              newuv2[0] = new Vector2(2.0f, 0);
-              shellMesh.uv2 = newuv2;
-              Vector2[] rotateduvs = shellMesh.uv; //Store the existing UV's
-              Vector2 min = Vector2.zero;
-  
-              for (var i = 0; i < rotateduvs.Length; i++)
-              {
-                  //Go through the array
-                  var rot = Quaternion.Euler(0, 0, 60);
-                  rotateduvs[i] = rot * rotateduvs[i];
-                  min = new Vector2(Math.Min(min.x, rotateduvs[i].x), Math.Min(min.y, rotateduvs[i].y));
-              }
-  
-              min = new Vector2(Math.Min(min.x, 0), Math.Min(min.y, 0));
-              for (var i = 0; i < rotateduvs.Length; i++)
-              {
-                  rotateduvs[i] -= min;
-              }
-  
-              shellMesh.uv = rotateduvs; //re-apply the adjusted uvs
-          }*/
+        // noise:
+        // Blend color from red at 0% to blue at 100%
+        var colors = new GradientColorKey[4];
+        colors[0] = new GradientColorKey(new Color(0f, 0.95f, 1f), 0.0f);
+        colors[1] = new GradientColorKey(new Color(0.03f, 1f, 0f), 0.526f);
+        colors[2] = new GradientColorKey(new Color(0.16f, 1f, 0f), 0.7f);
+        colors[3] = new GradientColorKey(new Color(1f, 1f, 0f), 1.0f);
 
+        // Blend alpha from opaque at 0% to transparent at 100
+        var alphas = new GradientAlphaKey[2];
+        alphas[0] = new GradientAlphaKey(1.0f, 0.0f);
+        alphas[1] = new GradientAlphaKey(0.0f, 1.0f);
+
+        colorRamp.SetKeys(colors, alphas);
+        colorRamp.mode = GradientMode.PerceptualBlend;
 
         shellMaterial = new Material(shellShader);
-        float hue = Random.Range(100.0f, 141.0f) / 360.0f;
-        shellColor = Color.HSVToRGB(hue, 1, 1);
 
         shells = new GameObject[shellCount];
 
         for (int i = 0; i < shellCount; ++i)
         {
+            // noise
+            float rand = Mathf.PerlinNoise(noiseScale * transform.position.x + noiseXOffset,
+                noiseScale * transform.position.z + noiseYOffset);
+            shellColor = colorRamp.Evaluate(rand);
+
+            // copied stuff
             shells[i] = new GameObject("Shell " + i.ToString());
             shells[i].AddComponent<MeshFilter>();
             shells[i].AddComponent<MeshRenderer>();
