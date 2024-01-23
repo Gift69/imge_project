@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEditor.Build;
 using UnityEngine;
 using static HexField;
@@ -97,7 +98,12 @@ public class Cell : MonoBehaviour
 
     public void indicateInner()
     {
-        innerIndicator.SetActive(true);
+        if (innerIndicator.activeInHierarchy == false)
+        {
+            innerIndicator.transform.localScale = new Vector3(0.97f,0.97f,0.97f);
+            innerIndicator.SetActive(true);
+            PlayAnimationOnce(innerIndicator.GetComponent<Animator>());
+        }
     }
 
     public void removeInnerIndicator()
@@ -146,15 +152,10 @@ public class Cell : MonoBehaviour
         outerIndicator.SetActive(false);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //indicateInner();
-        //indicateOuter();
-    }
 
-    // Update is called once per frame
-    void Update()
+    void PlayAnimationOnce(Animator animator)
     {
+        // Play the PlayOnce state
+        animator.Play("Scale_Highlight");
     }
 }

@@ -304,6 +304,8 @@ public class HexField : MonoBehaviour
 
     private SwordSlashAction swordSlashAction = new SwordSlashAction();
 
+
+    private Transform lastParent;
     // Update is called once per frame
     void Update()
     {
@@ -320,7 +322,7 @@ public class HexField : MonoBehaviour
             cancelSelection();
         }
 
-        removeInnerIndicators();
+
 
         if (selection != null)
         {
@@ -334,7 +336,10 @@ public class HexField : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, ray.direction, Color.red);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 200))
+            bool racasthit = Physics.Raycast(ray, out hit, 200);
+            if (hit.transform == null || lastParent != hit.transform)
+                removeInnerIndicators();
+            if (racasthit)
             {
                 if (click)
                     select(hit.transform.parent.GetComponentInParent<Cell>());
@@ -343,6 +348,7 @@ public class HexField : MonoBehaviour
             }
             else if (click)
                 cancelSelection();
+            lastParent = hit.transform;
         }
 
         //Debug.Log(action.getValue().x + " " + action.getValue().y);
