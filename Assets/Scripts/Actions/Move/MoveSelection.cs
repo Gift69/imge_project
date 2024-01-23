@@ -6,7 +6,7 @@ public class MoveSelection : ActionSelection
 
     public override Cell[] getInnerIndicatorCells(HexField.Coord coord)
     {
-        return vPlayer.cell.getCellRelative(coord).getSequence(coord);
+        return new Cell[] { vPlayer.cell.getCellRelative(coord) };
     }
 
     public override Cell[] getOuterIndicatorCells()

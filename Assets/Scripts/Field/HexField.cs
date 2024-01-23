@@ -33,6 +33,7 @@ public class HexField : MonoBehaviour
     }
 
     private Selection selection = null;
+    private List<GameObject> virtualObjects = new List<GameObject>();
 
 
     public struct Coord
@@ -48,6 +49,9 @@ public class HexField : MonoBehaviour
             new(0, 1, 0),
             new(0, 0, 1)
         };
+
+        public static readonly Vector3 DELTA_X = new Vector3(1, 0, 0);
+        public static readonly Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3));
 
         public Coord(int x, int y = 0, int z = 0)
         {
@@ -75,13 +79,12 @@ public class HexField : MonoBehaviour
         {
             return !(c1 == c2);
         }
+
+        public Vector3 toCartesian()
+        {
+            return DELTA_X * x + DELTA_Y * y;
+        }
     }
-
-    [System.NonSerialized]
-    public Vector3 DELTA_X = new Vector3(Mathf.Cos(Mathf.PI / 6), 0, 0);
-
-    [System.NonSerialized]
-    public Vector3 DELTA_Y = new Vector3(Mathf.Cos(2 * Mathf.PI / 3), 0, Mathf.Sin(2 * Mathf.PI / 3)) * Mathf.Cos(Mathf.PI / 6);
 
     // Start is called before the first frame update
     void Start()
@@ -95,9 +98,11 @@ public class HexField : MonoBehaviour
 
         Coord coord = new Coord(0);
 
+        float cellRadius = Mathf.Cos(Mathf.PI / 6);
+
         GameObject centerObj = Instantiate(cellPrefab, transform);
         set(coord, centerObj);
-        centerObj.transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+        centerObj.transform.position = (coord.x * Coord.DELTA_X + coord.y * Coord.DELTA_Y) * cellRadius;
         centerObj.GetComponent<Cell>().isEdgePiece = false;
         centerObj.GetComponent<Cell>().setupPiece();
 
@@ -112,7 +117,7 @@ public class HexField : MonoBehaviour
                     GameObject obj = Instantiate(cellPrefab, transform);
 
                     set(coord, obj);
-                    obj.transform.position = coord.x * DELTA_X + coord.y * DELTA_Y;
+                    obj.transform.position = (coord.x * Coord.DELTA_X + coord.y * Coord.DELTA_Y) * cellRadius;
                     Cell cellScript = obj.GetComponent<Cell>();
                     cellScript.setCoord(coord);
                     cellScript.isEdgePiece = i == radius;
@@ -297,6 +302,7 @@ public class HexField : MonoBehaviour
     public void select(Cell cell)
     {
         selection.action.setValue(cell.getCoord() - selection.vPlayer.cell.getCoord());
+        virtualObjects.AddRange(selection.action.executeVirtual(vPlayer));
         cancelSelection();
     }
 
@@ -327,6 +333,8 @@ public class HexField : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 cancelSelection();
+                virtualObjects.ForEach(obj => Destroy(obj));
+                virtualObjects.Clear();
                 return;
             }
 
