@@ -39,19 +39,22 @@ public class SimpleShell : MonoBehaviour
 
     // noise
     private Gradient colorRamp = new Gradient();
-    private float noiseScale = 0.15f;
-    private float noiseXOffset = 80;
-    private float noiseYOffset = 150;
+    private float noiseScale = 0.5f;
+    private float noiseXOffset;
+    private float noiseYOffset;
 
     void Awake()
     {
         // noise:
+        noiseXOffset = Random.Range(100, 500);
+        noiseYOffset = Random.Range(100, 500);
         // Blend color from red at 0% to blue at 100%
-        var colors = new GradientColorKey[4];
-        colors[0] = new GradientColorKey(new Color(0f, 0.95f, 1f), 0.0f);
+        var colors = new GradientColorKey[5];
+        colors[0] = new GradientColorKey(new Color(0f, 1f, 0.78f), 0.0f);
         colors[1] = new GradientColorKey(new Color(0.03f, 1f, 0f), 0.526f);
-        colors[2] = new GradientColorKey(new Color(0.16f, 1f, 0f), 0.7f);
-        colors[3] = new GradientColorKey(new Color(1f, 1f, 0f), 1.0f);
+        colors[2] = new GradientColorKey(new Color(0.16f, 1f, 0f), 0.6f);
+        colors[3] = new GradientColorKey(new Color(1f, 1f, 0f), 0.8f);
+        colors[4] = new GradientColorKey(new Color(1f, 0.62f, 0f), 1.0f);
 
         // Blend alpha from opaque at 0% to transparent at 100
         var alphas = new GradientAlphaKey[2];
