@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.TerrainUtils;
+using UnityEngine.UIElements;
 
 public abstract class Action
 {
     public bool selected = false;
     protected bool hasValue = false;
     protected HexField.Coord value;
+
+    public Button selectableButton;
 
 
     public abstract List<GameObject> executeVirtual(VirtualPlayer vPlayer);

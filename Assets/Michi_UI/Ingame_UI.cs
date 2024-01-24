@@ -205,5 +205,10 @@ public class Ingame_UI : MonoBehaviour
         action_3.style.backgroundImage = new StyleBackground(selected_Actions[2].getIcon());
         action_4.style.backgroundImage = new StyleBackground(selected_Actions[3].getIcon());
         action_5.style.backgroundImage = new StyleBackground(selected_Actions[4].getIcon());
+        selected_Actions[0].selectableButton = action_1;
+        selected_Actions[1].selectableButton = action_2;
+        selected_Actions[2].selectableButton = action_3;
+        selected_Actions[3].selectableButton = action_4;
+        selected_Actions[4].selectableButton = action_5;
     }
 }
