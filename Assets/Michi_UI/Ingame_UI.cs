@@ -27,7 +27,7 @@ public class Ingame_UI : MonoBehaviour
     private VisualElement right_Side_Time;
     private VisualElement right_Side_Enemy_Actions;
 
-
+    public Action[] selected_Actions;
 
     public Sprite test;
 
@@ -105,7 +105,6 @@ public class Ingame_UI : MonoBehaviour
     private void ActionButton1OnClicked()
     {
         action_1.SetEnabled(false);
-        
         ordered_Action_1.style.backgroundImage = new StyleBackground(test);
     }
     private void ActionButton2OnClicked()
@@ -181,5 +180,13 @@ public class Ingame_UI : MonoBehaviour
             default:
                 return null;
         }
+    }
+    public void SetActions(Action[] selected_Actions){
+        this.selected_Actions = selected_Actions;
+        action_1.style.backgroundImage = new StyleBackground(selected_Actions[0].getIcon());
+        action_2.style.backgroundImage = new StyleBackground(selected_Actions[1].getIcon());
+        action_3.style.backgroundImage = new StyleBackground(selected_Actions[2].getIcon());
+        action_4.style.backgroundImage = new StyleBackground(selected_Actions[3].getIcon());
+        action_5.style.backgroundImage = new StyleBackground(selected_Actions[4].getIcon());
     }
 }

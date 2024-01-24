@@ -7,11 +7,11 @@
                     <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 18px; -unity-font-style: bold;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
-                    <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
-                    <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
-                    <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
-                    <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
-                    <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_1" class="noMarginAndPadding" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_2" class="noMarginAndPadding" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_3" class="noMarginAndPadding" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_4" class="noMarginAndPadding" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_5" class="noMarginAndPadding" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Normal_Actions" style="flex-grow: 1; width: 100%; height: 80%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
