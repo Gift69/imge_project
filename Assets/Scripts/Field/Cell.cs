@@ -103,6 +103,7 @@ public class Cell : MonoBehaviour
         if (innerIndicator.activeInHierarchy == false)
         {
             innerIndicator.transform.localScale = new Vector3(0.97f,0.97f,0.97f);
+            innerIndicator.transform.localPosition = new Vector3(0, 0, 0);
             innerIndicator.SetActive(true);
             PlayAnimationOnce(innerIndicator.GetComponent<Animator>());
         }
