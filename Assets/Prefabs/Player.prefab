@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cell: {fileID: 0}
   score: 0
-  virtualActionObjs: []
+  virtualPlayerPrefab: {fileID: 2699525788604457909, guid: dcd592506bcaa4a498386ccc957f4ae1, type: 3}
 --- !u!1 &5262212332575479945
 GameObject:
   m_ObjectHideFlags: 0
