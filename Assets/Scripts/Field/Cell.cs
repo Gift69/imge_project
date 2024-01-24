@@ -83,7 +83,8 @@ public class Cell : MonoBehaviour
     {
         foreach (Cell cell in cells)
         {
-            cell.indicateOuter();
+            if (cell != null)
+                cell.indicateOuter();
         }
     }
 
@@ -91,7 +92,8 @@ public class Cell : MonoBehaviour
     {
         foreach (Cell cell in cells)
         {
-            cell.removeOuterIndicator();
+            if (cell != null)
+                cell.removeOuterIndicator();
         }
     }
 
@@ -109,7 +111,8 @@ public class Cell : MonoBehaviour
     {
         foreach (Cell cell in cells)
         {
-            cell.indicateInner();
+            if (cell != null)
+                cell.indicateInner();
         }
     }
 
@@ -117,7 +120,8 @@ public class Cell : MonoBehaviour
     {
         foreach (Cell cell in cells)
         {
-            cell.removeInnerIndicator();
+            if (cell != null)
+                cell.removeInnerIndicator();
         }
     }
 

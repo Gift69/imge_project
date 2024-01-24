@@ -12,8 +12,8 @@ public class VirtualPlayer : BoardPiece
     {
         var ret = Instantiate(obj, this.cell.transform);
         var vec = dir.toCartesian();
-        float arctanDir = Mathf.Atan2(vec.x, vec.z);
-        ret.transform.rotation = Quaternion.Euler(0, arctanDir * 180 / Mathf.PI, 0);
+        float arctanDir = Mathf.Atan2(vec.z, vec.x);
+        ret.transform.rotation = Quaternion.Euler(0, -arctanDir * 180 / Mathf.PI, 0);
         return ret;
     }
 

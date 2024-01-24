@@ -9,12 +9,12 @@ public class SwordSlashAction : Action
 {
     public override void execute(Player player)
     {
-        throw new NotImplementedException();
+        
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)
     {
-        throw new NotImplementedException();
+        return new List<GameObject>();
     }
 
     public override ActionSelection getActionSelection(VirtualPlayer vPlayer)
