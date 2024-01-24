@@ -27,9 +27,11 @@ public class Ingame_UI : MonoBehaviour
     private VisualElement right_Side_Time;
     private VisualElement right_Side_Enemy_Actions;
 
-
+    public Action[] selected_Actions;
 
     public Sprite test;
+
+    public HexField hexField;
 
 
     // Start is called before the first frame update
@@ -99,48 +101,123 @@ public class Ingame_UI : MonoBehaviour
        }
 
        );
+        ordered_Action_1.SetEnabled(false);
+        ordered_Action_2.SetEnabled(false);
+        ordered_Action_3.SetEnabled(false);
+        ordered_Action_4.SetEnabled(false); ;
+        ordered_Action_5.SetEnabled(false);
     }
 
 
     private void ActionButton1OnClicked()
     {
-        action_1.SetEnabled(false);
-        ordered_Action_1.style.backgroundImage = new StyleBackground(test);
+        if (selected_Actions[0].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[0]);
+        else
+            hexField.startSelection(selected_Actions[0]);
     }
     private void ActionButton2OnClicked()
     {
-
+        if (selected_Actions[1].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[1]);
+        else
+            hexField.startSelection(selected_Actions[1]);
     }
     private void ActionButton3OnClicked()
     {
-
+        if (selected_Actions[2].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[2]);
+        else
+            hexField.startSelection(selected_Actions[2]);
     }
     private void ActionButton4OnClicked()
     {
-
+        if (selected_Actions[3].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[3]);
+        else
+            hexField.startSelection(selected_Actions[3]);
     }
     private void ActionButton5OnClicked()
     {
-
+        if (selected_Actions[4].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[4]);
+        else
+            hexField.startSelection(selected_Actions[4]);
     }
     private void OrderdActionButton1OnClicked()
     {
-
+        hexField.currentPlayer.removeActionAt(0);
     }
     private void OrderdActionButton2OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(1);
 
     }
     private void OrderdActionButton3OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(2);
 
     }
     private void OrderdActionButton4OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(3);
 
     }
     private void OrderdActionButton5OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(4);
 
+    }
+
+    public Button GetSelectableActionButtons(int button)
+    {
+        switch (button)
+        {
+            case 0:
+                return action_1;
+            case 1:
+                return action_2;
+            case 2:
+                return action_3;
+            case 3:
+                return action_4;
+            case 4:
+                return action_5;
+            default:
+                return null;
+        }
+    }
+
+    public Button GetExecutableActionButtons(int button)
+    {
+        switch (button)
+        {
+            case 0:
+                return ordered_Action_1;
+            case 1:
+                return ordered_Action_2;
+            case 2:
+                return ordered_Action_3;
+            case 3:
+                return ordered_Action_4;
+            case 4:
+                return ordered_Action_5;
+            default:
+                return null;
+        }
+    }
+    public void SetActions(Action[] selected_Actions)
+    {
+        this.selected_Actions = selected_Actions;
+        action_1.style.backgroundImage = new StyleBackground(selected_Actions[0].getIcon());
+        action_2.style.backgroundImage = new StyleBackground(selected_Actions[1].getIcon());
+        action_3.style.backgroundImage = new StyleBackground(selected_Actions[2].getIcon());
+        action_4.style.backgroundImage = new StyleBackground(selected_Actions[3].getIcon());
+        action_5.style.backgroundImage = new StyleBackground(selected_Actions[4].getIcon());
+        selected_Actions[0].selectableButton = action_1;
+        selected_Actions[1].selectableButton = action_2;
+        selected_Actions[2].selectableButton = action_3;
+        selected_Actions[3].selectableButton = action_4;
+        selected_Actions[4].selectableButton = action_5;
     }
 }

@@ -1,0 +1,76 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%;">
+        <ui:VisualElement style="flex-grow: 1; width: 100%; height: 80%; justify-content: flex-end; align-items: center; flex-direction: column;">
+            <ui:VisualElement style="flex-grow: 1; width: 100%; height: 15%; flex-direction: row;">
+                <ui:VisualElement style="flex-grow: 1; width: 80%; height: 100%; justify-content: flex-end; flex-direction: column; align-items: center; align-self: auto;">
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IP_adress" style="width: 90%; height: 70%;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; height: 100%; width: 20%;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; width: 100%; height: 85%; flex-direction: row;">
+                <ui:VisualElement name="List_of_Player" style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column; justify-content: space-around; align-items: center;">
+                    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row; justify-content: space-around; align-items: center;">
+                            <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
+                            <ui:VisualElement name="Character_icon_1" style="flex-grow: 1; height: 100%; width: 70%;" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="host_name" style="height: 50%; width: 70%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; justify-content: flex-start; align-items: center;">
+                        <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row;">
+                            <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
+                            <ui:VisualElement name="Character_icon_2" style="flex-grow: 1; height: 100%; width: 70%;" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1_name" style="width: 70%; height: 50%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; align-items: center;">
+                        <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row;">
+                            <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
+                            <ui:VisualElement name="Character_icon_3" style="flex-grow: 1; height: 100%; width: 70%;" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2_name" style="width: 70%; height: 50%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; align-items: center;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row;">
+                            <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
+                            <ui:VisualElement name="Character_icon_4" style="flex-grow: 1; height: 100%; width: 70%;" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3_name" style="width: 70%; height: 50%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Character_selection" style="flex-grow: 1; height: 100%; width: 50%; flex-direction: row;">
+                    <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;">
+                        <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_0960.jpeg?fileID=21300000&amp;guid=48426c630b02d444ab55c2dbff9f78ba&amp;type=3#IMG_0960&apos;);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_0967.png?fileID=21300000&amp;guid=7975fe5025ac9fb439e91c97c2122f85&amp;type=3#IMG_0967&apos;);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column;">
+                        <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_1028.jpeg?fileID=21300000&amp;guid=2f5ab28fc3ae1aa44854889422051277&amp;type=3#IMG_1028&apos;); background-color: rgb(245, 242, 242); -unity-background-image-tint-color: rgb(101, 106, 144);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_1026.jpeg?fileID=21300000&amp;guid=9104d210a0ccf06479d4457527bbf83f&amp;type=3#IMG_1026&apos;);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 20%; flex-direction: row;">
+            <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
+                <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column; justify-content: space-around; align-self: auto; align-items: center;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="width: 70%; height: 50%; align-self: center; align-items: center; justify-content: space-between; flex-direction: column;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
+                <ui:VisualElement style="flex-grow: 1; flex-direction: column; width: 50%; height: 100%;" />
+                <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; justify-content: space-around; align-items: center;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="start_button" style="width: 70%; height: 50%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
