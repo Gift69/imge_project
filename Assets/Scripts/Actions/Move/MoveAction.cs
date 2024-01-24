@@ -19,4 +19,7 @@ public class MoveAction : Action
     {
         return new MoveSelection(vPlayer);
     }
+    public override Sprite getIcon(){
+        return Resources.Load<Sprite>("sword-icon");;
+    }
 }

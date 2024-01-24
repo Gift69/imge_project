@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.TerrainUtils;
 
@@ -41,5 +42,9 @@ public abstract class Action
     public HexField.Coord getValue()
     {
         return value;
+    }
+
+    public virtual Sprite getIcon(){
+        return null;
     }
 }
