@@ -15,7 +15,7 @@ public class HexField : MonoBehaviour
     private GameObject[][] cells;
 
     private Player player1, player2;
-    private Player currentPlayer;
+    public Player currentPlayer;
 
     public class Selection
     {

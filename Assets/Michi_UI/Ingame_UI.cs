@@ -31,6 +31,8 @@ public class Ingame_UI : MonoBehaviour
 
     public Sprite test;
 
+    public HexField hexField;
+
 
     // Start is called before the first frame update
     void Start()
@@ -104,24 +106,38 @@ public class Ingame_UI : MonoBehaviour
 
     private void ActionButton1OnClicked()
     {
-        action_1.SetEnabled(false);
-        ordered_Action_1.style.backgroundImage = new StyleBackground(test);
+        if (selected_Actions[0].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[0]);
+        else
+            hexField.startSelection(selected_Actions[0]);
     }
     private void ActionButton2OnClicked()
     {
-
+        if (selected_Actions[1].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[1]);
+        else
+            hexField.startSelection(selected_Actions[1]);
     }
     private void ActionButton3OnClicked()
     {
-
+        if (selected_Actions[2].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[2]);
+        else
+            hexField.startSelection(selected_Actions[2]);
     }
     private void ActionButton4OnClicked()
     {
-
+        if (selected_Actions[3].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[3]);
+        else
+            hexField.startSelection(selected_Actions[3]);
     }
     private void ActionButton5OnClicked()
     {
-
+        if (selected_Actions[4].isValid())
+            hexField.currentPlayer.selectAction(selected_Actions[4]);
+        else
+            hexField.startSelection(selected_Actions[4]);
     }
     private void OrderdActionButton1OnClicked()
     {
@@ -181,7 +197,8 @@ public class Ingame_UI : MonoBehaviour
                 return null;
         }
     }
-    public void SetActions(Action[] selected_Actions){
+    public void SetActions(Action[] selected_Actions)
+    {
         this.selected_Actions = selected_Actions;
         action_1.style.backgroundImage = new StyleBackground(selected_Actions[0].getIcon());
         action_2.style.backgroundImage = new StyleBackground(selected_Actions[1].getIcon());
