@@ -105,6 +105,7 @@ public class Ingame_UI : MonoBehaviour
     private void ActionButton1OnClicked()
     {
         action_1.SetEnabled(false);
+        
         ordered_Action_1.style.backgroundImage = new StyleBackground(test);
     }
     private void ActionButton2OnClicked()
@@ -142,5 +143,43 @@ public class Ingame_UI : MonoBehaviour
     private void OrderdActionButton5OnClicked()
     {
 
+    }
+
+    public Button GetSelectableActionButtons(int button)
+    {
+        switch (button)
+        {
+            case 0:
+                return action_1;
+            case 1:
+                return action_2;
+            case 2:
+                return action_3;
+            case 3:
+                return action_4;
+            case 4:
+                return action_5;
+            default:
+                return null;
+        }
+    }
+
+    public Button GetExecutableActionButtons(int button)
+    {
+        switch (button)
+        {
+            case 0:
+                return ordered_Action_1;
+            case 1:
+                return ordered_Action_2;
+            case 2:
+                return ordered_Action_3;
+            case 3:
+                return ordered_Action_4;
+            case 4:
+                return ordered_Action_5;
+            default:
+                return null;
+        }
     }
 }
