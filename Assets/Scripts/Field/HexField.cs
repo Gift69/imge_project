@@ -22,7 +22,7 @@ public class HexField : MonoBehaviour
         public Action action;
         public ActionSelection actionSelection;
 
-        public Selection(Action action, ActionSelection actionSelection, VirtualPlayer vPlayer)
+        public Selection(Action action, ActionSelection actionSelection)
         {
             this.action = action;
             this.actionSelection = actionSelection;
@@ -273,10 +273,10 @@ public class HexField : MonoBehaviour
         }
     }
 
-    public void startSelection(Action action, VirtualPlayer virtualPlayer)
+    public void startSelection(Action action)
     {
         removeIndicators();
-        this.selection = new Selection(action, action.getActionSelection(virtualPlayer), virtualPlayer);
+        this.selection = new Selection(action, action.getActionSelection(currentPlayer.VPlayer));
         Cell.indicateOuter(selection.actionSelection.getOuterIndicatorCells());
     }
 
@@ -310,11 +310,11 @@ public class HexField : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            startSelection(new MoveAction(), currentPlayer.VPlayer);
+            startSelection(new MoveAction());
         }
         else if (Input.GetKeyDown(KeyCode.J))
         {
-            startSelection(new SwordSlashAction(), currentPlayer.VPlayer);
+            startSelection(new SwordSlashAction());
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
