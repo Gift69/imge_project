@@ -2,28 +2,34 @@
     <Style src="project://database/Assets/Michi_UI/Ingame_UI.uss?fileID=7433441132597879392&amp;guid=3b30b9a2cd3125d4fa735e2a1f8e5202&amp;type=3#Ingame_UI" />
     <ui:VisualElement name="root" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="Left_Side" style="flex-grow: 1; width: 25%; height: 100%;">
-            <ui:VisualElement name="Enemy_Info" style="flex-grow: 1; width: 100%; height: 50%;">
+            <ui:VisualElement name="Player_Info" style="flex-grow: 1; width: 100%; height: 20%;">
                 <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
-                    <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 20px; -unity-font-style: bold;" />
+                    <ui:Label tabindex="-1" text="Mulsi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-left; font-size: 18px; -unity-font-style: bold;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                    <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
+                    <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
+                    <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
+                    <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
+                    <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Michi_UI/sword-icon.png?fileID=2800000&amp;guid=3d568623d92bd2c41ac816440ef930d8&amp;type=3#sword-icon&apos;);" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="SpecialActions" style="flex-grow: 1; width: 100%; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
+            <ui:VisualElement name="Normal_Actions" style="flex-grow: 1; width: 100%; height: 80%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_1" class="noMarginAndPadding" style="width: 50%; height: 87px;" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_1" class="noMarginAndPadding" style="width: 50%; height: 87px;" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_1" class="noMarginAndPadding" style="width: 50%; height: 87px;" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Walk" class="noMarginAndPadding" style="width: 50%; height: 87px;" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Collect" class="noMarginAndPadding" style="width: 50%; height: 87px;" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Do_Nothing" class="noMarginAndPadding" style="width: 50%; height: 87px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Scene" style="flex-grow: 1; width: 50%; height: 100%;" />
-        <ui:VisualElement name="Right_Side" style="flex-grow: 1; width: 25%; height: 100%;">
-            <ui:VisualElement name="Time" style="flex-grow: 1; width: 100%; height: 20%;">
-                <ui:Label tabindex="-1" text="0:10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time_Label" class="noMarginAndPadding" style="width: 100%; height: 100%; -unity-text-align: middle-center; font-size: 30px; -unity-font-style: bold;" />
+        <ui:VisualElement name="Scene" style="flex-grow: 1; width: auto; height: auto;" />
+        <ui:VisualElement name="Right_Side" style="flex-grow: 1; width: 25%; height: 100%; align-self: flex-end;">
+            <ui:VisualElement name="Time" style="flex-grow: 1; width: 100%; height: 20%; align-items: center; justify-content: center; flex-direction: column; align-self: flex-end;">
+                <ui:Label tabindex="-1" text="0:10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time_Label" class="noMarginAndPadding" style="width: auto; height: auto; -unity-text-align: middle-center; font-size: 55px; -unity-font-style: bold;" />
             </ui:VisualElement>
-            <ui:VisualElement name="Normal_Actions" style="flex-grow: 1; width: 100%; height: 90%; justify-content: center; align-items: center;">
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Walk" class="noMarginAndPadding" style="width: 70%; height: 125px; align-self: flex-start;" />
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Collect" class="noMarginAndPadding" style="width: 70%; height: 125px; align-self: flex-end;" />
+            <ui:VisualElement name="Special_Actions" style="flex-grow: 1; width: 100%; height: 90%; align-self: flex-end; justify-content: center; align-items: center;">
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_1" class="noMarginAndPadding" style="width: 60%; height: 87px; align-self: flex-end;" />
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_2" class="noMarginAndPadding" style="width: 60%; height: 87px; align-self: flex-start;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

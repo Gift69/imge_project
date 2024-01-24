@@ -22,9 +22,15 @@ public class Ingame_UI : MonoBehaviour
     private Button ordered_Action_4;
     private Button ordered_Action_5;
 
-    private Button _homeButton;
-    private Button _resumeButton;
-    private Label time;
+    private VisualElement left_Side_o;
+    private VisualElement left_Side_u;
+    private VisualElement right_Side_Time;
+    private VisualElement right_Side_Enemy_Actions;
+
+
+
+    public Sprite test;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +47,13 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_3 = _Doc.rootVisualElement.Q<Button>("Ordered_Action_3");
         ordered_Action_4 = _Doc.rootVisualElement.Q<Button>("Ordered_Action_4");
         ordered_Action_5 = _Doc.rootVisualElement.Q<Button>("Ordered_Action_5");
-        time = _Doc.rootVisualElement.Q<Label>("Time_Label");
+
+
+        left_Side_o = _Doc.rootVisualElement.Q<VisualElement>("Actionorder");
+        left_Side_u = _Doc.rootVisualElement.Q<VisualElement>("Actions");
+        right_Side_Enemy_Actions = _Doc.rootVisualElement.Q<VisualElement>("Enemy_Actions");
+        right_Side_Time = _Doc.rootVisualElement.Q<VisualElement>("Time");
+
 
         action_1.clicked += ActionButton1OnClicked;
         action_2.clicked += ActionButton2OnClicked;
@@ -55,33 +67,45 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_4.clicked += OrderdActionButton4OnClicked;
         ordered_Action_5.clicked += OrderdActionButton5OnClicked;
 
-
-
         action_1.Focus();
 
-        action_1.RegisterCallback<MouseOverEvent>((type) =>
-        {
-            _homeButton.Focus();
-        });
 
-        /* _Doc.rootVisualElement.RegisterCallback<GeometryChangedEvent>(ev =>
-        {
-            if (ev.oldRect.width != ev.newRect.width && ev.oldRect.height != ev.newRect.height)
-            {
-                _retryButton.style.fontSize = _retryButton.resolvedStyle.height;
-                _homeButton.style.fontSize = _homeButton.resolvedStyle.height;
-                _resumeButton.style.fontSize = _resumeButton.resolvedStyle.height;
-                _text.style.fontSize = _text.resolvedStyle.height * 6 / 10;
-            }
-        }
+        action_1.style.backgroundImage = new StyleBackground(test);
 
-        ); */
+        _Doc.rootVisualElement.RegisterCallback<GeometryChangedEvent>(ev =>
+       {
+           left_Side_o.style.width = left_Side_o.resolvedStyle.height;
+           left_Side_u.style.width = left_Side_o.resolvedStyle.height;
+           right_Side_Enemy_Actions.style.width = left_Side_o.resolvedStyle.height;
+           right_Side_Time.style.width = left_Side_o.resolvedStyle.height;
+           _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.width = left_Side_o.resolvedStyle.height;
+           _Doc.rootVisualElement.Q<VisualElement>("Time_Label").style.width = left_Side_o.resolvedStyle.height;
+
+
+           action_1.style.height = action_1.resolvedStyle.width;
+           action_2.style.height = action_2.resolvedStyle.width;
+           action_3.style.height = action_3.resolvedStyle.width;
+           action_4.style.height = action_4.resolvedStyle.width;
+           action_5.style.height = action_5.resolvedStyle.width;
+
+           ordered_Action_1.style.height = ordered_Action_1.resolvedStyle.width;
+           ordered_Action_2.style.height = ordered_Action_2.resolvedStyle.width;
+           ordered_Action_3.style.height = ordered_Action_3.resolvedStyle.width;
+           ordered_Action_4.style.height = ordered_Action_4.resolvedStyle.width;
+           ordered_Action_5.style.height = ordered_Action_5.resolvedStyle.width;
+
+           _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.marginLeft = action_1.resolvedStyle.height * 0.2f;
+           _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.marginRight = action_1.resolvedStyle.height * 0.2f;
+       }
+
+       );
     }
 
 
     private void ActionButton1OnClicked()
     {
-
+        action_1.SetEnabled(false);
+        ordered_Action_1.style.backgroundImage = new StyleBackground(test);
     }
     private void ActionButton2OnClicked()
     {
@@ -102,16 +126,20 @@ public class Ingame_UI : MonoBehaviour
     private void OrderdActionButton1OnClicked()
     {
 
-    }private void OrderdActionButton2OnClicked()
+    }
+    private void OrderdActionButton2OnClicked()
     {
 
-    }private void OrderdActionButton3OnClicked()
+    }
+    private void OrderdActionButton3OnClicked()
     {
 
-    }private void OrderdActionButton4OnClicked()
+    }
+    private void OrderdActionButton4OnClicked()
     {
 
-    }private void OrderdActionButton5OnClicked()
+    }
+    private void OrderdActionButton5OnClicked()
     {
 
     }
