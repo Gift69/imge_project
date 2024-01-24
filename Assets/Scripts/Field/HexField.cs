@@ -16,19 +16,16 @@ public class HexField : MonoBehaviour
 
     private Player player1, player2;
     private Player currentPlayer;
-    private VirtualPlayer vPlayer;
 
     public class Selection
     {
         public Action action;
         public ActionSelection actionSelection;
-        public VirtualPlayer vPlayer;
 
         public Selection(Action action, ActionSelection actionSelection, VirtualPlayer vPlayer)
         {
             this.action = action;
             this.actionSelection = actionSelection;
-            this.vPlayer = vPlayer;
         }
     }
 
@@ -134,10 +131,6 @@ public class HexField : MonoBehaviour
         player = Instantiate(playerPrefab);
         player2 = player.GetComponent<Player>();
         cellAt(-2, 0).placeBoardPiece(player2);
-
-        player = Instantiate(vPlayerPrefab);
-        vPlayer = player.GetComponent<VirtualPlayer>();
-        cellAt(0, 2, 1).placeBoardPiece(vPlayer);
 
         currentPlayer = player1;
     }
@@ -296,13 +289,13 @@ public class HexField : MonoBehaviour
     public void selectionHover(Cell cell)
     {
         Cell.indicateInner(
-            selection.actionSelection.getInnerIndicatorCells(cell.getCoord() - selection.vPlayer.cell.getCoord()));
+            selection.actionSelection.getInnerIndicatorCells(cell.getCoord() - currentPlayer.VPlayer.cell.getCoord()));
     }
 
     public void select(Cell cell)
     {
-        selection.action.setValue(cell.getCoord() - selection.vPlayer.cell.getCoord());
-        virtualObjects.AddRange(selection.action.executeVirtual(vPlayer));
+        selection.action.setValue(cell.getCoord() - currentPlayer.VPlayer.cell.getCoord());
+        currentPlayer.selectAction(selection.action);
         cancelSelection();
     }
 
@@ -317,15 +310,35 @@ public class HexField : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            startSelection(action, vPlayer);
+            startSelection(new MoveAction(), currentPlayer.VPlayer);
         }
         else if (Input.GetKeyDown(KeyCode.J))
         {
-            startSelection(swordSlashAction, vPlayer);
+            startSelection(new SwordSlashAction(), currentPlayer.VPlayer);
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
             cancelSelection();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentPlayer.removeActionAt(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentPlayer.removeActionAt(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentPlayer.removeActionAt(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentPlayer.removeActionAt(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            currentPlayer.removeActionAt(4);
         }
 
 
