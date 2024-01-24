@@ -41,18 +41,18 @@
                 <ui:VisualElement name="Character_selection" style="flex-grow: 1; height: 100%; width: 50%; flex-direction: row;">
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%;" />
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_0960.jpeg?fileID=21300000&amp;guid=48426c630b02d444ab55c2dbff9f78ba&amp;type=3#IMG_0960&apos;);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%;" />
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_0967.png?fileID=21300000&amp;guid=7975fe5025ac9fb439e91c97c2122f85&amp;type=3#IMG_0967&apos;);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch;" />
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_1028.jpeg?fileID=21300000&amp;guid=2f5ab28fc3ae1aa44854889422051277&amp;type=3#IMG_1028&apos;); background-color: rgb(245, 242, 242); -unity-background-image-tint-color: rgb(101, 106, 144);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%;" />
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_1026.jpeg?fileID=21300000&amp;guid=9104d210a0ccf06479d4457527bbf83f&amp;type=3#IMG_1026&apos;);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

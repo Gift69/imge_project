@@ -370,6 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba29c5b2b8dc6b48aa96898bf20748e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chosenChar1: {fileID: 21300000, guid: 48426c630b02d444ab55c2dbff9f78ba, type: 3}
+  chosenChar2: {fileID: 21300000, guid: 2f5ab28fc3ae1aa44854889422051277, type: 3}
+  chosenChar3: {fileID: 21300000, guid: 7975fe5025ac9fb439e91c97c2122f85, type: 3}
+  chosenChar4: {fileID: 21300000, guid: 9104d210a0ccf06479d4457527bbf83f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
