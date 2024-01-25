@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IP_Entry.unity
     guid: d39846a8c439f2e4489eb74662c7c24e
+  - enabled: 1
+    path: Assets/Scenes/Stage.unity
+    guid: a523903abcc27b744a01331b8bc77846
   m_configObjects: {}

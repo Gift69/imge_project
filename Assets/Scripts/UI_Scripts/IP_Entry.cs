@@ -10,6 +10,7 @@ public class IP_Entry : MonoBehaviour
     private UIDocument _uiDocument;
     private Button back;
     private TextField ip_entry;
+    private Button enter;
 
     private void Start()
     {
@@ -17,7 +18,9 @@ public class IP_Entry : MonoBehaviour
         back = _uiDocument.rootVisualElement.Q<Button>("back_button");
         ip_entry= _uiDocument.rootVisualElement.Q<TextField>("IP_entry");
         ip_entry.label = new string("IP ADDRESS : ");
+        enter = _uiDocument.rootVisualElement.Q<Button>("enter");
         back.clicked += BackToPrevScene;
+        enter.clicked += CheckIPAddress;
     }
     
     private void BackToPrevScene()
