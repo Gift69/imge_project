@@ -21,4 +21,9 @@ public class SwordSlashAction : Action
     {
         return new SwordSlashSelection(vPlayer);
     }
+
+    public override bool requiresInput()
+    {
+        return true;
+    }
 }

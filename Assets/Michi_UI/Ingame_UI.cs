@@ -160,7 +160,7 @@ public class Ingame_UI : MonoBehaviour
 
     }
 
-    public Button GetSelectableActionButtons(int button)
+    public Button GetSelectableActionButton(int button)
     {
         switch (button)
         {
@@ -179,7 +179,7 @@ public class Ingame_UI : MonoBehaviour
         }
     }
 
-    public Button GetExecutableActionButtons(int button)
+    public Button GetExecutableActionButton(int button)
     {
         switch (button)
         {

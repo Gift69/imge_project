@@ -7,6 +7,7 @@ public class Player : BoardPiece
 {
     public int score = 0;
     public GameObject virtualPlayerPrefab;
+    private Ingame_UI ui;
 
     public const int ACTION_COUNT = 5;
 
@@ -28,6 +29,9 @@ public class Player : BoardPiece
             if (actions[i] == null)
             {
                 actions[i] = action;
+                action.selectableButton.SetEnabled(false);
+
+                ui.GetComponent<Ingame_UI>().GetExecutableActionButton(i).style.backgroundImage = new UnityEngine.UIElements.StyleBackground(action.getIcon());
 
                 for(int j = i; j < ACTION_COUNT && actions[j] != null; j++)
                 {
@@ -87,7 +91,7 @@ public class Player : BoardPiece
     // Start is called before the first frame update
     void Start()
     {
-        
+        ui = GameObject.FindGameObjectsWithTag("IngameUI")[0].GetComponent<Ingame_UI>();
     }
 
     // Update is called once per frame
