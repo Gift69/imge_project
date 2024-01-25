@@ -101,6 +101,11 @@ public class Ingame_UI : MonoBehaviour
        }
 
        );
+        ordered_Action_1.SetEnabled(false);
+        ordered_Action_2.SetEnabled(false);
+        ordered_Action_3.SetEnabled(false);
+        ordered_Action_4.SetEnabled(false); ;
+        ordered_Action_5.SetEnabled(false);
     }
 
 
@@ -141,22 +146,26 @@ public class Ingame_UI : MonoBehaviour
     }
     private void OrderdActionButton1OnClicked()
     {
-
+        hexField.currentPlayer.removeActionAt(0);
     }
     private void OrderdActionButton2OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(1);
 
     }
     private void OrderdActionButton3OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(2);
 
     }
     private void OrderdActionButton4OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(3);
 
     }
     private void OrderdActionButton5OnClicked()
     {
+        hexField.currentPlayer.removeActionAt(4);
 
     }
 
