@@ -7,6 +7,8 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using System.ComponentModel;
+using Mirror;
 
 public class Host : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class Host : MonoBehaviour
     public Sprite chosenChar2;
     public Sprite chosenChar3;
     public Sprite chosenChar4;
-  public static Label IP_address;
+    public static Label IP_address;
     private Label host;
     private Label player1;
     private Label player2;
@@ -108,29 +110,29 @@ public class Host : MonoBehaviour
         switch (nr)
         {
             case 1:
-            {
-                host_char.style.backgroundImage = new StyleBackground(chosenChar1);
-                return true;
-            }
+                {
+                    host_char.style.backgroundImage = new StyleBackground(chosenChar1);
+                    return true;
+                }
             case 2:
-            {
-                player1_char.style.backgroundImage = new StyleBackground(chosenChar2);
-                return true;
-            }
+                {
+                    player1_char.style.backgroundImage = new StyleBackground(chosenChar2);
+                    return true;
+                }
             case 3:
-            {
-                player3_char.style.backgroundImage = new StyleBackground(chosenChar3);
-                return true;
-            }
+                {
+                    player3_char.style.backgroundImage = new StyleBackground(chosenChar3);
+                    return true;
+                }
             case 4:
-            {
-                player3_char.style.backgroundImage = new StyleBackground(chosenChar4);
-                return true;
-            }
+                {
+                    player3_char.style.backgroundImage = new StyleBackground(chosenChar4);
+                    return true;
+                }
             default:
-            {
-                return false;
-            }
+                {
+                    return false;
+                }
         }
     }
 

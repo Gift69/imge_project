@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -20,13 +21,16 @@ public class Client : MonoBehaviour
     private Label player2_char;
     private Label player3_char;
     private Label player4_char;
-    
-    
+
+    private NetworkManager manager;
+
+
     void Start()
     {
+        manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         _uiDocument = GetComponent<UIDocument>();
         back = _uiDocument.rootVisualElement.Q<Button>("back_button");
-     
+
         back.clicked += BackToPrevScene;
 
     }

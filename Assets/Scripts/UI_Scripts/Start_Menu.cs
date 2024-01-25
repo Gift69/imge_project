@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -14,12 +15,16 @@ public class Start_Menu : MonoBehaviour
     private Button create;
     private Button join;
     private TextField playername;
-    private List<String> random_names = new List<string> { "q","w", "e","r","t","z","u","i" };
+    private List<String> random_names = new List<string> { "q", "w", "e", "r", "t", "z", "u", "i" };
     public String player_name;
     //private String randomName;
+    private NetworkManager manager;
+
 
     void Start()
     {
+        manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
+
         _uiDocument = GetComponent<UIDocument>();
         create = _uiDocument.rootVisualElement.Q<Button>("host_create");
         join = _uiDocument.rootVisualElement.Q<Button>("client_join");
@@ -30,29 +35,35 @@ public class Start_Menu : MonoBehaviour
         playername.value = RandomName(random_names);
         create.clicked += CreateButtonClicked;
         join.clicked += JoinButtonClicked;
-     
-        
+
+
     }
 
     private void CreateButtonClicked()
     {
         if (SaveName())
-        { SceneManager.LoadScene(2, LoadSceneMode.Single);
-            Debug.Log("playername:"+ player_name);
+        {
+            if (Application.platform != RuntimePlatform.WebGLPlayer)
+            {
+                manager.StartHost();
+            }
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
+            Debug.Log("playername:" + player_name);
         }
         else
         {//textfeld soll rot werden und wackeln
-        } 
+        }
     }
 
     private void JoinButtonClicked()
     {
         if (SaveName())
         {
+            manager.StartClient();
             SceneManager.LoadScene(4, LoadSceneMode.Single);
-            Debug.Log("playername:"+ player_name);
+            Debug.Log("playername:" + player_name);
         }
-        
+
         else
         {
             //textfeld soll rot werden und wackeln
