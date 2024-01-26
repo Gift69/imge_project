@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Network_Stuff/SampleScene.unity
+    path: Assets/Mirror/Examples/BenchmarkStinkySteak/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/Scenes/Start.unity
