@@ -105,6 +105,8 @@ public class Player : BoardPiece
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.D))
+            //this.transform.position = this.transform.position + Vector3.right;
+            this.cell.getCellRelative(new(1, 0)).placeBoardPiece(this);
     }
 }

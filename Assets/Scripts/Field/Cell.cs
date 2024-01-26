@@ -1,10 +1,11 @@
+using Mirror;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using static HexField;
 using Random = UnityEngine.Random;
 
-public class Cell : MonoBehaviour
+public class Cell : NetworkBehaviour
 {
     private HexField.Coord _coord;
     private List<BoardPiece> _boardPieces = new List<BoardPiece>();
@@ -41,7 +42,7 @@ public class Cell : MonoBehaviour
     {
         return transform.GetComponentInParent<HexField>().getCircle(_coord, outerRadius, innerRadius);
     }
-
+ 
     public Cell getCellRelative(Coord relCoord)
     {
         var field = transform.GetComponentInParent<HexField>();
@@ -53,6 +54,7 @@ public class Cell : MonoBehaviour
         return null;
     }
 
+    //[Command]
     public void placeBoardPiece(BoardPiece piece)
     {
         if (piece.cell != null)

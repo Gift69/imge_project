@@ -1,6 +1,7 @@
+using Mirror;
 using UnityEngine;
 
-public class BoardPiece : MonoBehaviour
+public class BoardPiece : NetworkBehaviour
 {
     public Cell cell;
     // Start is called before the first frame update
