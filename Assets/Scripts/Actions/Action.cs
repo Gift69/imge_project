@@ -37,7 +37,7 @@ public abstract class Action
         this.value = value;
     }
 
-    public void unsetValue(HexField.Coord value)
+    public void unsetValue()
     {
         hasValue = false;
     }
