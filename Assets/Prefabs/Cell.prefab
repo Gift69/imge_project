@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5459489194947557037}
   - component: {fileID: 6989144410648028523}
+  - component: {fileID: 3442185253633801445}
+  - component: {fileID: 5345517898456030315}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -65,3 +67,37 @@ MonoBehaviour:
   - {fileID: 4364449806570932163, guid: 293f703b055b92647ae2da3a15f37b7f, type: 3}
   - {fileID: 5741550854329298300, guid: 859b5997f99709545a3ef85b0e62dd02, type: 3}
   isEdgePiece: 0
+--- !u!114 &3442185253633801445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176404642092952621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+--- !u!114 &5345517898456030315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176404642092952621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  compressRotation: 1
