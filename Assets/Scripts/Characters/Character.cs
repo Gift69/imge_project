@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
-using UnityEngine;
-
 public abstract class Character
 {
     public virtual Action GetMoveAction() {

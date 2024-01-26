@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TerrainUtils;
 
 public class VirtualPlayer : BoardPiece
 {
