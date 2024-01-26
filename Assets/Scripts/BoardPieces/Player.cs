@@ -29,7 +29,9 @@ public class Player : BoardPiece
                 actions[i] = action;
                 action.selectableButton.SetEnabled(false);
 
-                ui.GetComponent<Ingame_UI>().GetExecutableActionButton(i).style.backgroundImage = new UnityEngine.UIElements.StyleBackground(action.getIcon());
+                var button = ui.GetExecutableActionButton(i);
+                button.style.backgroundImage = new UnityEngine.UIElements.StyleBackground(action.getIcon());
+                button.SetEnabled(true);
 
                 for(int j = i; j < ACTION_COUNT && actions[j] != null; j++)
                 {
@@ -43,7 +45,15 @@ public class Player : BoardPiece
 
     public void removeActionAt(int index)
     {
+        actions[index].selectableButton.SetEnabled(true);
+        actions[index].unsetValue();
+
+        var button = ui.GetExecutableActionButton(index);
+        button.style.backgroundImage = null;
+        button.SetEnabled(false);
+
         actions[index] = null;
+
         for (int i = 0; i < ACTION_COUNT; i++)
         {
             if (virtualActionObjs[i] != null)
@@ -95,6 +105,8 @@ public class Player : BoardPiece
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.D))
+            //this.transform.position = this.transform.position + Vector3.right;
+            this.cell.getCellRelative(new(1, 0)).placeBoardPiece(this);
     }
 }
