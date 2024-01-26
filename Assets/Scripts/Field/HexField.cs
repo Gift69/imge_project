@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static HexField;
 
 public class HexField : MonoBehaviour
 {
@@ -70,6 +67,19 @@ public class HexField : MonoBehaviour
         {
             return c1.x == c2.x && c1.y == c2.y;
             ;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() == typeof(Coord))
+                return this == (Coord)obj;
+            return false;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public static bool operator !=(Coord c1, Coord c2)

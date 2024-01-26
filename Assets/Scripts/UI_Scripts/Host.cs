@@ -1,14 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using System.ComponentModel;
-using Mirror;
 
 public class Host : MonoBehaviour
 {
@@ -67,12 +62,12 @@ public class Host : MonoBehaviour
 
     private void BackToPrevScene()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene("Start", LoadSceneMode.Single);
     }
 
     private void StartInGameScene()
     {
-        SceneManager.LoadScene(5, LoadSceneMode.Single);
+        SceneManager.LoadScene("Stage", LoadSceneMode.Single);
     }
 
     public void Character1Selected()
