@@ -72,6 +72,19 @@ public class HexField : MonoBehaviour
             ;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() == typeof(Coord))
+                return this == (Coord)obj;
+            return false;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public static bool operator !=(Coord c1, Coord c2)
         {
             return !(c1 == c2);

@@ -47,7 +47,7 @@ public class Start_Menu : MonoBehaviour
             {
                 manager.StartHost();
             }
-            SceneManager.LoadScene(2, LoadSceneMode.Single);
+            SceneManager.LoadScene("Host", LoadSceneMode.Single);
             Debug.Log("playername:" + player_name);
         }
         else
@@ -59,8 +59,7 @@ public class Start_Menu : MonoBehaviour
     {
         if (SaveName())
         {
-            manager.StartClient();
-            SceneManager.LoadScene(4, LoadSceneMode.Single);
+            SceneManager.LoadScene("IP_Entry", LoadSceneMode.Single);
             Debug.Log("playername:" + player_name);
         }
 

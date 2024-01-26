@@ -67,12 +67,12 @@ public class Host : MonoBehaviour
 
     private void BackToPrevScene()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene("Start", LoadSceneMode.Single);
     }
 
     private void StartInGameScene()
     {
-        SceneManager.LoadScene(5, LoadSceneMode.Single);
+        SceneManager.LoadScene("Stage", LoadSceneMode.Single);
     }
 
     public void Character1Selected()

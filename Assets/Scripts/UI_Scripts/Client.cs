@@ -37,7 +37,7 @@ public class Client : MonoBehaviour
 
     private void BackToPrevScene()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene("Start", LoadSceneMode.Single);
     }
 
     private void StartScene()
