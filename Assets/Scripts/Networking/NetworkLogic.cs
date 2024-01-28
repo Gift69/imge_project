@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
@@ -6,13 +7,15 @@ using UnityEngine;
 
 public class NetworkLogic : NetworkBehaviour
 {
-    [SyncVar]
-    public List<GameObject> players = new List<GameObject>();
+    public SyncList<String> playernames = new SyncList<String>();
 
     void Update()
     {
-        Debug.Log(players.Count);
+        ///Debug.Log(players.Count);
     }
 
-    
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 }
