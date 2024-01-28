@@ -5,6 +5,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 {
 
     private UIDocument _Doc;
+    public NetworkLogic netLogic;
 
     private Button walk;
     private Button collect;
@@ -21,6 +22,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     private VisualElement player_info;
     private VisualElement right_Side_Time;
     private VisualElement left_Side;
+
+    private Label timer;
 
     public float f = 0.5f;
 
@@ -47,7 +50,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         action_4 = _Doc.rootVisualElement.Q<Button>("Action_4");
         action_5 = _Doc.rootVisualElement.Q<Button>("Action_5");
 
-
+        timer = _Doc.rootVisualElement.Q<Label>("Time_Label");
 
 
 
@@ -240,5 +243,6 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
             // Play the animation once
             FinishSelecting();
         }
+        timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
     }
 }

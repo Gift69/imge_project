@@ -51,6 +51,7 @@ MonoBehaviour:
   syncInterval: 0
   cell: {fileID: 0}
   arrow: {fileID: 6881888904209411114, guid: 9bd5a5b374b16b94780512d0e8709ef6, type: 3}
+  bomb: {fileID: 0}
 --- !u!114 &8559403239038630592
 MonoBehaviour:
   m_ObjectHideFlags: 0
