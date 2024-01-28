@@ -330,6 +330,9 @@ public class HexField : MonoBehaviour
         {
             cancelSelection();
         }
+        else if (Input.GetKeyDown(KeyCode.B))
+        { startSelection(new BombAction());
+        }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentPlayer.removeActionAt(0);

@@ -4,6 +4,7 @@ public class VirtualPlayer : BoardPiece
 {
     public GameObject arrow;
     // Start is called before the first frame update
+    public GameObject bomb;
 
     public GameObject init(GameObject obj, HexField.Coord dir)
     {
