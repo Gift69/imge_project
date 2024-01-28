@@ -132,9 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98296550}
-  - component: {fileID: 98296549}
   - component: {fileID: 98296548}
   - component: {fileID: 98296547}
+  - component: {fileID: 98296551}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -183,7 +183,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 2176404642092952621, guid: 0b1e1a97a8ead2845bda18676b77b2ef, type: 3}
+  playerPrefab: {fileID: 3504356642158095815, guid: 5a8d153d6bdb7b94fa595071aec4086d, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -203,7 +203,22 @@ MonoBehaviour:
   evaluationInterval: 3
   timeInterpolationGui: 0
   networkLogic: {fileID: 284293882}
---- !u!114 &98296549
+--- !u!4 &98296550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98296546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6959932, y: -0.31835127, z: 0.6376064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98296551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,21 +242,6 @@ MonoBehaviour:
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
---- !u!4 &98296550
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98296546}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6959932, y: -0.31835127, z: 0.6376064}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &124144541
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +356,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  timer: 0
+  mode: 4
+  hexfield: {fileID: 0}
 --- !u!4 &284293885
 Transform:
   m_ObjectHideFlags: 0
@@ -405,6 +408,7 @@ MonoBehaviour:
   chosenChar2: {fileID: 0}
   chosenChar3: {fileID: 0}
   chosenChar4: {fileID: 0}
+  networkLogic: {fileID: 284293884}
   startUI: {fileID: 1113501588}
 --- !u!114 &336911372
 MonoBehaviour:

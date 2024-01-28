@@ -28,14 +28,13 @@ public class Host : MonoBehaviour
     private VisualElement player3_char;
     private VisualElement host_char;
 
-    private NetworkLogic networkLogic;
+    public NetworkLogic networkLogic;
 
     public GameObject startUI;
 
 
     void Awake()
     {
-        networkLogic = GameObject.Find("NetworkLogic").GetComponent<NetworkLogic>();
         _uiDocument = GetComponent<UIDocument>();
         back = _uiDocument.rootVisualElement.Q<Button>("back_button");
         start = _uiDocument.rootVisualElement.Q<Button>("start_button");
@@ -50,6 +49,8 @@ public class Host : MonoBehaviour
         player1 = _uiDocument.rootVisualElement.Q<Label>("player1_name");
         player2 = _uiDocument.rootVisualElement.Q<Label>("player2_name");
         player3 = _uiDocument.rootVisualElement.Q<Label>("player3_name");
+
+
 
         host_char = _uiDocument.rootVisualElement.Q<VisualElement>("Character_icon_1");
         player1_char = _uiDocument.rootVisualElement.Q<VisualElement>("Character_icon_2");
