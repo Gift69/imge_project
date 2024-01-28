@@ -22,8 +22,9 @@ public class Client : MonoBehaviour
 
     private NetworkManager manager;
 
+    public GameObject startUI;
 
-    void Start()
+    void Awake()
     {
         manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         _uiDocument = GetComponent<UIDocument>();
@@ -35,7 +36,8 @@ public class Client : MonoBehaviour
 
     private void BackToPrevScene()
     {
-        SceneManager.LoadScene("Start", LoadSceneMode.Single);
+        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+        startUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
     private void StartScene()

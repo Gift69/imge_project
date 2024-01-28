@@ -1,7 +1,9 @@
 using Mirror;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using static HexField;
 
 public class HexField : MonoBehaviour
 {
@@ -147,7 +149,7 @@ public class HexField : MonoBehaviour
         //player1 = player.GetComponent<Player>();
         //cellAt(-2, 0).placeBoardPiece(player1);
 
-        players = new Player[] {player0, player1};
+        players = new Player[] { player0, player1 };
 
         currentPlayer = players[0];
     }
@@ -314,6 +316,24 @@ public class HexField : MonoBehaviour
         selection.action.setValue(cell.getCoord() - currentPlayer.VPlayer.cell.getCoord());
         currentPlayer.selectAction(selection.action);
         cancelSelection();
+    }
+
+    public void forEach(Action<Cell> callback) {
+        Coord coord = new(0);
+        callback(cellAt(coord));
+        for (int i = 1; i <= radius; i++)
+        {
+            coord.y++;
+
+            for (int k = 0; k < Coord.BASE_COORDS.Length; k++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    callback(cellAt(coord));
+                    coord += Coord.BASE_COORDS[k];
+                }
+            }
+        }
     }
 
     private MoveAction action = new MoveAction();

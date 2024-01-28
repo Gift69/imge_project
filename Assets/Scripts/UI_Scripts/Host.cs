@@ -30,8 +30,10 @@ public class Host : MonoBehaviour
 
     private NetworkLogic networkLogic;
 
+    public GameObject startUI;
 
-    void Start()
+
+    void Awake()
     {
         networkLogic = GameObject.Find("NetworkLogic").GetComponent<NetworkLogic>();
         _uiDocument = GetComponent<UIDocument>();
@@ -61,16 +63,20 @@ public class Host : MonoBehaviour
         character2.clicked += Character2Selected;
         character3.clicked += Character3Selected;
         character4.clicked += Character4Selected;
-
     }
 
-    void Update(){
-        
+    void Update()
+    {
+        for (int i = 0; i < networkLogic.playernames.Count; i++)
+        {
+            SetPlayerName(i, networkLogic.playernames[i]);
+        }
     }
 
     private void BackToPrevScene()
     {
-        SceneManager.LoadScene("Start", LoadSceneMode.Single);
+        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+        startUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
     private void StartInGameScene()
@@ -98,9 +104,35 @@ public class Host : MonoBehaviour
         //SetPlayerCharacter().style.backgroundImage = new StyleBackground(chosenChar4);
     }
 
-    public void SetPlayerName(Label player, string playername)
+    public bool SetPlayerName(int nr, string playername)
     {
-        player.text = playername;
+        switch (nr)
+        {
+            case 0:
+                {
+                    host.text = playername;
+                    return true;
+                }
+            case 1:
+                {
+                    player1.text = playername;
+                    return true;
+                }
+            case 2:
+                {
+                    player2.text = playername;
+                    return true;
+                }
+            case 3:
+                {
+                    player3.text = playername;
+                    return true;
+                }
+            default:
+                {
+                    return false;
+                }
+        }
     }
 
     /*public VisualElement SetPlayerCharacter()

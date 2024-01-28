@@ -18,8 +18,14 @@ public class Start_Menu : MonoBehaviour
     //private String randomName;
     private NetworkManager manager;
 
+    public GameObject hostUI;
 
-    void Start()
+    public GameObject ipEntryUI;
+
+    public GameObject clientUI;
+
+
+    void Awake()
     {
         manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
 
@@ -37,6 +43,13 @@ public class Start_Menu : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        hostUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+    }
+
     private void CreateButtonClicked()
     {
         if (SaveName())
@@ -45,7 +58,9 @@ public class Start_Menu : MonoBehaviour
             {
                 manager.StartHost();
             }
-            SceneManager.LoadScene("Host", LoadSceneMode.Single);
+            GameObject.Find("NetworkLogic").GetComponent<NetworkLogic>().playernames.Add(PassBetweenScenes.playername);
+            _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+            hostUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
             Debug.Log("playername:" + player_name);
         }
         else
@@ -57,10 +72,9 @@ public class Start_Menu : MonoBehaviour
     {
         if (SaveName())
         {
-            SceneManager.LoadScene("IP_Entry", LoadSceneMode.Single);
-            Debug.Log("playername:" + player_name);
+            _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+            ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex; Debug.Log("playername:" + player_name);
         }
-
         else
         {
             //textfeld soll rot werden und wackeln
@@ -76,7 +90,7 @@ public class Start_Menu : MonoBehaviour
             return false;
         }
 
-        player_name = playername.value;
+        PassBetweenScenes.playername = playername.value;
         return true;
     }
 

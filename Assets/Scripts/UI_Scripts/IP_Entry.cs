@@ -9,11 +9,12 @@ public class IP_Entry : MonoBehaviour
     private Button back;
     private TextField ip_entry;
     private Button enter;
-
     private NetworkManager manager;
 
+    public GameObject startUI;
+    public GameObject clientUI;
 
-    private void Start()
+    private void Awake()
     {
         manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         _uiDocument = GetComponent<UIDocument>();
@@ -27,7 +28,8 @@ public class IP_Entry : MonoBehaviour
 
     private void BackToPrevScene()
     {
-        SceneManager.LoadScene("Start", LoadSceneMode.Single);
+        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+        startUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
     private void CheckIPAddress()
@@ -38,7 +40,9 @@ public class IP_Entry : MonoBehaviour
             manager.StartClient();
             if (NetworkClient.isConnected)
             {
-                SceneManager.LoadScene("Client", LoadSceneMode.Single);
+                GameObject.Find("NetworkLogic").GetComponent<NetworkLogic>().playernames.Add(PassBetweenScenes.playername);
+                _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+                clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
             }
             else
             { //rotes feld

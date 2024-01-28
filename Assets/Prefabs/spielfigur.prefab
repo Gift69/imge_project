@@ -62,3 +62,5 @@ MonoBehaviour:
   red: {fileID: 2100000, guid: b0dd9c8675e6e934884db943f425d098, type: 2}
   outline_material: {fileID: 2100000, guid: 97b5f8967143c9243a6f54c975c73060, type: 2}
   extras_material: {fileID: 2100000, guid: 9f2e1ca4f65d9f140b78a33b62dfb700, type: 2}
+  stunned_effect: {fileID: 8528449989642076847, guid: ea1e1ef0d3de62b4897340f8508a87ae, type: 3}
+  test: 0

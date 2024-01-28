@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spielfigur : MonoBehaviour
@@ -13,23 +14,19 @@ public class Spielfigur : MonoBehaviour
         Knight
     }
 
-    [Header("Gentleman")] 
-    [SerializeField] private GameObject gentleman_base;
+    [Header("Gentleman")] [SerializeField] private GameObject gentleman_base;
     [SerializeField] private GameObject gentleman_extras;
     [SerializeField] private GameObject gentleman_outline;
 
-    [Header("Mage")] 
-    [SerializeField] private GameObject mage_base;
+    [Header("Mage")] [SerializeField] private GameObject mage_base;
     [SerializeField] private GameObject mage_extras;
     [SerializeField] private GameObject mage_outline;
 
-    [Header("Miner")] 
-    [SerializeField] private GameObject miner_base;
+    [Header("Miner")] [SerializeField] private GameObject miner_base;
     [SerializeField] private GameObject miner_extras;
     [SerializeField] private GameObject miner_outline;
 
-    [Header("Knight")] 
-    [SerializeField] private GameObject knight_base;
+    [Header("Knight")] [SerializeField] private GameObject knight_base;
     [SerializeField] private GameObject knight_extras;
     [SerializeField] private GameObject knight_outline;
 
@@ -41,21 +38,24 @@ public class Spielfigur : MonoBehaviour
         Red
     }
 
-    [Header("Colors")] 
-    [SerializeField] private Material pink;
+    [Header("Colors")] [SerializeField] private Material pink;
     [SerializeField] private Material yellow;
     [SerializeField] private Material blue;
     [SerializeField] private Material red;
 
-    [Header("Other Materials")] 
-    [SerializeField] private Material outline_material;
+    [Header("Other Materials")] [SerializeField]
+    private Material outline_material;
+
     [SerializeField] private Material extras_material;
+
+    [Header("Effects")] [SerializeField] private GameObject stunned_effect;
 
     [Header("TEST")] public bool test = false;
 
     private GameObject _base;
     private GameObject _extras;
     private GameObject _outline;
+    private GameObject _stunned;
 
     public void SetupFigure(CHAMPION champion, COLOR color)
     {
@@ -95,20 +95,28 @@ public class Spielfigur : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(champion), champion, null);
         }
-        
+
         _base.GetComponent<Renderer>().material = material;
         _extras.GetComponent<Renderer>().material = extras_material;
         _outline.GetComponent<Renderer>().material = outline_material;
+
+        _stunned = Instantiate(stunned_effect, t.position, r, t);
+        _stunned.SetActive(false);
+    }
+
+    public void setStunned(bool stunned)
+    {
+        _stunned.SetActive(stunned);
     }
 
     static void testAllCombinations(GameObject instance)
     {
         instance.GetComponent<Spielfigur>().test = false;
-        
+
         float distance = 1f;
         int amountFiguren = 4;
         int amountColors = 4;
-        
+
         Vector3 startOffset = new Vector3(-amountFiguren / 2.0f * distance, 0, -amountColors / 2.0f * distance);
         startOffset += instance.transform.position;
         for (int i = 0; i < amountFiguren; i++)
@@ -118,11 +126,11 @@ public class Spielfigur : MonoBehaviour
                 Vector3 pos = new Vector3(i * distance, 0, j * distance) + startOffset;
                 GameObject temp = Instantiate(instance, pos, Quaternion.identity);
                 temp.GetComponent<Spielfigur>().SetupFigure((CHAMPION)i, (COLOR)j);
+                temp.GetComponent<Spielfigur>().setStunned(true);
             }
         }
-        
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -130,10 +138,5 @@ public class Spielfigur : MonoBehaviour
         {
             testAllCombinations(this.gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
