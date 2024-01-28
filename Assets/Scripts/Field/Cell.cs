@@ -5,7 +5,7 @@ using UnityEngine;
 using static HexField;
 using Random = UnityEngine.Random;
 
-public class Cell : NetworkBehaviour
+public class Cell : MonoBehaviour
 {
     private HexField.Coord _coord;
     private List<BoardPiece> _boardPieces = new List<BoardPiece>();
@@ -64,7 +64,6 @@ public class Cell : NetworkBehaviour
 
         piece.cell = this;
         _boardPieces.Add(piece);
-        piece.transform.SetParent(transform, false);
     }
 
     public void indicateOuter()

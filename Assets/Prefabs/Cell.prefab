@@ -46,9 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adbf6c71c714034298f0889ef2669c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   outerIndicators:
   - {fileID: 3570271409452289170, guid: 12893e99079283a40b5d3f7634111f18, type: 3}
   - {fileID: 6084266942237592869, guid: 69c9a3a8bd05489449f38dfa20900523, type: 3}

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HexField : NetworkBehaviour
+public class HexField : MonoBehaviour
 {
     public const int radius = 6;
     public GameObject cellPrefab;
@@ -15,6 +15,7 @@ public class HexField : NetworkBehaviour
     //[SyncVar]
     private Player player0, player1, player2, player3;
     private Player[] players;
+
 
     public Player currentPlayer;
 
@@ -98,8 +99,6 @@ public class HexField : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!this.isServer)
-            return;
 
         cells = new GameObject[radius * 2 + 1][];
         for (int i = 0; i < cells.Length; i++)
@@ -127,7 +126,6 @@ public class HexField : NetworkBehaviour
                 for (int j = 0; j < i; j++)
                 {
                     GameObject obj = Instantiate(cellPrefab, transform);
-                    NetworkServer.Spawn(obj);
 
                     set(coord, obj);
                     obj.transform.position = (coord.x * Coord.DELTA_X + coord.y * Coord.DELTA_Y) * cellRadius;
@@ -141,15 +139,13 @@ public class HexField : NetworkBehaviour
         }
 
         var player = Instantiate(playerPrefab);
-        NetworkServer.Spawn(player);
         player0 = player.GetComponent<Player>();
         cellAt(2, 0).placeBoardPiece(player0);
 
 
-        player = Instantiate(playerPrefab);
-        NetworkServer.Spawn(player);
-        player1 = player.GetComponent<Player>();
-        cellAt(-2, 0).placeBoardPiece(player1);
+        //player = Instantiate(playerPrefab);
+        //player1 = player.GetComponent<Player>();
+        //cellAt(-2, 0).placeBoardPiece(player1);
 
         players = new Player[] {player0, player1};
 
@@ -340,6 +336,9 @@ public class HexField : NetworkBehaviour
         else if (Input.GetKeyDown(KeyCode.R))
         {
             cancelSelection();
+        }
+        else if (Input.GetKeyDown(KeyCode.B))
+        { startSelection(new BombAction());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {

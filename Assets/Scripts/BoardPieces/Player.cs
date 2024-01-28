@@ -1,4 +1,6 @@
+using Mirror;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : BoardPiece
@@ -9,6 +11,9 @@ public class Player : BoardPiece
 
     public const int ACTION_COUNT = 5;
 
+    [SyncVar]
+    public SyncList<SyncAction> syncActions = new SyncList<SyncAction>();
+
     public Action[] actions = new Action[ACTION_COUNT];
     public List<GameObject>[] virtualActionObjs = new List<GameObject>[ACTION_COUNT];
 
@@ -18,6 +23,13 @@ public class Player : BoardPiece
     {
         get { if (vPlayer == null) cell.placeBoardPiece(vPlayer = Instantiate(virtualPlayerPrefab).GetComponent<VirtualPlayer>()); return vPlayer; }
         set { vPlayer = value; }
+    }
+
+    public void synchronize()
+    {
+        syncActions.Clear();
+        for(int i = 0; i < ACTION_COUNT; i++)
+            syncActions.Add(actions[i].toSync());
     }
 
     public void selectAction(Action action)
@@ -37,10 +49,10 @@ public class Player : BoardPiece
                 {
                     virtualActionObjs[j] = actions[j].executeVirtual(VPlayer);
                 }
-                debugState();
                 return;
             }
         }
+        synchronize();
     }
 
     public void removeActionAt(int index)
@@ -73,7 +85,8 @@ public class Player : BoardPiece
                 break;
             virtualActionObjs[i] = actions[i].executeVirtual(VPlayer);
         }
-        debugState();
+
+        synchronize();
     }
 
     public void removeAction(Action action)
@@ -97,16 +110,19 @@ public class Player : BoardPiece
     }
 
     // Start is called before the first frame update
-    void Start()
+    public new void Awake()
     {
-        ui = GameObject.FindGameObjectsWithTag("IngameUI")[0].GetComponent<Ingame_UI>();
+        base.Awake();
+        ui = GameObject.FindGameObjectWithTag("IngameUI").GetComponent<Ingame_UI>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
-            //this.transform.position = this.transform.position + Vector3.right;
             this.cell.getCellRelative(new(1, 0)).placeBoardPiece(this);
+        else if (Input.GetKeyDown(KeyCode.A))
+            this.cell.getCellRelative(new(-1, 0)).placeBoardPiece(this);
+        this.cell = this.cell;
     }
 }

@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3914751228110285853}
   - component: {fileID: 7156285557293731830}
-  - component: {fileID: 1492565387517319228}
-  - component: {fileID: 5952552422520586044}
+  - component: {fileID: 8559403239038630592}
   m_Layer: 0
   m_Name: VirtualPlayer
   m_TagString: Untagged
@@ -52,41 +51,8 @@ MonoBehaviour:
   syncInterval: 0
   cell: {fileID: 0}
   arrow: {fileID: 6881888904209411114, guid: 9bd5a5b374b16b94780512d0e8709ef6, type: 3}
---- !u!114 &1492565387517319228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2699525788604457909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 3914751228110285853}
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  coordinateSpace: 0
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  onlySyncOnChangeCorrectionMultiplier: 2
-  rotationSensitivity: 0.01
-  compressRotation: 0
-  positionPrecision: 0.01
-  scalePrecision: 0.01
---- !u!114 &5952552422520586044
+  bomb: {fileID: 0}
+--- !u!114 &8559403239038630592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
