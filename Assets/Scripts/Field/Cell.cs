@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -41,7 +42,7 @@ public class Cell : MonoBehaviour
     {
         return transform.GetComponentInParent<HexField>().getCircle(_coord, outerRadius, innerRadius);
     }
-
+ 
     public Cell getCellRelative(Coord relCoord)
     {
         var field = transform.GetComponentInParent<HexField>();
@@ -53,6 +54,7 @@ public class Cell : MonoBehaviour
         return null;
     }
 
+    //[Command]
     public void placeBoardPiece(BoardPiece piece)
     {
         if (piece.cell != null)
@@ -62,7 +64,6 @@ public class Cell : MonoBehaviour
 
         piece.cell = this;
         _boardPieces.Add(piece);
-        piece.transform.SetParent(transform, false);
     }
 
     public void indicateOuter()

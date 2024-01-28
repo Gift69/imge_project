@@ -14,14 +14,4 @@ public class VirtualPlayer : BoardPiece
         ret.transform.rotation = Quaternion.Euler(0, -arctanDir * 180 / Mathf.PI, 0);
         return ret;
     }
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

@@ -1,17 +1,22 @@
+using Mirror;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HexField : MonoBehaviour
 {
-    public int radius;
+    public const int radius = 6;
     public GameObject cellPrefab;
     public GameObject playerPrefab;
     public GameObject vPlayerPrefab;
 
     private GameObject[][] cells;
 
-    private Player player1, player2;
+    //[SyncVar]
+    private Player player0, player1, player2, player3;
+    private Player[] players;
+
+
     public Player currentPlayer;
 
     public class Selection
@@ -27,8 +32,6 @@ public class HexField : MonoBehaviour
     }
 
     private Selection selection = null;
-    private List<GameObject> virtualObjects = new List<GameObject>();
-
 
     public struct Coord
     {
@@ -96,6 +99,7 @@ public class HexField : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         cells = new GameObject[radius * 2 + 1][];
         for (int i = 0; i < cells.Length; i++)
         {
@@ -135,14 +139,17 @@ public class HexField : MonoBehaviour
         }
 
         var player = Instantiate(playerPrefab);
-        player1 = player.GetComponent<Player>();
-        cellAt(2, 0).placeBoardPiece(player1);
+        player0 = player.GetComponent<Player>();
+        cellAt(2, 0).placeBoardPiece(player0);
 
-        player = Instantiate(playerPrefab);
-        player2 = player.GetComponent<Player>();
-        cellAt(-2, 0).placeBoardPiece(player2);
 
-        currentPlayer = player1;
+        //player = Instantiate(playerPrefab);
+        //player1 = player.GetComponent<Player>();
+        //cellAt(-2, 0).placeBoardPiece(player1);
+
+        players = new Player[] {player0, player1};
+
+        currentPlayer = players[0];
     }
 
     public GameObject at(int x, int y = 0, int z = 0)
@@ -361,8 +368,6 @@ public class HexField : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 cancelSelection();
-                virtualObjects.ForEach(obj => Destroy(obj));
-                virtualObjects.Clear();
                 return;
             }
 
