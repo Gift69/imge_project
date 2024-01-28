@@ -17,6 +17,6 @@ public class CustumNetworkManager : NetworkManager
         // => appending the connectionId is WAY more useful for debugging!
         player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
         NetworkServer.AddPlayerForConnection(conn, player);
-        networkLogic.GetComponent<NetworkLogic>().players.Add(player);
+        //networkLogic.GetComponent<NetworkLogic>().players.Add(player);
     }
 }
