@@ -6,21 +6,23 @@ public class ShootAction : Action
 {
     public override void execute(Player player)
     {
-
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)
     {
         GameObject[] shooting = new GameObject[vPlayer.cell.getCellRelative(value).getSequence(value).Length];
-        GameObject virtualShot = GameObject.Instantiate(vPlayer.shoot);
+        //GameObject virtualShot = GameObject.Instantiate(vPlayer.shoot);
         for (int i = 0; i < vPlayer.cell.getCellRelative(value).getSequence(value).Length; i++)
         {
-            virtualShot.transform.position = vPlayer.cell.getCellRelative(value).getSequence(value)[i].transform.position;
+            GameObject virtualShot = GameObject.Instantiate(vPlayer.shoot);
+            virtualShot.transform.position =
+                vPlayer.cell.getCellRelative(value).getSequence(value)[i].transform.position;
             shooting[i] = virtualShot;
         }
 
 
         return new List<GameObject>(shooting);
+        //return new List<GameObject>();
     }
 
     public override ActionSelection getActionSelection(VirtualPlayer vPlayer)
@@ -35,6 +37,6 @@ public class ShootAction : Action
 
     public override bool requiresInput()
     {
-        return base.requiresInput();
+        return true;
     }
 }
