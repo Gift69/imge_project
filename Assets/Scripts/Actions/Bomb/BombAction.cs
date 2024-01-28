@@ -12,7 +12,7 @@ public class BombAction : Action
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)
     {
         GameObject virtualBomb = vPlayer.init(vPlayer.bomb,  vPlayer.cell.getCellRelative(value).getCoord());
-        //vPlayer.cell.getCellRelative(value).placeBoardPiece(vPlayer);
+        vPlayer.cell.getCellRelative(value).placeBoardPiece(vPlayer);
         return new List<GameObject>(new GameObject[] {virtualBomb});
 
     }
