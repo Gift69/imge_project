@@ -5,6 +5,14 @@ using UnityEngine.UIElements;
 
 public abstract class Action
 {
+    public enum Type
+    {
+        MOVE,
+        SWORD_SLASH,
+        UNKNOWN
+    };
+
+    public Type type = Type.UNKNOWN;
     public bool selected = false;
     protected bool hasValue = false;
     protected HexField.Coord value;
@@ -47,5 +55,10 @@ public abstract class Action
 
     public virtual Sprite getIcon(){
         return null;
+    }
+
+    public SyncAction toSync()
+    {
+        return new SyncAction(type, value, hasValue);
     }
 }
