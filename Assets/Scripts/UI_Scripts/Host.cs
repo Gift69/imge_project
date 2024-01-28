@@ -28,9 +28,12 @@ public class Host : MonoBehaviour
     private VisualElement player3_char;
     private VisualElement host_char;
 
+    private NetworkLogic networkLogic;
+
 
     void Start()
     {
+        networkLogic = GameObject.Find("NetworkLogic").GetComponent<NetworkLogic>();
         _uiDocument = GetComponent<UIDocument>();
         back = _uiDocument.rootVisualElement.Q<Button>("back_button");
         start = _uiDocument.rootVisualElement.Q<Button>("start_button");
@@ -58,6 +61,11 @@ public class Host : MonoBehaviour
         character2.clicked += Character2Selected;
         character3.clicked += Character3Selected;
         character4.clicked += Character4Selected;
+
+    }
+
+    void Update(){
+        
     }
 
     private void BackToPrevScene()
