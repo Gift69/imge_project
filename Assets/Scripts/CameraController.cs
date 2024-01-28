@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        Initialize(Vector3.zero, 20, 6, 12, 6, 45, 3, 0.5f, 6);
+        Initialize(Vector3.zero, 30, 6, 15, 6, 45, 3, 0.6f, 6);
     }
 
     public void Initialize(Vector3 center, float horizontalMax, float horizontalMin, float verticalMax,
