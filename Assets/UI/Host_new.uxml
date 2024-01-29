@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%;">
+    <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgb(82, 137, 85);">
         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 80%; justify-content: flex-end; align-items: center; flex-direction: column;">
             <ui:VisualElement style="flex-grow: 1; width: 100%; height: 15%; flex-direction: row;">
                 <ui:VisualElement style="flex-grow: 1; width: 80%; height: 100%; justify-content: flex-end; flex-direction: column; align-items: center; align-self: auto;">
@@ -41,7 +41,7 @@
                 <ui:VisualElement name="Character_selection" style="flex-grow: 1; height: 100%; width: 50%; flex-direction: row;">
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_0960.jpeg?fileID=21300000&amp;guid=48426c630b02d444ab55c2dbff9f78ba&amp;type=3#IMG_0960&apos;);" />
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/Sprite1.jpeg?fileID=21300000&amp;guid=48426c630b02d444ab55c2dbff9f78ba&amp;type=3#Sprite1&apos;);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
                             <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites_Y/IMG_0967.png?fileID=21300000&amp;guid=7975fe5025ac9fb439e91c97c2122f85&amp;type=3#IMG_0967&apos;);" />
@@ -61,14 +61,14 @@
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 20%; flex-direction: row;">
             <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
                 <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column; justify-content: space-around; align-self: auto; align-items: center;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="width: 70%; height: 50%; align-self: center; align-items: center; justify-content: space-between; flex-direction: column;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="width: 70%; height: 50%; align-self: center; align-items: center; justify-content: space-between; flex-direction: column; background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/back_button.png?fileID=2800000&amp;guid=324fef9b519ed72439d3ea1176908fd2&amp;type=3#back_button&apos;); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
                 <ui:VisualElement style="flex-grow: 1; flex-direction: column; width: 50%; height: 100%;" />
                 <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; justify-content: space-around; align-items: center;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="start_button" style="width: 70%; height: 50%;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="start_button" style="width: 70%; height: 50%; background-image: url(&apos;project://database/Assets/Sprites/start_button.png?fileID=2800000&amp;guid=163922ea0c787d540a37f1c23ab345f9&amp;type=3#start_button&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
