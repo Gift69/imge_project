@@ -23,6 +23,8 @@ public class Client : MonoBehaviour
     private NetworkManager manager;
 
     public GameObject startUI;
+    public ConnectedPlayers networkLogic;
+
 
     void Awake()
     {
@@ -30,8 +32,51 @@ public class Client : MonoBehaviour
         _uiDocument = GetComponent<UIDocument>();
         back = _uiDocument.rootVisualElement.Q<Button>("back_button");
 
+        player4 = _uiDocument.rootVisualElement.Q<Label>("player4_name");
+        player1 = _uiDocument.rootVisualElement.Q<Label>("player1_name");
+        player2 = _uiDocument.rootVisualElement.Q<Label>("player2_name");
+        player3 = _uiDocument.rootVisualElement.Q<Label>("player3_name");
+
         back.clicked += BackToPrevScene;
 
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < networkLogic.playernames.Count; i++)
+        {
+            SetPlayerName(i, networkLogic.playernames[i]);
+        }
+    }
+    public bool SetPlayerName(int nr, string playername)
+    {
+        switch (nr)
+        {
+            case 0:
+                {
+                    player1.text = playername;
+                    return true;
+                }
+            case 1:
+                {
+                    player2.text = playername;
+                    return true;
+                }
+            case 2:
+                {
+                    player3.text = playername;
+                    return true;
+                }
+            case 3:
+                {
+                    player4.text = playername;
+                    return true;
+                }
+            default:
+                {
+                    return false;
+                }
+        }
     }
 
     private void BackToPrevScene()

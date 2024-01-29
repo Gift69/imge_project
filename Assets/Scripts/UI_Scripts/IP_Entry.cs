@@ -40,7 +40,8 @@ public class IP_Entry : MonoBehaviour
             manager.StartClient();
             if (NetworkClient.isConnected)
             {
-                GameObject.Find("NetworkLogic").GetComponent<NetworkLogic>().playernames.Add(PassBetweenScenes.playername);
+                PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddPlayer(PassBetweenScenes.playername);
+                //PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().removeAuthority(GameObject.Find("NetworkLogic"));
                 _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
                 clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
             }

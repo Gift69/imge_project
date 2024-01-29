@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class NetworkLogic : NetworkBehaviour
 {
+    
     public SyncList<String> playernames = new SyncList<String>();
 
     void Awake()

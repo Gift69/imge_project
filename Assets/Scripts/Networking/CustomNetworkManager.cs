@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 
 public class CustumNetworkManager : NetworkManager
-{   
+{
     public GameObject networkLogic;
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
@@ -17,8 +17,8 @@ public class CustumNetworkManager : NetworkManager
         // => appending the connectionId is WAY more useful for debugging!
         player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
         NetworkServer.AddPlayerForConnection(conn, player);
-
-        //networkLogic.GetComponent<NetworkLogic>().players.Add(player);
+        Debug.Log("its happening");
+        //PassBetweenScenes.playerInstance = player;
         //player.GetComponent<PlayerData>().playername = PassBetweenScenes.playername;
     }
 }
