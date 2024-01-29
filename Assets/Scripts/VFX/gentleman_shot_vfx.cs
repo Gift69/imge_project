@@ -23,7 +23,7 @@ public class gentleman_shot_vfx : MonoBehaviour
         cartridge.GetComponent<Rigidbody>().AddForce(globalUpRight * cartridgePushStrength, ForceMode.Impulse);
         _falling = true;
         _shooting = true;
-        Instantiate(bang, transform.position + Vector3.up * 0.6f, Quaternion.identity);
+        Instantiate(bang, transform.position + Vector3.up * 1f, Quaternion.identity);
     }
 
     private void Update()
