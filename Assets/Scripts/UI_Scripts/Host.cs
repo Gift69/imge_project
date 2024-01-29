@@ -28,7 +28,7 @@ public class Host : MonoBehaviour
     private VisualElement player3_char;
     private VisualElement host_char;
 
-    public NetworkLogic networkLogic;
+    public ConnectedPlayers networkLogic;
 
     public GameObject startUI;
 
