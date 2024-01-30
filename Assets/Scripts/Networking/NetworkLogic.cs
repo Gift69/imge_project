@@ -10,7 +10,10 @@ public class NetworkLogic : NetworkBehaviour
     public GameObject playerPrefab;
     public GameObject vPlayerPrefab;
 
-    public SyncList<Player> players = new SyncList<Player>();
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public SyncAction[][] playerActions;
 

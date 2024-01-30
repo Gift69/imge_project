@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Mirror/Examples/BenchmarkStinkySteak/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 585260ff56c6a1f488e03ba4b2077000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Host.unity
     guid: c9e2585e067ef1445ac529ad35571fe8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Client.unity
     guid: 11c30662ed5571143909d205b77e1da9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/IP_Entry.unity
     guid: d39846a8c439f2e4489eb74662c7c24e
   - enabled: 1

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8374937346761528585}
+  - component: {fileID: 2572674157408479721}
   m_Layer: 0
   m_Name: EXLPOSION
   m_TagString: Untagged
@@ -34,6 +35,19 @@ Transform:
   - {fileID: 7639286668962763523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2572674157408479721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152237411928464934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac557598953275c46abe46326e8930e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bang: {fileID: 5623153738577567448, guid: 03fc6169bed69174887e1c2422dddce7, type: 3}
 --- !u!1 &1642437706054084073
 GameObject:
   m_ObjectHideFlags: 0

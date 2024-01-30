@@ -1378,6 +1378,7 @@ namespace Mirror
         // The default implementation for this function creates a new player object from the playerPrefab.
         public virtual void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
+            Debug.Log("i was here");
             Transform startPos = GetStartPosition();
             GameObject player = startPos != null
                 ? Instantiate(playerPrefab, startPos.position, startPos.rotation)

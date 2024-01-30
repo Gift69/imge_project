@@ -347,6 +347,15 @@ public class HexField : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.B))
         { startSelection(new BombAction());
         }
+        else if (Input.GetKeyDown(KeyCode.S))
+        { startSelection(new ShootAction());
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        { startSelection(new StunFieldAction());
+        }
+        else if (Input.GetKeyDown(KeyCode.M))
+        { startSelection(new MiningAction());
+        }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentPlayer.removeActionAt(0);
