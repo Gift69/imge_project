@@ -41,6 +41,8 @@ public class Client : MonoBehaviour
 
     void Update()
     {
+        if (networkLogic.started)
+            SceneManager.LoadScene("Stage", LoadSceneMode.Single);
         for (int i = 0; i < 4; i++)
         {
             if (i < networkLogic.playernames.Count)

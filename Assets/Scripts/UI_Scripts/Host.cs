@@ -88,6 +88,8 @@ public class Host : MonoBehaviour
 
     private void StartInGameScene()
     {
+        PassBetweenScenes.playercount = networkLogic.playernames.Count;
+        networkLogic.started = true;
         SceneManager.LoadScene("Stage", LoadSceneMode.Single);
     }
 
