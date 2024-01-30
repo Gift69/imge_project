@@ -56,7 +56,7 @@ public class Client : MonoBehaviour
                 GameObject.FindGameObjectWithTag("useless").SetActive(false);
                 camera1.enabled = false;
                 camera2.enabled = true;
-                networkLogicIngame.StartReal();
+                //networkLogicIngame.StartReal();
             }
             for (int i = 0; i < 4; i++)
             {

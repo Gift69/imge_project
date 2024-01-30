@@ -11,4 +11,5 @@ public class ConnectedPlayers : NetworkBehaviour
 
     [SyncVar]
     public bool started = false;
+
 }

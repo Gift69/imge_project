@@ -57,6 +57,7 @@ public class Start_Menu : MonoBehaviour
 
     private void CreateButtonClicked()
     {
+        Debug.Log(SaveName());
         if (SaveName())
         {
             if (Application.platform != RuntimePlatform.WebGLPlayer)
@@ -74,7 +75,7 @@ public class Start_Menu : MonoBehaviour
         if (SaveName())
         {
             _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
-            ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex; Debug.Log("playername:" + player_name);
+            ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
         }
         else
         {

@@ -37,6 +37,6 @@ public class OnPlayerSpawn : NetworkBehaviour
         GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.RemoveAll(x => true);
         GameObject.Find("NetworkManager").GetComponent<CustumNetworkManager>().StopHost();
     }
-    
+
 
 }
