@@ -9,7 +9,11 @@ public abstract class Action
     {
         NOTHING,
         MOVE,
-        SWORD_SLASH
+        SWORD_SLASH,
+        BOMB,
+        MINING,
+        SHOOT,
+        STUN_FIELD
     };
 
     public Type type = Type.NOTHING;
@@ -21,7 +25,6 @@ public abstract class Action
 
 
     public abstract List<GameObject> executeVirtual(VirtualPlayer vPlayer);
-    public abstract void execute(Player player);
 
     public virtual ActionSelection getActionSelection(VirtualPlayer vPlayer)
     {

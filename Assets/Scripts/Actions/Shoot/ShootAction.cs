@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShootAction : Action
 {
-    public override void execute(Player player)
-    {
+    public ShootAction() {
+        type = Type.SHOOT;
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)

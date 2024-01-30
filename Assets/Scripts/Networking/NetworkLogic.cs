@@ -49,7 +49,7 @@ public class NetworkLogic : NetworkBehaviour
         if (isServer)
         {
             Debug.Log("SceneManager.GetActiveScene().name");
-            playerCount = PassBetweenScenes.playercount; // GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Count;
+            playerCount = PassBetweenScenes.playercount;
 
             playerActions = new SyncAction[playerCount][];
 
@@ -75,7 +75,10 @@ public class NetworkLogic : NetworkBehaviour
                 hexfield.cellAt(spawnCoords[playerCount][i]).placeBoardPiece(players[i]);
             }
 
+            setupHexfieldInClient();
+
             actionCallbacks.Add(Action.Type.MOVE, moveAction);
+            actionCallbacks.Add(Action.Type.NOTHING, nothingAction);
         }
     }
 
@@ -116,6 +119,12 @@ public class NetworkLogic : NetworkBehaviour
                 return Time.frameCount < _targetFrameCount;
             }
         }
+    }
+
+    [ClientRpc]
+    public void setupHexfieldInClient()
+    {
+        hexfield.currentPlayer = players[PassBetweenScenes.id];
     }
 
     [Server]
