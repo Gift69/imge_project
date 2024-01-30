@@ -231,10 +231,19 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     private void FinishSelecting()
     {
+        PlayerActions playerActions = new PlayerActions
+        {
+            playername = PassBetweenScenes.playername,
+            a1 = selected_Actions[0].type,
+            a2 = selected_Actions[1].type,
+            a3 = selected_Actions[2].type,
+            a4 = selected_Actions[3].type,
+            a5 = selected_Actions[4].type
+        };
+        netLogic.otherplayerActions.Add(playerActions);
         _Doc.rootVisualElement.style.display = DisplayStyle.None;
         nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
-
     }
 
     void Update()

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -5,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class Ingame_UI : MonoBehaviour
 {
+
+    private NetworkLogic netLogic;
+
     private UIDocument _Doc;
 
     private Button action_1;
@@ -31,7 +35,7 @@ public class Ingame_UI : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _Doc = GetComponent<UIDocument>();
         action_1 = _Doc.rootVisualElement.Q<Button>("Action_1");
@@ -102,6 +106,20 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_3.SetEnabled(false);
         ordered_Action_4.SetEnabled(false); ;
         ordered_Action_5.SetEnabled(false);
+    }
+    void Start()
+    {
+        netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
+
+    }
+
+    void Update()
+    {
+        if (_Doc.rootVisualElement.style.display != DisplayStyle.None)
+            for (int i = 0; i < PassBetweenScenes.playercount; i++)
+            {
+                SetPlayer(i, netLogic.otherplayerActions[i]);
+            }
     }
 
 
@@ -217,5 +235,26 @@ public class Ingame_UI : MonoBehaviour
         selected_Actions[4].selectableButton = action_5;
     }
 
-    
+    public void SetPlayer(int i, PlayerActions playerActions)
+    {
+        VisualElement root = _Doc.rootVisualElement.Q<VisualElement>("Enemy_" + (i+1));
+        Debug.Log(root);
+        Label name = (Label)root.Children().ElementAt<VisualElement>(0).Children().ElementAt<VisualElement>(0);
+        Debug.Log(name);
+        name.text = playerActions.playername;
+
+        VisualElement a1 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(0);
+        a1.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a1));
+
+        VisualElement a2 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(1);
+        a2.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a2));
+
+        VisualElement a3 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(2);
+        a3.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a3));
+
+        VisualElement a4 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(3);
+        a4.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a4));
+    }
+
+
 }

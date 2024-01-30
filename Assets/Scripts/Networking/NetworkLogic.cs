@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class NetworkLogic : NetworkBehaviour
 {
+    public SyncList<PlayerActions> otherplayerActions = new SyncList<PlayerActions>();
     public GameObject playerPrefab;
     public GameObject vPlayerPrefab;
 

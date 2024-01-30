@@ -5,6 +5,13 @@ using UnityEngine.UIElements;
 
 public abstract class Action
 {
+
+    public static Sprite[] actionIcons = new Sprite[5];
+
+    public static Sprite GetIcon(Action.Type type){
+        return actionIcons[(int)type];
+    }
+
     public enum Type
     {
         MOVE,
