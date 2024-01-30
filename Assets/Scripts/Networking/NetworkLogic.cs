@@ -75,8 +75,6 @@ public class NetworkLogic : NetworkBehaviour
                 hexfield.cellAt(spawnCoords[playerCount][i]).placeBoardPiece(players[i]);
             }
 
-            setupHexfieldInClient();
-
             actionCallbacks.Add(Action.Type.MOVE, moveAction);
             actionCallbacks.Add(Action.Type.NOTHING, nothingAction);
         }
@@ -124,7 +122,7 @@ public class NetworkLogic : NetworkBehaviour
     [ClientRpc]
     public void setupHexfieldInClient()
     {
-        hexfield.currentPlayer = players[PassBetweenScenes.id];
+        
     }
 
     [Server]
