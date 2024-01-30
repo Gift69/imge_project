@@ -10,6 +10,7 @@ public class NetworkLogic : NetworkBehaviour
     public GameObject playerPrefab;
     public GameObject vPlayerPrefab;
 
+    public Player[] players;
     public SyncAction[][] playerActions;
 
     public Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>> actionCallbacks = new Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>>();
@@ -17,7 +18,6 @@ public class NetworkLogic : NetworkBehaviour
     [SyncVar]
     public float timer = 0;
 
-    public List<Player> players = new List<Player>();
 
     public enum Mode
     {
@@ -34,42 +34,42 @@ public class NetworkLogic : NetworkBehaviour
     private bool[] actionFinished;
     public HexField hexfield;
 
+    private int playerCount;
+
+    private readonly Dictionary<int, HexField.Coord[]> spawnCoords = new Dictionary<int, HexField.Coord[]> {
+        {2, new HexField.Coord[] { new(-4, 0), new(4, 0) } },
+        {3, new HexField.Coord[] { new(-4, 0), new(0, -4), new(0, 0, 4) } },
+        {4, new HexField.Coord[] { new(-1, 3, 0), new(1, 0, 3), new(1, -3, 0), new(-1, 0, -3) } }
+    };
+
     private void Start()
     {
         if (isServer)
         {
+            playerCount = 4; // GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Count;
 
-            playerActions = new SyncAction[2][];
+            playerActions = new SyncAction[playerCount][];
 
-            playerActions[0] = new SyncAction[]{
-            new SyncAction(Action.Type.MOVE, new(1, 0)),
-            new SyncAction(Action.Type.MOVE, new(0, 1)),
-            new SyncAction(Action.Type.MOVE, new(0, 0, -1))
-        };
+            for (int i = 0; i < playerCount; i++)
+                playerActions[i] = new SyncAction[]{
+                    new SyncAction(Action.Type.MOVE, new(1, 0)),
+                    new SyncAction(Action.Type.MOVE, new(0, 1)),
+                    new SyncAction(Action.Type.MOVE, new(0, 0, -1))
+                };
 
-            playerActions[1] = new SyncAction[]{
-            new SyncAction(Action.Type.MOVE, new(-1, 0)),
-            new SyncAction(Action.Type.MOVE, new(0, -1)),
-            new SyncAction(Action.Type.MOVE, new(0, 0, 1))
-        };
+            actionFinished = new bool[playerCount];
 
-            actionFinished = new bool[2];
+            players = new Player[playerCount];
 
-            var playerObj = Instantiate(playerPrefab);
-            Debug.Log(playerObj);
-            NetworkServer.Spawn(playerObj);
-            var player = playerObj.GetComponent<Player>();
-            hexfield.cellAt(2, 0).placeBoardPiece(player);
-
-            players.Add(player);
-
-            playerObj = Instantiate(playerPrefab);
-            Debug.Log(playerObj);
-            NetworkServer.Spawn(playerObj);
-            player = playerObj.GetComponent<Player>();
-            hexfield.cellAt(-2, 0).placeBoardPiece(player);
-
-            players.Add(player);
+            GameObject playerObj;
+            for (int i = 0; i < playerCount; i++)
+            {
+                playerObj = Instantiate(playerPrefab);
+                Debug.Log(playerObj);
+                NetworkServer.Spawn(playerObj);
+                players[i] = playerObj.GetComponent<Player>();
+                hexfield.cellAt(spawnCoords[playerCount][i]).placeBoardPiece(players[i]);
+            }
 
 
             hexfield.currentPlayer = players[0];
@@ -101,12 +101,14 @@ public class NetworkLogic : NetworkBehaviour
         timer = 2;
         mode = Mode.ACTION_ORDERING;
         yield return new WaitWhile(() => timer > 0);
+        // Padding time
+        yield return new WaitForSeconds(0.5f);
         mode = Mode.ACTION_EXECUTION;
         timer = 5;
 
         for (int j = 0; j < playerActions[0].Length; j++)
         {
-            for (int i = 0; i < playerActions.Length; i++)
+            for (int i = 0; i < playerCount; i++)
             {
                 actionFinished[i] = false;
                 StartCoroutine(actionCallbacks[playerActions[i][j].type](actionFinished, i, players[i], playerActions[i][j].value));
