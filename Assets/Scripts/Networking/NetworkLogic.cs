@@ -182,4 +182,12 @@ public class NetworkLogic : NetworkBehaviour
         yield return new WaitForFrames(30);
         actionActive[index] = true;
     }
+
+    public static IEnumerator bombAction(bool[] actionActive, int index, Player player, HexField.Coord value)
+    {
+        player.cell.getCellRelative(value).placeBoardPiece(player.bomb);
+        
+        actionActive[index] = true;
+        yield return null;
+    }
 }
