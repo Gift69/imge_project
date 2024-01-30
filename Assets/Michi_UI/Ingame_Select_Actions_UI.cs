@@ -102,6 +102,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         action_3.clicked += Action3ButtonOnClicked;
         action_4.clicked += Action4ButtonOnClicked;
         action_5.clicked += Action5ButtonOnClicked;
+        
+        _Doc.rootVisualElement.Q<Label>("Name").text = PassBetweenScenes.playername;
     }
 
 

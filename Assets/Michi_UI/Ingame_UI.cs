@@ -104,7 +104,7 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_1.SetEnabled(false);
         ordered_Action_2.SetEnabled(false);
         ordered_Action_3.SetEnabled(false);
-        ordered_Action_4.SetEnabled(false); ;
+        ordered_Action_4.SetEnabled(false); 
         ordered_Action_5.SetEnabled(false);
     }
     void Start()
@@ -244,17 +244,23 @@ public class Ingame_UI : MonoBehaviour
         name.text = playerActions.playername;
 
         VisualElement a1 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(0);
-        a1.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a1));
+        a1.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a1));
 
         VisualElement a2 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(1);
-        a2.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a2));
+        a2.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a2));
 
         VisualElement a3 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(2);
-        a3.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a3));
+        a3.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a3));
 
         VisualElement a4 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(3);
-        a4.style.backgroundImage = new StyleBackground(Action.GetIcon(playerActions.a4));
+        a4.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a4));
+        VisualElement a5 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(4);
+        a5.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a5));
     }
+    public Sprite[] actionIcons = new Sprite[5];
 
+    public Sprite GetIcon(Action.Type type){
+        return actionIcons[(int)type];
+    }
 
 }
