@@ -37,18 +37,18 @@
                 <ui:VisualElement name="Character_selection" style="flex-grow: 1; height: 100%; width: 50%; flex-direction: row;">
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%;" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/mage_splash_art.png?fileID=2800000&amp;guid=0ed0b8659a7d604469f2a39f05a87bd7&amp;type=3#mage_splash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%;" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/gentleman_spash_art.png?fileID=2800000&amp;guid=b916d6082dfc77a4ea64b01f9227747e&amp;type=3#gentleman_spash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch;" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/knight_splash%20art.png?fileID=2800000&amp;guid=d521cfc833b753d4f8ff95507dce4457&amp;type=3#knight_splash art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
-                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%;" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/miner_splash_art.png?fileID=2800000&amp;guid=45fc3db0d6209534ba41440b58e35778&amp;type=3#miner_splash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
