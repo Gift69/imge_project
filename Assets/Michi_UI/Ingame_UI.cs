@@ -109,7 +109,7 @@ public class Ingame_UI : MonoBehaviour
     }
     void Start()
     {
-        netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
+        //netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
 
     }
 

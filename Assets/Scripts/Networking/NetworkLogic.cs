@@ -44,7 +44,7 @@ public class NetworkLogic : NetworkBehaviour
         {4, new HexField.Coord[] { new(-1, 3, 0), new(1, 0, 3), new(1, -3, 0), new(-1, 0, -3) } }
     };
 
-    private void Start()
+    public void StartReal()
     {
         hexfield = GameObject.FindGameObjectWithTag("HexField").GetComponent<HexField>();
         if (isServer)
@@ -185,7 +185,7 @@ public class NetworkLogic : NetworkBehaviour
 
     public static IEnumerator bombAction(bool[] actionActive, int index, Player player, HexField.Coord value)
     {
-        player.cell.getCellRelative(value).placeBoardPiece(player.bomb);
+        //player.cell.getCellRelative(value).placeBoardPiece(player.bomb);
         
         actionActive[index] = true;
         yield return null;

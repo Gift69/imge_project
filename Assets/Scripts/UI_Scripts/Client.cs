@@ -20,10 +20,15 @@ public class Client : MonoBehaviour
     private Label player3_char;
     private Label player4_char;
 
+    public CustumNetworkManager manager;
     public GameObject startUI;
     public ConnectedPlayers networkLogic;
 
-    public CustumNetworkManager manager;
+    public GameObject ingameUI;
+    public NetworkLogic networkLogicIngame;
+
+    public Camera camera1;
+    public Camera camera2;
 
     void Awake()
     {
@@ -41,17 +46,25 @@ public class Client : MonoBehaviour
 
     void Update()
     {
-        if (networkLogic.started)
+        if (_uiDocument.rootVisualElement.style.display != DisplayStyle.None)
         {
-            PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
-            SceneManager.LoadScene("Stage", LoadSceneMode.Single);
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            if (i < networkLogic.playernames.Count)
-                SetPlayerName(i, networkLogic.playernames[i]);
-            else
-                SetPlayerName(i, "notconnected");
+            if (networkLogic.started)
+            {
+                PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
+                _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+                ingameUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
+                GameObject.FindGameObjectWithTag("useless").SetActive(false);
+                camera1.enabled = false;
+                camera2.enabled = true;
+                networkLogicIngame.StartReal();
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                if (i < networkLogic.playernames.Count)
+                    SetPlayerName(i, networkLogic.playernames[i]);
+                else
+                    SetPlayerName(i, "notconnected");
+            }
         }
     }
     public bool SetPlayerName(int nr, string playername)

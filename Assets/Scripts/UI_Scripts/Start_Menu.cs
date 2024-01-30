@@ -24,6 +24,9 @@ public class Start_Menu : MonoBehaviour
 
     public GameObject clientUI;
 
+    public GameObject ingame1;
+
+    public GameObject ingame2;
 
     void Awake()
     {
@@ -48,6 +51,8 @@ public class Start_Menu : MonoBehaviour
         hostUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
         ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
         clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        ingame1.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        ingame2.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
     }
 
     private void CreateButtonClicked()
