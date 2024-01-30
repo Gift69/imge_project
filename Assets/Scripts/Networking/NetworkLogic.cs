@@ -22,6 +22,8 @@ public class NetworkLogic : NetworkBehaviour
     [SyncVar]
     public float timer = 0;
 
+    public SyncList<Player> players = new SyncList<Player>();
+
     public enum Mode
     {
         ACTION_SELECTION,
