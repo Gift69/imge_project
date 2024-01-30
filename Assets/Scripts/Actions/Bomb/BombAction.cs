@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BombAction : Action
 {
-    public override void execute(Player player)
-    {
-
+    public BombAction() {
+        type = Type.BOMB;
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)

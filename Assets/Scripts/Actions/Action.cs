@@ -14,12 +14,16 @@ public abstract class Action
 
     public enum Type
     {
+        NOTHING,
         MOVE,
         SWORD_SLASH,
-        UNKNOWN
+        BOMB,
+        MINING,
+        SHOOT,
+        STUN_FIELD
     };
 
-    public Type type = Type.UNKNOWN;
+    public Type type = Type.NOTHING;
     public bool selected = false;
     protected bool hasValue = false;
     protected HexField.Coord value;
@@ -28,7 +32,6 @@ public abstract class Action
 
 
     public abstract List<GameObject> executeVirtual(VirtualPlayer vPlayer);
-    public abstract void execute(Player player);
 
     public virtual ActionSelection getActionSelection(VirtualPlayer vPlayer)
     {

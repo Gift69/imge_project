@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SwordSlashAction : Action
 {
-    public override void execute(Player player)
+    public SwordSlashAction()
     {
-        
+        type = Type.SWORD_SLASH;
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)

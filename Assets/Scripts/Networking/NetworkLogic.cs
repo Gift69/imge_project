@@ -50,16 +50,16 @@ public class NetworkLogic : NetworkBehaviour
         if (isServer)
         {
             Debug.Log("SceneManager.GetActiveScene().name");
-            playerCount = PassBetweenScenes.playercount; // GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Count;
+            playerCount = PassBetweenScenes.playercount;
 
             playerActions = new SyncAction[playerCount][];
 
             for (int i = 0; i < playerCount; i++)
-                playerActions[i] = new SyncAction[]{
-                    new SyncAction(Action.Type.MOVE, new(1, 0)),
-                    new SyncAction(Action.Type.MOVE, new(0, 1)),
-                    new SyncAction(Action.Type.MOVE, new(0, 0, -1))
-                };
+            {
+                playerActions[i] = new SyncAction[Player.ACTION_COUNT];
+                for (int j = 0; j < Player.ACTION_COUNT; j++)
+                    playerActions[i][j] = new SyncAction(Action.Type.NOTHING, new());
+            }
 
             actionFinished = new bool[playerCount];
 
@@ -76,10 +76,8 @@ public class NetworkLogic : NetworkBehaviour
                 hexfield.cellAt(spawnCoords[playerCount][i]).placeBoardPiece(players[i]);
             }
 
-
-            hexfield.currentPlayer = players[0];
-
             actionCallbacks.Add(Action.Type.MOVE, moveAction);
+            actionCallbacks.Add(Action.Type.NOTHING, nothingAction);
         }
     }
 
@@ -95,6 +93,37 @@ public class NetworkLogic : NetworkBehaviour
             timer -= Time.deltaTime;
             if (timer < 0) timer = 0;
         }
+    }
+
+    [Command]
+    public void setActionForPlayer(int playerIndex, int position, SyncAction action)
+    {
+        if(mode == Mode.ACTION_ORDERING)
+            playerActions[playerIndex][position] = action;
+    }
+
+    private class WaitForFrames : CustomYieldInstruction
+    {
+        private int _targetFrameCount;
+
+        public WaitForFrames(int numberOfFrames)
+        {
+            _targetFrameCount = Time.frameCount + numberOfFrames;
+        }
+
+        public override bool keepWaiting
+        {
+            get
+            {
+                return Time.frameCount < _targetFrameCount;
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void setupHexfieldInClient()
+    {
+        
     }
 
     [Server]
@@ -126,18 +155,6 @@ public class NetworkLogic : NetworkBehaviour
         timer = 0;
     }
 
-    public IEnumerator move(bool[] a, int index)
-    {
-        yield return new WaitForSeconds(5);
-        a[index] = true;
-    }
-
-    public IEnumerator shoot(bool[] a, int index)
-    {
-        yield return new WaitForSeconds(3);
-        a[index] = true;
-    }
-
     public static IEnumerator moveAction(bool[] actionActive, int index, Player player, HexField.Coord value)
     {
         float x = 0;
@@ -157,6 +174,12 @@ public class NetworkLogic : NetworkBehaviour
             yield return new WaitForNextFrameUnit();
         }
         player.cell = player.cell;
+        actionActive[index] = true;
+    }
+
+    public static IEnumerator nothingAction(bool[] actionActive, int index, Player player, HexField.Coord value)
+    {
+        yield return new WaitForFrames(30);
         actionActive[index] = true;
     }
 }

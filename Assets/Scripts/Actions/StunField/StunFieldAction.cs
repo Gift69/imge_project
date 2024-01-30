@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StunFieldAction : Action
 {
-    public override void execute(Player player)
+    public StunFieldAction()
     {
-        throw new System.NotImplementedException();
+        type = Type.STUN_FIELD;
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MoveAction : Action
 {
-    public override void execute(Player player)
+    public MoveAction()
     {
-        // TODO: implement
+        type = Type.MOVE;
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)
