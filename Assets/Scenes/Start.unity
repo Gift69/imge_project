@@ -408,6 +408,7 @@ MonoBehaviour:
   chosenChar4: {fileID: 0}
   networkLogic: {fileID: 284293886}
   startUI: {fileID: 1113501588}
+  manager: {fileID: 98296548}
 --- !u!114 &336911372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startUI: {fileID: 1113501588}
   networkLogic: {fileID: 284293886}
+  manager: {fileID: 98296548}
 --- !u!114 &1730197839
 MonoBehaviour:
   m_ObjectHideFlags: 0
