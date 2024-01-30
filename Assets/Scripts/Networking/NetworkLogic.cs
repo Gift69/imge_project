@@ -10,11 +10,6 @@ public class NetworkLogic : NetworkBehaviour
     public GameObject playerPrefab;
     public GameObject vPlayerPrefab;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     public SyncAction[][] playerActions;
 
     public Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>> actionCallbacks = new Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>>();
@@ -22,7 +17,7 @@ public class NetworkLogic : NetworkBehaviour
     [SyncVar]
     public float timer = 0;
 
-    public SyncList<Player> players = new SyncList<Player>();
+    public List<Player> players = new List<Player>();
 
     public enum Mode
     {
@@ -61,6 +56,7 @@ public class NetworkLogic : NetworkBehaviour
             actionFinished = new bool[2];
 
             var playerObj = Instantiate(playerPrefab);
+            Debug.Log(playerObj);
             NetworkServer.Spawn(playerObj);
             var player = playerObj.GetComponent<Player>();
             hexfield.cellAt(2, 0).placeBoardPiece(player);
@@ -68,6 +64,7 @@ public class NetworkLogic : NetworkBehaviour
             players.Add(player);
 
             playerObj = Instantiate(playerPrefab);
+            Debug.Log(playerObj);
             NetworkServer.Spawn(playerObj);
             player = playerObj.GetComponent<Player>();
             hexfield.cellAt(-2, 0).placeBoardPiece(player);
@@ -80,7 +77,6 @@ public class NetworkLogic : NetworkBehaviour
             actionCallbacks.Add(Action.Type.MOVE, moveAction);
         }
     }
-
 
     void Update()
     {

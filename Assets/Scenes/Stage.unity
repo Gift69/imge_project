@@ -574,10 +574,11 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
+  playerPrefab: {fileID: 3580232844497995731, guid: eca3b2b273bdf454e9b89441d6dddac3, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -1217,9 +1218,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerPrefab: {fileID: 0}
-  vPlayerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
+  vPlayerPrefab: {fileID: 2699525788604457909, guid: dcd592506bcaa4a498386ccc957f4ae1, type: 3}
   timer: 0
+  players: []
   mode: 4
   hexfield: {fileID: 1179776026}
 --- !u!4 &1996960396
