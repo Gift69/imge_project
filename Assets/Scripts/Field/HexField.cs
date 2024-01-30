@@ -139,19 +139,6 @@ public class HexField : MonoBehaviour
                 }
             }
         }
-
-        var player = Instantiate(playerPrefab);
-        player0 = player.GetComponent<Player>();
-        cellAt(2, 0).placeBoardPiece(player0);
-
-
-        //player = Instantiate(playerPrefab);
-        //player1 = player.GetComponent<Player>();
-        //cellAt(-2, 0).placeBoardPiece(player1);
-
-        players = new Player[] { player0, player1 };
-
-        currentPlayer = players[0];
     }
 
     public GameObject at(int x, int y = 0, int z = 0)

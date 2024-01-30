@@ -7,8 +7,14 @@ using UnityEngine;
 
 public class NetworkLogic : NetworkBehaviour
 {
+    public GameObject playerPrefab;
+    public GameObject vPlayerPrefab;
 
     public SyncList<Player> players = new SyncList<Player>();
+
+    public SyncAction[][] playerActions;
+
+    public Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>> actionCallbacks = new Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>>();
 
     [SyncVar]
     public float timer = 0;
@@ -30,7 +36,44 @@ public class NetworkLogic : NetworkBehaviour
 
     private void Start()
     {
-        actionFinished = new bool[2];
+        if (isServer)
+        {
+
+            playerActions = new SyncAction[2][];
+
+            playerActions[0] = new SyncAction[]{
+            new SyncAction(Action.Type.MOVE, new(1, 0)),
+            new SyncAction(Action.Type.MOVE, new(0, 1)),
+            new SyncAction(Action.Type.MOVE, new(0, 0, -1))
+        };
+
+            playerActions[1] = new SyncAction[]{
+            new SyncAction(Action.Type.MOVE, new(-1, 0)),
+            new SyncAction(Action.Type.MOVE, new(0, -1)),
+            new SyncAction(Action.Type.MOVE, new(0, 0, 1))
+        };
+
+            actionFinished = new bool[2];
+
+            var playerObj = Instantiate(playerPrefab);
+            NetworkServer.Spawn(playerObj);
+            var player = playerObj.GetComponent<Player>();
+            hexfield.cellAt(2, 0).placeBoardPiece(player);
+
+            players.Add(player);
+
+            playerObj = Instantiate(playerPrefab);
+            NetworkServer.Spawn(playerObj);
+            player = playerObj.GetComponent<Player>();
+            hexfield.cellAt(-2, 0).placeBoardPiece(player);
+
+            players.Add(player);
+
+
+            hexfield.currentPlayer = players[0];
+
+            actionCallbacks.Add(Action.Type.MOVE, moveAction);
+        }
     }
 
 
@@ -51,23 +94,26 @@ public class NetworkLogic : NetworkBehaviour
     [Server]
     public IEnumerator coroutine()
     {
-        timer = 3;
+        timer = 2;
         mode = Mode.ACTION_SELECTION;
         yield return new WaitWhile(() => timer > 0);
-        timer = 3;
+        timer = 2;
         mode = Mode.ACTION_ORDERING;
         yield return new WaitWhile(() => timer > 0);
         mode = Mode.ACTION_EXECUTION;
-        timer = 100;
+        timer = 5;
 
-        for(int i = 0; i < actionFinished.Length; i++)
+        for (int j = 0; j < playerActions[0].Length; j++)
         {
-            actionFinished[i] = false;
+            for (int i = 0; i < playerActions.Length; i++)
+            {
+                actionFinished[i] = false;
+                StartCoroutine(actionCallbacks[playerActions[i][j].type](actionFinished, i, players[i], playerActions[i][j].value));
+            }
+            Debug.Log("It " + j);
+            yield return new WaitUntil(() => { foreach (bool a in actionFinished) if (!a) return false; return true; });
         }
-        StartCoroutine(move(actionFinished, 0));
-        StartCoroutine(shoot(actionFinished, 1));
 
-        yield return new WaitUntil(() => { foreach (bool a in actionFinished) if (!a) return false; return true; } );
         mode = Mode.START;
         timer = 0;
     }
@@ -82,5 +128,27 @@ public class NetworkLogic : NetworkBehaviour
     {
         yield return new WaitForSeconds(3);
         a[index] = true;
+    }
+
+    public static IEnumerator moveAction(bool[] actionActive, int index, Player player, HexField.Coord value)
+    {
+        float x = 0;
+        Vector3 start = player.cell.transform.position;
+        Vector3 end = player.cell.getCellRelative(value).transform.position;
+        while (x < 0.5)
+        {
+            player.transform.position = start * (1 - x) + end * x;
+            x += Time.deltaTime;
+            yield return new WaitForNextFrameUnit();
+        }
+        player.coord += value;
+        while (x < 1.0)
+        {
+            player.transform.position = start * (1 - x) + end * x;
+            x += Time.deltaTime;
+            yield return new WaitForNextFrameUnit();
+        }
+        player.cell = player.cell;
+        actionActive[index] = true;
     }
 }

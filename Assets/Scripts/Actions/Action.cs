@@ -59,6 +59,6 @@ public abstract class Action
 
     public SyncAction toSync()
     {
-        return new SyncAction(type, value, hasValue);
+        return new SyncAction(type, value);
     }
 }
