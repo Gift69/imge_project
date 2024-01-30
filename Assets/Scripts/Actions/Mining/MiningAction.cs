@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MiningAction : Action
 {
-    public override void execute(Player player)
+    public MiningAction()
     {
-        throw new System.NotImplementedException();
+        type = Type.MINING;
     }
 
     public override List<GameObject> executeVirtual(VirtualPlayer vPlayer)
