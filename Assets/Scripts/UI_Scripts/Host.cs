@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -33,6 +34,8 @@ public class Host : MonoBehaviour
     public GameObject startUI;
 
     public CustumNetworkManager manager;
+
+ 
 
 
     void Awake()

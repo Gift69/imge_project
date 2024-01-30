@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Mirror;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetworkLogic : NetworkBehaviour
 {
@@ -44,9 +45,11 @@ public class NetworkLogic : NetworkBehaviour
 
     private void Start()
     {
+        hexfield = GameObject.FindGameObjectWithTag("HexField").GetComponent<HexField>();
         if (isServer)
         {
-            playerCount = 4; // GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Count;
+            Debug.Log("SceneManager.GetActiveScene().name");
+            playerCount = PassBetweenScenes.playercount; // GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Count;
 
             playerActions = new SyncAction[playerCount][];
 
@@ -67,6 +70,7 @@ public class NetworkLogic : NetworkBehaviour
                 playerObj = Instantiate(playerPrefab);
                 Debug.Log(playerObj);
                 NetworkServer.Spawn(playerObj);
+                Debug.Log(playerObj);
                 players[i] = playerObj.GetComponent<Player>();
                 hexfield.cellAt(spawnCoords[playerCount][i]).placeBoardPiece(players[i]);
             }

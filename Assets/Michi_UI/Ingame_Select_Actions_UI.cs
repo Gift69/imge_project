@@ -107,6 +107,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     void Start()
     {
+        netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
         Debug.Log(nextUI.GetComponent<UIDocument>());
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
     }

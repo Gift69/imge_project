@@ -1,16 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Button.uss?fileID=7433441132597879392&amp;guid=cfad15388e36ec948b934876206188e7&amp;type=3#Button" />
-    <ui:VisualElement name="Root_Canvas" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgb(48, 152, 60);">
+    <ui:VisualElement name="Root_Canvas" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgba(117, 255, 214, 0.1);">
         <ui:VisualElement name="game_name" style="flex-grow: 1; align-self: stretch; width: 100%; height: 60%; justify-content: flex-start; align-items: stretch;">
             <ui:VisualElement name="Game_Name" style="flex-grow: 1; height: 80%; width: 100%;" />
-            <ui:VisualElement style="flex-grow: 1; height: 20%; width: 100%; align-items: center; justify-content: flex-end; align-self: auto; flex-direction: row;">
-                <ui:VisualElement style="flex-grow: 1; width: 5%; height: 100%;" />
-                <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" name="player_name" style="width: 70%; height: 80%; justify-content: flex-start;" />
-                <ui:VisualElement style="flex-grow: 1; width: 25%; height: 100%; flex-direction: row;">
-                    <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; justify-content: flex-start; align-items: center; align-self: center; flex-direction: row;">
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 40%; height: 60%;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement style="flex-grow: 1; height: 100%; width: 50%;" />
+            <ui:VisualElement style="flex-grow: 1; height: 40%; width: 100%; align-items: center; justify-content: flex-end; align-self: auto; flex-direction: row; flex-wrap: nowrap; background-color: rgba(255, 255, 255, 0.5);">
+                <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" name="player_name" style="width: 60%; height: 80%; justify-content: center; align-items: center; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial; font-size: 20px; -unity-background-image-tint-color: rgba(255, 255, 255, 0); background-color: rgba(0, 0, 0, 0); padding-bottom: 0; margin-right: 0; margin-left: 10%; padding-right: 1%; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; justify-content: flex-start; align-items: center; align-self: center; flex-direction: row;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 114px; height: 60%; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial; font-size: 20px; padding-top: 20px; padding-bottom: 20px; padding-right: 20px; padding-left: 20px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
@@ -23,7 +19,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="Client_Join" style="flex-grow: 1; width: 50%; height: 100%; align-items: center; justify-content: center;">
                 <ui:VisualElement style="flex-grow: 1; width: 100%; height: 10%;" />
-                <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 90%; align-self: auto; justify-content: flex-start; align-items: center;">
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 90%; align-self: auto; justify-content: flex-start; align-items: flex-end;">
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="client_join" style="width: 80%; height: 60%; background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/join_button.png?fileID=2800000&amp;guid=f261864afec4bfc489f137f42d63cf2f&amp;type=3#join_button&apos;); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
             </ui:VisualElement>

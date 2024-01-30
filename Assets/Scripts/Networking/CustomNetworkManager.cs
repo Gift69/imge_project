@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class CustumNetworkManager : NetworkManager
 {
     public GameObject networkLogic;
+    public GameObject networkLogicIngame;
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
@@ -26,5 +28,22 @@ public class CustumNetworkManager : NetworkManager
         PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().RemovePlayer(PassBetweenScenes.playername);
         base.OnClientDisconnect();
     }
+
+    public override void Awake()
+    {
+        // Subscribe to the scene loaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        base.Awake();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "Stage")
+        {
+            var x = GameObject.Instantiate(networkLogicIngame);
+            NetworkServer.Spawn(x);
+        }
+    }
+
 
 }

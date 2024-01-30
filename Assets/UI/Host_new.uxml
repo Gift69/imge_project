@@ -1,9 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgb(82, 137, 85);">
+    <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgba(117, 255, 214, 0.1);">
+        <ui:VisualElement name="bg" style="flex-grow: 1; position: absolute; justify-content: flex-start; width: 20%; height: 70%; top: 0; left: 0; background-color: rgba(255, 255, 255, 0.5); margin-top: 5%; margin-left: 10%;" />
         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 80%; justify-content: flex-end; align-items: center; flex-direction: column;">
             <ui:VisualElement style="flex-grow: 1; width: 100%; height: 15%; flex-direction: row;">
                 <ui:VisualElement style="flex-grow: 1; width: 80%; height: 100%; justify-content: flex-end; flex-direction: column; align-items: center; align-self: auto;">
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IP_adress" style="width: 90%; height: 70%;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IP_adress" style="width: 90%; height: 70%; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; height: 100%; width: 20%;" />
             </ui:VisualElement>
@@ -14,28 +15,28 @@
                             <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
                             <ui:VisualElement name="Character_icon_1" style="flex-grow: 1; height: 100%; width: 70%;" />
                         </ui:VisualElement>
-                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="host_name" style="height: 50%; width: 70%;" />
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="host_name" style="height: 50%; width: 70%; font-size: 20px; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial;" />
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; justify-content: flex-start; align-items: center;">
                         <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row;">
                             <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
                             <ui:VisualElement name="Character_icon_2" style="flex-grow: 1; height: 100%; width: 70%;" />
                         </ui:VisualElement>
-                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1_name" style="width: 70%; height: 50%;" />
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1_name" style="width: 70%; height: 50%; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial; font-size: 20px;" />
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; align-items: center;">
                         <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row;">
                             <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
                             <ui:VisualElement name="Character_icon_3" style="flex-grow: 1; height: 100%; width: 70%;" />
                         </ui:VisualElement>
-                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2_name" style="width: 70%; height: 50%;" />
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2_name" style="width: 70%; height: 50%; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial; font-size: 20px;" />
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; width: 100%; height: 25%; flex-direction: row; align-items: center;">
                         <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 30%; height: 100%; flex-direction: row;">
                             <ui:VisualElement style="flex-grow: 1; width: 30%; height: 100%;" />
                             <ui:VisualElement name="Character_icon_4" style="flex-grow: 1; height: 100%; width: 70%;" />
                         </ui:VisualElement>
-                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3_name" style="width: 70%; height: 50%;" />
+                        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3_name" style="width: 70%; height: 50%; -unity-font: url(&apos;project://database/Assets/UI/fonts/supercell-magic.ttf?fileID=12800000&amp;guid=4e65af5b5591506489bfc7a0ec1b64cf&amp;type=3#supercell-magic&apos;); -unity-font-definition: initial; font-size: 20px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Character_selection" style="flex-grow: 1; height: 100%; width: 50%; flex-direction: row;">
