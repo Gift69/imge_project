@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using Mirror;
@@ -91,6 +92,7 @@ public class Host : MonoBehaviour
 
     private void StartInGameScene()
     {
+        PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
         PassBetweenScenes.playercount = networkLogic.playernames.Count;
         networkLogic.started = true;
         SceneManager.LoadScene("Stage", LoadSceneMode.Single);

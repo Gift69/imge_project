@@ -42,7 +42,10 @@ public class Client : MonoBehaviour
     void Update()
     {
         if (networkLogic.started)
+        {
+            PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
             SceneManager.LoadScene("Stage", LoadSceneMode.Single);
+        }
         for (int i = 0; i < 4; i++)
         {
             if (i < networkLogic.playernames.Count)
