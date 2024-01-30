@@ -45,7 +45,7 @@ public class IP_Entry : MonoBehaviour
         if (_uiDocument.rootVisualElement.style.display != DisplayStyle.None)
             if (NetworkClient.isConnected)
             {
-                PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddPlayer(PassBetweenScenes.playername);
+                //PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddPlayer(PassBetweenScenes.playername);
                 _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
                 clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
             }
