@@ -32,6 +32,8 @@ public class Host : MonoBehaviour
 
     public GameObject startUI;
 
+    public CustumNetworkManager manager;
+
 
     void Awake()
     {
@@ -68,20 +70,26 @@ public class Host : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < networkLogic.playernames.Count; i++)
+        for (int i = 0; i < 4; i++)
         {
-            SetPlayerName(i, networkLogic.playernames[i]);
+            if (i < networkLogic.playernames.Count)
+                SetPlayerName(i, networkLogic.playernames[i]);
+            else
+                SetPlayerName(i, "notconnected");
         }
     }
 
     private void BackToPrevScene()
     {
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().StopServer();
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
         startUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
     private void StartInGameScene()
     {
+        PassBetweenScenes.playercount = networkLogic.playernames.Count;
+        networkLogic.started = true;
         SceneManager.LoadScene("Stage", LoadSceneMode.Single);
     }
 

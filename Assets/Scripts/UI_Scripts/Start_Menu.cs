@@ -58,13 +58,9 @@ public class Start_Menu : MonoBehaviour
             {
                 manager.StartHost();
             }
-            GameObject.Find("NetworkLogic").GetComponent<ConnectedPlayers>().playernames.Add(PassBetweenScenes.playername);
+            GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Add(PassBetweenScenes.playername);
             _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
             hostUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
-            Debug.Log("playername:" + player_name);
-        }
-        else
-        {//textfeld soll rot werden und wackeln
         }
     }
 

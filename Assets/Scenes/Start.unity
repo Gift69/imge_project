@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -175,7 +175,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 0}
+  transport: {fileID: 98296551}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -185,7 +185,8 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 0}
+  - {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
+  - {fileID: 3757036346812136387, guid: 32ff4884452e9724b99294ff94361717, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -316,7 +317,7 @@ GameObject:
   - component: {fileID: 284293883}
   - component: {fileID: 284293886}
   m_Layer: 0
-  m_Name: NetworkLogic
+  m_Name: ConnectedPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,6 +371,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  started: 0
 --- !u!1 &336911370
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +408,7 @@ MonoBehaviour:
   chosenChar4: {fileID: 0}
   networkLogic: {fileID: 284293886}
   startUI: {fileID: 1113501588}
+  manager: {fileID: 98296548}
 --- !u!114 &336911372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startUI: {fileID: 1113501588}
   networkLogic: {fileID: 284293886}
+  manager: {fileID: 98296548}
 --- !u!114 &1730197839
 MonoBehaviour:
   m_ObjectHideFlags: 0

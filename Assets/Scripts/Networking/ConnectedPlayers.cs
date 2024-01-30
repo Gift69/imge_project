@@ -9,5 +9,6 @@ public class ConnectedPlayers : NetworkBehaviour
 {
     public SyncList<string> playernames = new SyncList<string>();
 
-   
+    [SyncVar]
+    public bool started = false;
 }

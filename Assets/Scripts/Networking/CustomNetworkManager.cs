@@ -17,8 +17,14 @@ public class CustumNetworkManager : NetworkManager
         // => appending the connectionId is WAY more useful for debugging!
         player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
         NetworkServer.AddPlayerForConnection(conn, player);
-        Debug.Log("its happening");
         //PassBetweenScenes.playerInstance = player;
         //player.GetComponent<PlayerData>().playername = PassBetweenScenes.playername;
     }
+
+    public override void OnClientDisconnect()
+    {
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().RemovePlayer(PassBetweenScenes.playername);
+        base.OnClientDisconnect();
+    }
+
 }

@@ -20,15 +20,13 @@ public class Client : MonoBehaviour
     private Label player3_char;
     private Label player4_char;
 
-    private NetworkManager manager;
-
     public GameObject startUI;
     public ConnectedPlayers networkLogic;
 
+    public CustumNetworkManager manager;
 
     void Awake()
     {
-        manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
         _uiDocument = GetComponent<UIDocument>();
         back = _uiDocument.rootVisualElement.Q<Button>("back_button");
 
@@ -43,9 +41,14 @@ public class Client : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < networkLogic.playernames.Count; i++)
+        if (networkLogic.started)
+            SceneManager.LoadScene("Stage", LoadSceneMode.Single);
+        for (int i = 0; i < 4; i++)
         {
-            SetPlayerName(i, networkLogic.playernames[i]);
+            if (i < networkLogic.playernames.Count)
+                SetPlayerName(i, networkLogic.playernames[i]);
+            else
+                SetPlayerName(i, "notconnected");
         }
     }
     public bool SetPlayerName(int nr, string playername)
@@ -81,11 +84,9 @@ public class Client : MonoBehaviour
 
     private void BackToPrevScene()
     {
+        manager.StopClient();
         _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
         startUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
-    private void StartScene()
-    {
-    }
 }

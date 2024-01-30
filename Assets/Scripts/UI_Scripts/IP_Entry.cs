@@ -38,17 +38,26 @@ public class IP_Entry : MonoBehaviour
         {
             manager.networkAddress = ip_entry.text;
             manager.StartClient();
+        }
+    }
+    void Update()
+    {
+        if (_uiDocument.rootVisualElement.style.display != DisplayStyle.None)
             if (NetworkClient.isConnected)
             {
                 PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddPlayer(PassBetweenScenes.playername);
-                //PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().removeAuthority(GameObject.Find("NetworkLogic"));
                 _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
                 clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
             }
-            else
-            { //rotes feld
+            else if (NetworkClient.active)
+            {
+                ip_entry.value = "connecting...";
+                ip_entry.SetEnabled(false);
             }
-            //rotes feld
-        }
+            else
+            {
+                ip_entry.value = manager.networkAddress;
+                ip_entry.SetEnabled(true);
+            }
     }
 }

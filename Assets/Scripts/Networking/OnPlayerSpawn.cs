@@ -22,7 +22,21 @@ public class OnPlayerSpawn : NetworkBehaviour
     [Command]
     public void AddPlayer(string playername)
     {
-        GameObject.Find("NetworkLogic").GetComponent<ConnectedPlayers>().playernames.Add(playername);
+        GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Add(playername);
     }
+
+    [Command]
+    public void RemovePlayer(string playername)
+    {
+        GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Remove(playername);
+    }
+
+    [Command]
+    public void StopServer()
+    {
+        GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.RemoveAll(x => true);
+        GameObject.Find("NetworkManager").GetComponent<CustumNetworkManager>().StopHost();
+    }
+    
 
 }
