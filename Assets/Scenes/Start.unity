@@ -187,7 +187,7 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 0}
+  - {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 284293883}
   - component: {fileID: 284293886}
   m_Layer: 0
-  m_Name: NetworkLogic
+  m_Name: ConnectedPlayers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
