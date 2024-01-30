@@ -6,6 +6,7 @@ TagManager:
   tags:
   - IngameUI
   - HexField
+  - NetworkLogic
   layers:
   - Default
   - TransparentFX
