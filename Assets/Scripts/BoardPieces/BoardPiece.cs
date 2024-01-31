@@ -11,6 +11,7 @@ public class BoardPiece : NetworkBehaviour
     private HexField hexfield;
 
 
+
     public Cell cell
     {
         get { return isPlaced ? hexfield.cellAt(coord) : null; }

@@ -185,8 +185,10 @@ public class NetworkLogic : NetworkBehaviour
 
     public static IEnumerator bombAction(bool[] actionActive, int index, Player player, HexField.Coord value)
     {
-        player.cell.getCellRelative(value).placeBoardPiece(player.bomb);
-        
+        GameObject bomb= GameObject.FindWithTag("bomb");
+        GameObject bomb1= Instantiate(bomb, player.transform.position, Quaternion.identity);
+        BoardPiece bomb_=bomb1.GetComponent<BoardPiece>();
+        player.cell.getCellRelative(value).placeBoardPiece( bomb_);
         actionActive[index] = true;
         yield return null;
     }
