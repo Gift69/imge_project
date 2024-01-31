@@ -14,7 +14,7 @@ public class CoinAction : Action
     }
 
     public override Sprite getIcon(){
-        return Resources.Load<Sprite>("coin_pickup");;
+        return Resources.Load<Sprite>("COIN PICKUP");;
     }
 
     public override bool requiresInput()

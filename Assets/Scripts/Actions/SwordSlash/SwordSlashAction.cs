@@ -22,4 +22,9 @@ public class SwordSlashAction : Action
     {
         return true;
     }
+    public override Sprite getIcon()
+    {
+        return  Resources.Load<Sprite>("SWORD");
+
+    }
 }
