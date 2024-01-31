@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.CompilerServices.SymbolWriter;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,19 +15,21 @@ public class Spielfigur : MonoBehaviour
         Miner
     }
 
-    [Header("Gentleman")] [SerializeField] private GameObject gentleman_base;
+    public GameObject offset;
+
+    [Header("Gentleman")][SerializeField] private GameObject gentleman_base;
     [SerializeField] private GameObject gentleman_extras;
     [SerializeField] private GameObject gentleman_outline;
 
-    [Header("Mage")] [SerializeField] private GameObject mage_base;
+    [Header("Mage")][SerializeField] private GameObject mage_base;
     [SerializeField] private GameObject mage_extras;
     [SerializeField] private GameObject mage_outline;
 
-    [Header("Miner")] [SerializeField] private GameObject miner_base;
+    [Header("Miner")][SerializeField] private GameObject miner_base;
     [SerializeField] private GameObject miner_extras;
     [SerializeField] private GameObject miner_outline;
 
-    [Header("Knight")] [SerializeField] private GameObject knight_base;
+    [Header("Knight")][SerializeField] private GameObject knight_base;
     [SerializeField] private GameObject knight_extras;
     [SerializeField] private GameObject knight_outline;
 
@@ -38,17 +41,18 @@ public class Spielfigur : MonoBehaviour
         Red
     }
 
-    [Header("Colors")] [SerializeField] private Material pink;
+    [Header("Colors")][SerializeField] private Material pink;
     [SerializeField] private Material yellow;
     [SerializeField] private Material blue;
     [SerializeField] private Material red;
 
-    [Header("Other Materials")] [SerializeField]
+    [Header("Other Materials")]
+    [SerializeField]
     private Material outline_material;
 
     [SerializeField] private Material extras_material;
 
-    [Header("Effects")] [SerializeField] private GameObject stunned_effect;
+    [Header("Effects")][SerializeField] private GameObject stunned_effect;
 
     [Header("TEST")] public bool test = false;
 
@@ -68,7 +72,7 @@ public class Spielfigur : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
         };
 
-        Transform t = transform;
+        Transform t = offset.transform;
         Quaternion r = Quaternion.Euler(0, 180, 0);
         switch (champion)
         {

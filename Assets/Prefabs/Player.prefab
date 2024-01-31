@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 678084333044061034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3453535043825510478
@@ -120,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe09a7f7e3affd4396501127b8139c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {fileID: 4090363295555206421}
   gentleman_base: {fileID: 8164078558771037576, guid: c2558da8c05d5514a91cf72db96b44d4, type: 3}
   gentleman_extras: {fileID: 8164078558771037576, guid: fa74a69aee4ab3f4193f2ad1e3c01000, type: 3}
   gentleman_outline: {fileID: 8164078558771037576, guid: 67152ba6539c91f45a8c8959a3fe6b04, type: 3}
@@ -140,3 +142,34 @@ MonoBehaviour:
   extras_material: {fileID: 2100000, guid: 9f2e1ca4f65d9f140b78a33b62dfb700, type: 2}
   stunned_effect: {fileID: 8528449989642076847, guid: ea1e1ef0d3de62b4897340f8508a87ae, type: 3}
   test: 0
+--- !u!1 &4090363295555206421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 678084333044061034}
+  m_Layer: 0
+  m_Name: Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &678084333044061034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090363295555206421}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3914751228110285853}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

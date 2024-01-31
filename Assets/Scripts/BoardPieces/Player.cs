@@ -9,6 +9,7 @@ public class Player : BoardPiece
     public Sprite empty;
     public int score = 0;
     public GameObject virtualPlayerPrefab;
+
     private Ingame_UI ui;
 
     public const int ACTION_COUNT = 5;
