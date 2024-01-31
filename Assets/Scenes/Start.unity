@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44771683, g: 0.4976939, b: 0.5753999, a: 1}
+  m_IndirectSpecularColor: {r: 0.44771713, g: 0.49769443, b: 0.57540053, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetX: 0
+  offsetY: 0
 --- !u!114 &98296548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,8 +187,11 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
   - {fileID: 3757036346812136387, guid: 32ff4884452e9724b99294ff94361717, type: 3}
+  - {fileID: 1520188483895586927, guid: 7c69e459425185d488536fa673f861ec, type: 3}
+  - {fileID: 4096151716100080073, guid: ffa23698edfd5294dbb47555c9a4d795, type: 3}
+  - {fileID: 8538067693297339624, guid: 3ff8fef46ee945a4790e1499d267644b, type: 3}
+  - {fileID: 2413437855766433861, guid: a709f117a2ffb28498b97e0cc1e48ac4, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -476,6 +481,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 331725387028974792, guid: 32ff4884452e9724b99294ff94361717, type: 3}
+      propertyPath: magePrefab
+      value: 
+      objectReference: {fileID: 8538067693297339624, guid: 3ff8fef46ee945a4790e1499d267644b, type: 3}
+    - target: {fileID: 331725387028974792, guid: 32ff4884452e9724b99294ff94361717, type: 3}
+      propertyPath: minerPrefab
+      value: 
+      objectReference: {fileID: 2413437855766433861, guid: a709f117a2ffb28498b97e0cc1e48ac4, type: 3}
+    - target: {fileID: 331725387028974792, guid: 32ff4884452e9724b99294ff94361717, type: 3}
+      propertyPath: knightPrefab
+      value: 
+      objectReference: {fileID: 4096151716100080073, guid: ffa23698edfd5294dbb47555c9a4d795, type: 3}
+    - target: {fileID: 331725387028974792, guid: 32ff4884452e9724b99294ff94361717, type: 3}
+      propertyPath: gentlemanPrefab
+      value: 
+      objectReference: {fileID: 1520188483895586927, guid: 7c69e459425185d488536fa673f861ec, type: 3}
     - target: {fileID: 397463867441745966, guid: 32ff4884452e9724b99294ff94361717, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3082782398
@@ -656,7 +677,7 @@ PrefabInstance:
     - target: {fileID: 4622501352648518840, guid: 3d2fbab4400771042ab20268240eb42d, type: 3}
       propertyPath: empty
       value: 
-      objectReference: {fileID: 21300000, guid: 662fedbf835c8be48bca0adbc8bba1fd, type: 3}
+      objectReference: {fileID: 21300000, guid: 139dc09f41bc7a54bb5c302dd2d67402, type: 3}
     - target: {fileID: 4622501352648518840, guid: 3d2fbab4400771042ab20268240eb42d, type: 3}
       propertyPath: nextUI
       value: 
@@ -690,7 +711,7 @@ PrefabInstance:
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: empty
       value: 
-      objectReference: {fileID: 21300000, guid: 662fedbf835c8be48bca0adbc8bba1fd, type: 3}
+      objectReference: {fileID: 21300000, guid: 139dc09f41bc7a54bb5c302dd2d67402, type: 3}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: hexField
       value: 
@@ -704,25 +725,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 432171489}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
+      propertyPath: actionIcons.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: actionIcons.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 5f3e06c8e4f02154eabc81a2884f6f52, type: 3}
+      objectReference: {fileID: 21300000, guid: af2b31b51a6a4ae4e94bc88660dea944, type: 3}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: actionIcons.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: e478e6f04b01cab4dbd0fe3efb29701a, type: 3}
+      objectReference: {fileID: 21300000, guid: 9b939ff6a15d22e48bd53f460dd4e2e0, type: 3}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: actionIcons.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: e008351efe3e59e4d85e6ba189a462cd, type: 3}
+      objectReference: {fileID: 21300000, guid: c06c0e1274b57c541a9db1d71bad6265, type: 3}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: actionIcons.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: abd9e9647d5fb2647a576a8430e810d5, type: 3}
+      objectReference: {fileID: 21300000, guid: ee3fa27e8ed40fa40b95f1456e943360, type: 3}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: actionIcons.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: 3d568623d92bd2c41ac816440ef930d8, type: 3}
+      objectReference: {fileID: 21300000, guid: 0a18d4c008e5d5a4eb1500bd2548b1b9, type: 3}
+    - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
+      propertyPath: actionIcons.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 94ecc738dd7f8f14ca17383c5969a808, type: 3}
+    - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
+      propertyPath: actionIcons.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: b8fdffdc6bace2d42a50862dcb40f7c3, type: 3}
+    - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
+      propertyPath: actionIcons.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c65beb18daad4f4f951d77fe511f0d9, type: 3}
+    - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
+      propertyPath: actionIcons.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a18d4c008e5d5a4eb1500bd2548b1b9, type: 3}
     - target: {fileID: 1594027728661568041, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.82891536

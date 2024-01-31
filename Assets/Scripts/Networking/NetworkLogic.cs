@@ -10,7 +10,13 @@ public class NetworkLogic : NetworkBehaviour
 {
     public SyncList<int> pickedCharacter = new SyncList<int>();
     public SyncList<PlayerActions> otherplayerActions = new SyncList<PlayerActions>();
-    public GameObject playerPrefab;
+    public GameObject magePrefab;
+    public GameObject knightPrefab;
+
+    public GameObject minerPrefab;
+
+    public GameObject gentlemanPrefab;
+
     public GameObject vPlayerPrefab;
 
     public Player[] players;
@@ -19,11 +25,14 @@ public class NetworkLogic : NetworkBehaviour
 
     public SyncAction[][] playerActions;
 
-    public Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>> actionCallbacks = new Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>>();
+    public delegate void Finish();
+
+    public delegate IEnumerator ActionCoroutine(Finish finish, Player player, HexField.Coord value);
+
+    public Dictionary<Action.Type, ActionCoroutine> actionCallbacks = new Dictionary<Action.Type, ActionCoroutine>();
 
     [SyncVar]
     public float timer = 0;
-
 
     public enum Mode
     {
@@ -37,10 +46,11 @@ public class NetworkLogic : NetworkBehaviour
     [SyncVar]
     public Mode mode = Mode.START;
 
-    private bool[] actionFinished;
     public HexField hexfield;
 
     private int playerCount;
+
+    public int refCount = 0;
 
     private readonly Dictionary<int, HexField.Coord[]> spawnCoords = new Dictionary<int, HexField.Coord[]> {
         {2, new HexField.Coord[] { new(-4, 0), new(4, 0) } },
@@ -77,16 +87,28 @@ public class NetworkLogic : NetworkBehaviour
                     playerActions[i][j] = new SyncAction(Action.Type.NOTHING, new());
             }
 
-            actionFinished = new bool[playerCount];
-
             players = new Player[playerCount];
 
             GameObject playerObj;
             for (int i = 0; i < playerCount; i++)
             {
-                playerObj = Instantiate(playerPrefab);
-                playerObj.GetComponent<Spielfigur>().SetupFigure((Spielfigur.CHAMPION)pickedCharacter[i], (Spielfigur.COLOR)i);
-                Debug.Log(playerObj);
+                switch (pickedCharacter[i])
+                {
+                    case 0:
+                        playerObj = Instantiate(magePrefab);
+                        break;
+                    case 1:
+                        playerObj = Instantiate(gentlemanPrefab);
+                        break;
+                    case 2:
+                        playerObj = Instantiate(knightPrefab);
+                        break;
+                    default:
+                        playerObj = Instantiate(minerPrefab);
+                        break;
+                }
+                playerObj.GetComponent<Spielfigur>().materialIndex = i;
+                playerObj.GetComponent<Spielfigur>().OnChangeMaterial(i, i);
                 NetworkServer.Spawn(playerObj);
                 Debug.Log(playerObj);
                 playerObjects.Add(playerObj);
@@ -103,6 +125,11 @@ public class NetworkLogic : NetworkBehaviour
     {
         if (started && isServer)
         {
+            for (int i = 0; i < playerObjects.Count; i++)
+            {
+                playerObjects[i].GetComponent<Spielfigur>().materialIndex = i;
+                playerObjects[i].GetComponent<Spielfigur>().OnChangeMaterial(i, i);
+            }
             if (mode == Mode.START)
             {
                 StartCoroutine(coroutine());
@@ -146,24 +173,36 @@ public class NetworkLogic : NetworkBehaviour
 
         for (int j = 0; j < playerActions[0].Length; j++)
         {
+            refCount = 0;
             for (int i = 0; i < playerCount; i++)
             {
-                actionFinished[i] = false;
-                StartCoroutine(actionCallbacks[playerActions[i][j].type](actionFinished, i, players[i], playerActions[i][j].value));
+                incRef();
+                StartCoroutine(actionCallbacks[playerActions[i][j].type](this.decRef, players[i], playerActions[i][j].value));
+                playerActions[i][j] = new SyncAction(Action.Type.NOTHING, new());
             }
             Debug.Log("It " + j);
-            yield return new WaitUntil(() => { foreach (bool a in actionFinished) if (!a) return false; return true; });
+            yield return new WaitUntil(() => refCount == 0);
         }
         otherplayerActions.Clear();
 
         mode = Mode.START;
     }
 
-    public static IEnumerator moveAction(bool[] actionActive, int index, Player player, HexField.Coord value)
+    public void decRef()
+    {
+        refCount--;
+    }
+
+    public void incRef()
+    {
+        refCount++;
+    }
+
+    public static IEnumerator moveAction(Finish finish, Player player, HexField.Coord value)
     {
         float x = 0;
-        Vector3 start = player.cell.transform.position;
-        Vector3 end = player.cell.getCellRelative(value).transform.position;
+        Vector3 start = player.cell.transform.position + Vector3.up * 0.5f;
+        Vector3 end = player.cell.getCellRelative(value).transform.position + Vector3.up * 0.5f;
         while (x < 0.5)
         {
             player.transform.position = start * (1 - x) + end * x;
@@ -178,22 +217,22 @@ public class NetworkLogic : NetworkBehaviour
             yield return new WaitForNextFrameUnit();
         }
         player.cell = player.cell;
-        actionActive[index] = true;
+        finish();
     }
 
-    public static IEnumerator nothingAction(bool[] actionActive, int index, Player player, HexField.Coord value)
+    public static IEnumerator nothingAction(Finish finish, Player player, HexField.Coord value)
     {
         yield return new WaitForFrames(30);
-        actionActive[index] = true;
+        finish();
     }
 
-    public static IEnumerator bombAction(bool[] actionActive, int index, Player player, HexField.Coord value)
+    public static IEnumerator bombAction(Finish finish, Player player, HexField.Coord value)
     {
         GameObject bomb = GameObject.FindWithTag("bomb");
         GameObject bomb1 = Instantiate(bomb, player.transform.position, Quaternion.identity);
         BoardPiece bomb_ = bomb1.GetComponent<BoardPiece>();
         player.cell.getCellRelative(value).placeBoardPiece(bomb_);
-        actionActive[index] = true;
+        finish();
         yield return null;
     }
 }

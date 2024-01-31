@@ -23,7 +23,7 @@ public class StunFieldAction : Action
 
     public override Sprite getIcon()
     {
-        return base.getIcon();
+        return  Resources.Load<Sprite>("STUN");;
 
     }
 

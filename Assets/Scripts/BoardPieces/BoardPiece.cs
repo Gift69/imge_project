@@ -27,7 +27,7 @@ public class BoardPiece : NetworkBehaviour
                 isPlaced = true;
                 coord = value.getCoord();
 
-                transform.position = value.transform.position;
+                transform.position = value.transform.position + Vector3.up * 0.4f;
             }
         }
     }

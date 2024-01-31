@@ -32,7 +32,7 @@ public class ShootAction : Action
 
     public override Sprite getIcon()
     {
-        return Resources.Load<Sprite>("magic_shoot");;
+        return Resources.Load<Sprite>("MAGIC SHOOT");;
     }
 
     public override bool requiresInput()

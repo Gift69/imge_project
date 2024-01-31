@@ -1,34 +1,9 @@
 using System;
+using Mirror;
 using UnityEngine;
 
-public class Spielfigur : MonoBehaviour
+public class Spielfigur : NetworkBehaviour  
 {
-    public enum CHAMPION
-    {
-        Mage,
-        Gentleman,
-        Knight,
-        Miner
-    }
-
-    public GameObject offset;
-
-    [Header("Gentleman")][SerializeField] private GameObject gentleman_base;
-    [SerializeField] private GameObject gentleman_extras;
-    [SerializeField] private GameObject gentleman_outline;
-
-    [Header("Mage")][SerializeField] private GameObject mage_base;
-    [SerializeField] private GameObject mage_extras;
-    [SerializeField] private GameObject mage_outline;
-
-    [Header("Miner")][SerializeField] private GameObject miner_base;
-    [SerializeField] private GameObject miner_extras;
-    [SerializeField] private GameObject miner_outline;
-
-    [Header("Knight")][SerializeField] private GameObject knight_base;
-    [SerializeField] private GameObject knight_extras;
-    [SerializeField] private GameObject knight_outline;
-
     public enum COLOR
     {
         Pink,
@@ -37,33 +12,25 @@ public class Spielfigur : MonoBehaviour
         Red
     }
 
+    [SyncVar(hook = nameof(OnChangeMaterial))]
+    public int materialIndex;
+
     [Header("Colors")][SerializeField] private Material pink;
     [SerializeField] private Material yellow;
     [SerializeField] private Material blue;
     [SerializeField] private Material red;
 
-    [Header("Other Materials")]
-    [SerializeField]
-    private Material outline_material;
-
-    [SerializeField] private Material extras_material;
 
     [Header("Effects")][SerializeField] private GameObject stunned_effect;
 
     [Header("TEST")] public bool test = false;
 
-    private GameObject _base;
-    private GameObject _extras;
-    private GameObject _outline;
     private GameObject _stunned;
 
-    [SerializeField] private GameObject gentleman;
-    [SerializeField] private GameObject mage;
-    [SerializeField] private GameObject miner;
-    [SerializeField] private GameObject knight;
+    [SerializeField] private GameObject figure;
 
 
-    public void SetupFigure(CHAMPION champion, COLOR color)
+    /* public void SetupFigure(COLOR color)
     {
         Material material = color switch
         {
@@ -73,39 +40,24 @@ public class Spielfigur : MonoBehaviour
             COLOR.Red => red,
             _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
         };
-
-        switch (champion)
-        {
-            case CHAMPION.Gentleman:
-                gentleman.SetActive(true);
-                gentleman_base.GetComponent<Renderer>().material = material;
-                gentleman_extras.GetComponent<Renderer>().material = extras_material;
-                gentleman_outline.GetComponent<Renderer>().material = outline_material;
-                break;
-            case CHAMPION.Mage:
-                mage.SetActive(true);
-                mage_base.GetComponent<Renderer>().material = material;
-                mage_extras.GetComponent<Renderer>().material = extras_material;
-                mage_outline.GetComponent<Renderer>().material = outline_material;
-                break;
-            case CHAMPION.Miner:
-                miner.SetActive(true);
-                miner_base.GetComponent<Renderer>().material = material;
-                miner_extras.GetComponent<Renderer>().material = extras_material;
-                miner_outline.GetComponent<Renderer>().material = outline_material;
-                break;
-            case CHAMPION.Knight:
-                knight.SetActive(true);
-                knight_base.GetComponent<Renderer>().material = material;
-                knight_extras.GetComponent<Renderer>().material = extras_material;
-                knight_outline.GetComponent<Renderer>().material = outline_material;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(champion), champion, null);
-        }
-
-
+        Debug.Log(material);
+        figure.GetComponent<Renderer>().material = material;
         //  _stunned.SetActive(false);
+    } */
+
+    public void OnChangeMaterial(int oldIndex, int newIndex)
+    {
+        Material material = (COLOR)materialIndex switch
+        {
+            COLOR.Pink => pink,
+            COLOR.Yellow => yellow,
+            COLOR.Blue => blue,
+            COLOR.Red => red,
+            _ => throw new ArgumentOutOfRangeException(nameof(materialIndex), materialIndex, null)
+        };
+        Debug.Log(material);
+        this.GetComponent<Renderer>().material = material;
+        Debug.Log(this.GetComponent<Renderer>().material);
     }
 
     public void setStunned(bool stunned)
@@ -129,7 +81,7 @@ public class Spielfigur : MonoBehaviour
             {
                 Vector3 pos = new Vector3(i * distance, 0, j * distance) + startOffset;
                 GameObject temp = Instantiate(instance, pos, Quaternion.identity);
-                temp.GetComponent<Spielfigur>().SetupFigure((CHAMPION)i, (COLOR)j);
+                //temp.GetComponent<Spielfigur>().SetupFigure((COLOR)j);
                 temp.GetComponent<Spielfigur>().setStunned(true);
             }
         }
