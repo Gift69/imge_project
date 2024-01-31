@@ -46,7 +46,7 @@ public class Start_Menu : MonoBehaviour
         playername = _uiDocument.rootVisualElement.Q<TextField>("player_name");
         playername.label = "Name : ";
         playername.maxLength = 30;
-        //playername.value = randomName;
+        RandomName();
         create.clicked += CreateButtonClicked;
         join.clicked += JoinButtonClicked;
 
