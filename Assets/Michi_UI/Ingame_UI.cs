@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,7 +9,7 @@ using UnityEngine.UIElements;
 public class Ingame_UI : MonoBehaviour
 {
 
-    private NetworkLogic netLogic;
+    public NetworkLogic netLogic;
 
     private UIDocument _Doc;
 
@@ -26,6 +28,7 @@ public class Ingame_UI : MonoBehaviour
     private VisualElement left_Side_u;
     private VisualElement right_Side_Time;
     private VisualElement right_Side_Enemy_Actions;
+    private Label timer;
 
     public Action[] selected_Actions;
 
@@ -33,6 +36,12 @@ public class Ingame_UI : MonoBehaviour
 
     public HexField hexField;
 
+    private Sprite empty;
+
+    public GameObject selectUI;
+
+    public bool styled = false;
+    public int numberofstyles = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -55,6 +64,8 @@ public class Ingame_UI : MonoBehaviour
         left_Side_u = _Doc.rootVisualElement.Q<VisualElement>("Actions");
         right_Side_Enemy_Actions = _Doc.rootVisualElement.Q<VisualElement>("Enemy_Actions");
         right_Side_Time = _Doc.rootVisualElement.Q<VisualElement>("Time");
+        timer = _Doc.rootVisualElement.Q<Label>("Time_Label");
+
 
 
         action_1.clicked += ActionButton1OnClicked;
@@ -72,7 +83,6 @@ public class Ingame_UI : MonoBehaviour
         action_1.Focus();
 
 
-        action_1.style.backgroundImage = new StyleBackground(test);
 
         _Doc.rootVisualElement.RegisterCallback<GeometryChangedEvent>(ev =>
        {
@@ -104,22 +114,72 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_1.SetEnabled(false);
         ordered_Action_2.SetEnabled(false);
         ordered_Action_3.SetEnabled(false);
-        ordered_Action_4.SetEnabled(false); 
+        ordered_Action_4.SetEnabled(false);
         ordered_Action_5.SetEnabled(false);
+
+        styled = true;
     }
     void Start()
     {
-        netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
+        //netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
 
     }
 
     void Update()
     {
         if (_Doc.rootVisualElement.style.display != DisplayStyle.None)
-            for (int i = 0; i < PassBetweenScenes.playercount; i++)
+        {
+            if (styled && numberofstyles < 3)
+            {
+                if (numberofstyles == 2)
+                    styled = false;
+                numberofstyles++;
+                left_Side_o.style.width = left_Side_o.resolvedStyle.height;
+                left_Side_u.style.width = left_Side_o.resolvedStyle.height;
+                right_Side_Enemy_Actions.style.width = left_Side_o.resolvedStyle.height;
+                right_Side_Time.style.width = left_Side_o.resolvedStyle.height;
+                _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.width = left_Side_o.resolvedStyle.height;
+                _Doc.rootVisualElement.Q<VisualElement>("Time_Label").style.width = left_Side_o.resolvedStyle.height;
+
+
+                action_1.style.height = action_1.resolvedStyle.width;
+                action_2.style.height = action_2.resolvedStyle.width;
+                action_3.style.height = action_3.resolvedStyle.width;
+                action_4.style.height = action_4.resolvedStyle.width;
+                action_5.style.height = action_5.resolvedStyle.width;
+
+                ordered_Action_1.style.height = ordered_Action_1.resolvedStyle.width;
+                ordered_Action_2.style.height = ordered_Action_2.resolvedStyle.width;
+                ordered_Action_3.style.height = ordered_Action_3.resolvedStyle.width;
+                ordered_Action_4.style.height = ordered_Action_4.resolvedStyle.width;
+                ordered_Action_5.style.height = ordered_Action_5.resolvedStyle.width;
+
+                _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.marginLeft = action_1.resolvedStyle.height * 0.2f;
+                _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.marginRight = action_1.resolvedStyle.height * 0.2f;
+            }
+
+            if (netLogic.mode == NetworkLogic.Mode.ACTION_SELECTION)
+            {
+                numberofstyles = 0;
+                _Doc.rootVisualElement.style.display = DisplayStyle.None;
+                _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.display = DisplayStyle.Flex;
+                selectUI.GetComponent<Ingame_Select_Actions_UI>().ClearUI();
+                selectUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
+            }
+            else if (netLogic.mode == NetworkLogic.Mode.ACTION_EXECUTION)
+            {
+                _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.display = DisplayStyle.None;
+                if (hexField.currentPlayer.vPlayer != null)
+                    hexField.currentPlayer.removeAllActions();
+            }
+
+            for (int i = 0; i < netLogic.otherplayerActions.Count; i++)
             {
                 SetPlayer(i, netLogic.otherplayerActions[i]);
             }
+            timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
+
+        }
     }
 
 
@@ -180,7 +240,6 @@ public class Ingame_UI : MonoBehaviour
     private void OrderdActionButton5OnClicked()
     {
         hexField.currentPlayer.removeActionAt(4);
-
     }
 
     public Button GetSelectableActionButton(int button)
@@ -237,12 +296,9 @@ public class Ingame_UI : MonoBehaviour
 
     public void SetPlayer(int i, PlayerActions playerActions)
     {
-        VisualElement root = _Doc.rootVisualElement.Q<VisualElement>("Enemy_" + (i+1));
-        Debug.Log(root);
+        VisualElement root = _Doc.rootVisualElement.Q<VisualElement>("Enemy_" + (i + 1));
         Label name = (Label)root.Children().ElementAt<VisualElement>(0).Children().ElementAt<VisualElement>(0);
-        Debug.Log(name);
         name.text = playerActions.playername;
-
         VisualElement a1 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(0);
         a1.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a1));
 
@@ -259,8 +315,31 @@ public class Ingame_UI : MonoBehaviour
     }
     public Sprite[] actionIcons = new Sprite[5];
 
-    public Sprite GetIcon(Action.Type type){
+    public Sprite GetIcon(Action.Type type)
+    {
         return actionIcons[(int)type];
     }
+    public void ClearUI()
+    {
+        styled = true;
+        ordered_Action_1.SetEnabled(false);
+        ordered_Action_2.SetEnabled(false);
+        ordered_Action_3.SetEnabled(false);
+        ordered_Action_4.SetEnabled(false);
+        ordered_Action_5.SetEnabled(false);
 
+        ordered_Action_1.style.backgroundImage = new StyleBackground(empty);
+        ordered_Action_2.style.backgroundImage = new StyleBackground(empty);
+        ordered_Action_3.style.backgroundImage = new StyleBackground(empty);
+        ordered_Action_4.style.backgroundImage = new StyleBackground(empty);
+        ordered_Action_5.style.backgroundImage = new StyleBackground(empty);
+
+
+        action_1.SetEnabled(true);
+        action_2.SetEnabled(true);
+        action_3.SetEnabled(true);
+        action_4.SetEnabled(true);
+        action_5.SetEnabled(true);
+
+    }
 }

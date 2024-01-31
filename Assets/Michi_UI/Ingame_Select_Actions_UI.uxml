@@ -16,7 +16,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="Normal_Actions" style="flex-grow: 1; width: 100%; height: 80%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Walk" class="noMarginAndPadding" style="width: 50%; height: 87px; background-image: url(&apos;project://database/Assets/Sprites/move.png?fileID=21300000&amp;guid=cf08fb89d9051ef418ab6f3fc2ac4534&amp;type=3#move&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Walk" class="noMarginAndPadding" style="width: 50%; height: 87px; background-image: resource(&apos;move&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit;" />
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Collect" class="noMarginAndPadding" style="width: 50%; height: 87px; background-image: url(&apos;project://database/Assets/Sprites/coin_pickup.png?fileID=21300000&amp;guid=5db17029e9a600d4da6f6fac3e3d4e04&amp;type=3#coin_pickup&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit;" />
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Do_Nothing" class="noMarginAndPadding" style="width: 50%; height: 87px; background-image: url(&apos;project://database/Assets/Sprites/do_nothing.png?fileID=21300000&amp;guid=8ec88458a3b7e9943b46aadcf1424166&amp;type=3#do_nothing&apos;); background-color: rgba(56, 56, 56, 0); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
@@ -28,8 +28,8 @@
                 <ui:Label tabindex="-1" text="0:10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time_Label" class="noMarginAndPadding" style="width: auto; height: auto; -unity-text-align: middle-center; font-size: 55px; -unity-font-style: bold;" />
             </ui:VisualElement>
             <ui:VisualElement name="Special_Actions" style="flex-grow: 1; width: 100%; height: 90%; align-self: flex-end; justify-content: center; align-items: center;">
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_1" class="noMarginAndPadding" style="width: 60%; height: 87px; align-self: flex-end;" />
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_2" class="noMarginAndPadding" style="width: 60%; height: 87px; align-self: flex-start;" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_1" class="noMarginAndPadding" style="width: 60%; height: 87px; align-self: flex-end; background-color: rgba(188, 188, 188, 0); background-image: resource(&apos;magic_shoot&apos;);" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Special_Action_2" class="noMarginAndPadding" style="width: 60%; height: 87px; align-self: flex-start; background-color: rgba(188, 188, 188, 0); background-image: resource(&apos;magic_shoot&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -9,10 +9,11 @@ public abstract class Action
     {
         NOTHING,
         MOVE,
+        COIN,
+        SHOOT,
         SWORD_SLASH,
         BOMB,
         MINING,
-        SHOOT,
         STUN_FIELD
     };
 

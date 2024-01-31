@@ -2,7 +2,7 @@ public class TestCharacter : Character
 {
     public override Action GetSpecialAction1()
     {
-        return new MoveAction();
+        return new ShootAction();
     }
 
     public override Action GetSpecialAction2()

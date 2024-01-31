@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -32,6 +33,13 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     private Action[] selected_Actions = new Action[5];
 
     public GameObject nextUI;
+
+    public Sprite empty;
+
+    public bool styled = false;
+    public int numberofstyles = 0;
+
+
 
 
 
@@ -90,6 +98,12 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
        );
 
+        action_1.SetEnabled(false);
+        action_2.SetEnabled(false);
+        action_3.SetEnabled(false);
+        action_4.SetEnabled(false);
+        action_5.SetEnabled(false);
+
 
         walk.clicked += WalkButtonOnClicked;
         collect.clicked += CollectButtonOnClicked;
@@ -102,16 +116,16 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         action_3.clicked += Action3ButtonOnClicked;
         action_4.clicked += Action4ButtonOnClicked;
         action_5.clicked += Action5ButtonOnClicked;
-        
+
+
+
         _Doc.rootVisualElement.Q<Label>("Name").text = PassBetweenScenes.playername;
+        styled = true;
     }
 
 
     void Start()
     {
-        netLogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
-        Debug.Log(nextUI.GetComponent<UIDocument>());
-        nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
     }
 
     private void WalkButtonOnClicked()
@@ -136,7 +150,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action1ButtonOnClicked()
     {
-        action_1.style.backgroundImage = null;
+        action_1.SetEnabled(false);
+        action_1.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[0] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -146,7 +161,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action2ButtonOnClicked()
     {
-        action_2.style.backgroundImage = null;
+        action_2.SetEnabled(false);
+        action_2.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[1] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -156,7 +172,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action3ButtonOnClicked()
     {
-        action_3.style.backgroundImage = null;
+        action_3.SetEnabled(false);
+        action_3.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[2] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -166,7 +183,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action4ButtonOnClicked()
     {
-        action_4.style.backgroundImage = null;
+        action_4.SetEnabled(false);
+        action_4.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[3] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -176,7 +194,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action5ButtonOnClicked()
     {
-        action_5.style.backgroundImage = null;
+        action_5.SetEnabled(false);
+        action_5.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[4] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -196,18 +215,23 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
                 switch (i)
                 {
                     case 0:
+                        action_1.SetEnabled(true);
                         action_1.style.backgroundImage = new StyleBackground(action.getIcon());
                         break;
                     case 1:
+                        action_2.SetEnabled(true);
                         action_2.style.backgroundImage = new StyleBackground(action.getIcon());
                         break;
                     case 2:
+                        action_3.SetEnabled(true);
                         action_3.style.backgroundImage = new StyleBackground(action.getIcon());
                         break;
                     case 3:
+                        action_4.SetEnabled(true);
                         action_4.style.backgroundImage = new StyleBackground(action.getIcon());
                         break;
                     case 4:
+                        action_5.SetEnabled(true);
                         action_5.style.backgroundImage = new StyleBackground(action.getIcon());
                         break;
                     default:
@@ -236,25 +260,78 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         PlayerActions playerActions = new PlayerActions
         {
             playername = PassBetweenScenes.playername,
-            a1 = selected_Actions[0].type,
-            a2 = selected_Actions[1].type,
-            a3 = selected_Actions[2].type,
-            a4 = selected_Actions[3].type,
-            a5 = selected_Actions[4].type
+            a1 = selected_Actions[0] == null ? Action.Type.NOTHING : selected_Actions[0].type,
+            a2 = selected_Actions[1] == null ? Action.Type.NOTHING : selected_Actions[1].type,
+            a3 = selected_Actions[2] == null ? Action.Type.NOTHING : selected_Actions[2].type,
+            a4 = selected_Actions[3] == null ? Action.Type.NOTHING : selected_Actions[3].type,
+            a5 = selected_Actions[4] == null ? Action.Type.NOTHING : selected_Actions[4].type
         };
-        netLogic.otherplayerActions.Add(playerActions);
+        numberofstyles = 0;
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddActions(playerActions);
         _Doc.rootVisualElement.style.display = DisplayStyle.None;
-        nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
+        nextUI.GetComponent<Ingame_UI>().ClearUI();
+        for (int i = 0; i < selected_Actions.Length; i++)
+            if (selected_Actions[i] == null)
+                selected_Actions[i] = new DoNothingAction();
+            nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_Doc.rootVisualElement.style.display != DisplayStyle.None)
         {
-            // Play the animation once
-            FinishSelecting();
+            if (styled && numberofstyles < 3)
+            {
+                if (numberofstyles == 2)
+                    styled = false;
+                numberofstyles++;
+                player_info.style.width = left_Side.resolvedStyle.height * 0.5f;
+                right_Side_Time.style.width = player_info.style.width;
+                _Doc.rootVisualElement.Q<VisualElement>("Normal_Actions").style.width = player_info.style.width;
+                _Doc.rootVisualElement.Q<VisualElement>("Special_Actions").style.width = player_info.style.width;
+
+                left_Side.style.marginLeft = left_Side.resolvedStyle.height * 0.04f;
+                _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.marginRight = left_Side.resolvedStyle.height * 0.04f;
+
+
+                special_action_1.style.height = special_action_1.resolvedStyle.width;
+                special_action_2.style.height = special_action_2.resolvedStyle.width;
+                collect.style.height = collect.resolvedStyle.width;
+                walk.style.height = walk.resolvedStyle.width;
+                do_nothing.style.height = do_nothing.resolvedStyle.width;
+            }
+            if (netLogic.mode == NetworkLogic.Mode.ACTION_ORDERING)
+            {
+                // Play the animation once
+                FinishSelecting();
+            }
+            timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
         }
-        timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
+    }
+
+    public void ClearUI()
+    {
+        styled = true;
+        action_1.SetEnabled(false);
+        action_2.SetEnabled(false);
+        action_3.SetEnabled(false);
+        action_4.SetEnabled(false);
+        action_5.SetEnabled(false);
+        action_1.style.backgroundImage = new StyleBackground(empty);
+        action_2.style.backgroundImage = new StyleBackground(empty);
+        action_3.style.backgroundImage = new StyleBackground(empty);
+        action_4.style.backgroundImage = new StyleBackground(empty);
+        action_5.style.backgroundImage = new StyleBackground(empty);
+        for (int i = 0; i < 5; i++)
+        {
+            selected_Actions[i] = null;
+        }
+        walk.SetEnabled(true);
+        do_nothing.SetEnabled(true);
+        collect.SetEnabled(true);
+        special_action_1.SetEnabled(true);
+        special_action_2.SetEnabled(true);
+
     }
 }

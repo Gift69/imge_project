@@ -36,7 +36,12 @@ public class Host : MonoBehaviour
 
     public CustumNetworkManager manager;
 
- 
+    public GameObject ingameUI;
+    public NetworkLogic networkLogicIngame;
+
+    public Camera camera1;
+    public Camera camera2;
+
 
 
     void Awake()
@@ -74,13 +79,14 @@ public class Host : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            if (i < networkLogic.playernames.Count)
-                SetPlayerName(i, networkLogic.playernames[i]);
-            else
-                SetPlayerName(i, "notconnected");
-        }
+        if (_uiDocument.rootVisualElement.style.display != DisplayStyle.None)
+            for (int i = 0; i < 4; i++)
+            {
+                if (i < networkLogic.playernames.Count)
+                    SetPlayerName(i, networkLogic.playernames[i]);
+                else
+                    SetPlayerName(i, "notconnected");
+            }
     }
 
     private void BackToPrevScene()
@@ -92,10 +98,15 @@ public class Host : MonoBehaviour
 
     private void StartInGameScene()
     {
+        //GameObject.FindGameObjectWithTag("useless").SetActive(false);
         PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
         PassBetweenScenes.playercount = networkLogic.playernames.Count;
         networkLogic.started = true;
-        SceneManager.LoadScene("Stage", LoadSceneMode.Single);
+        _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+        ingameUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
+        camera1.enabled = false;
+        camera2.enabled = true;
+        networkLogicIngame.StartReal();
     }
 
     public void Character1Selected()

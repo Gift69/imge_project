@@ -4,24 +4,23 @@
         <ui:VisualElement name="Left_Side" style="flex-grow: 1; width: 14px; height: 100%;">
             <ui:VisualElement name="Actionorder" style="flex-grow: 1; width: auto; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_1" class="noMarginAndPadding actionButton" style="justify-content: flex-start; align-self: auto; -unity-text-align: middle-center;" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_2" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_3" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_4" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_5" class="noMarginAndPadding actionButton" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_1" class="noMarginAndPadding actionButton" style="justify-content: flex-start; align-self: auto; -unity-text-align: middle-center; background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/empty_button.png?fileID=2800000&amp;guid=662fedbf835c8be48bca0adbc8bba1fd&amp;type=3#empty_button&apos;);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_2" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/empty_button.png?fileID=2800000&amp;guid=662fedbf835c8be48bca0adbc8bba1fd&amp;type=3#empty_button&apos;);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_3" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/empty_button.png?fileID=2800000&amp;guid=662fedbf835c8be48bca0adbc8bba1fd&amp;type=3#empty_button&apos;);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_4" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/empty_button.png?fileID=2800000&amp;guid=662fedbf835c8be48bca0adbc8bba1fd&amp;type=3#empty_button&apos;);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Ordered_Action_5" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/empty_button.png?fileID=2800000&amp;guid=662fedbf835c8be48bca0adbc8bba1fd&amp;type=3#empty_button&apos;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Actions" style="flex-grow: 1; width: auto; height: 50%; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <ui:VisualElement name="Center" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; justify-content: center;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_1" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_2" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_3" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_4" class="noMarginAndPadding actionButton" />
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_5" class="noMarginAndPadding actionButton" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_1" class="noMarginAndPadding actionButton" style="-unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(188, 188, 188, 0);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_2" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_3" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_4" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0);" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Action_5" class="noMarginAndPadding actionButton" style="background-color: rgba(188, 188, 188, 0);" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Scene" style="flex-grow: 1; width: auto; height: 100%;" />
         <ui:VisualElement name="Right_Side" style="flex-grow: 1; width: auto; height: auto; align-self: flex-end;">
             <ui:VisualElement name="Time" style="flex-grow: 1; width: 100%; height: 20%; align-items: center; justify-content: center; flex-direction: column; align-self: flex-end;">
                 <ui:Label tabindex="-1" text="0:10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time_Label" class="noMarginAndPadding" style="width: auto; height: auto; -unity-text-align: middle-center; font-size: 55px; -unity-font-style: bold;" />
@@ -43,19 +42,37 @@
                     <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-right; font-size: 18px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                        <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: none;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Enemy_3" style="flex-grow: 1; width: 100%; height: 25%;">
                     <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-right; font-size: 18px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                        <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: none;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Enemy_4" style="flex-grow: 1; width: 100%; height: 25%;">
                     <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-right; font-size: 18px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                        <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: none;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

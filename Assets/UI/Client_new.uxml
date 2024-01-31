@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Michi_UI/Ingame_UI.uss?fileID=7433441132597879392&amp;guid=3b30b9a2cd3125d4fa735e2a1f8e5202&amp;type=3#Ingame_UI" />
     <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgba(117, 255, 214, 0.1);">
         <ui:VisualElement name="bg" style="flex-grow: 1; position: absolute; justify-content: flex-start; width: 20%; height: 70%; top: 0; left: 0; background-color: rgba(255, 255, 255, 0.5); margin-top: 5%; margin-left: 10%;" />
         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 80%; justify-content: flex-end; align-items: center; flex-direction: column;">
@@ -37,18 +38,18 @@
                 <ui:VisualElement name="Character_selection" style="flex-grow: 1; height: 100%; width: 50%; flex-direction: row;">
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/mage_splash_art.png?fileID=2800000&amp;guid=0ed0b8659a7d604469f2a39f05a87bd7&amp;type=3#mage_splash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char1" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites/mage_splash_art.png?fileID=2800000&amp;guid=0ed0b8659a7d604469f2a39f05a87bd7&amp;type=3#mage_splash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: space-around;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/gentleman_spash_art.png?fileID=2800000&amp;guid=b916d6082dfc77a4ea64b01f9227747e&amp;type=3#gentleman_spash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char2" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites/gentleman_spash_art.png?fileID=2800000&amp;guid=b916d6082dfc77a4ea64b01f9227747e&amp;type=3#gentleman_spash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column;">
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/knight_splash%20art.png?fileID=2800000&amp;guid=d521cfc833b753d4f8ff95507dce4457&amp;type=3#knight_splash art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char3" style="width: 90%; height: 90%; align-items: stretch; background-image: url(&apos;project://database/Assets/Sprites/knight_splash%20art.png?fileID=2800000&amp;guid=d521cfc833b753d4f8ff95507dce4457&amp;type=3#knight_splash art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%; align-items: center; justify-content: flex-start; flex-direction: row;">
-                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/3d_models/figuren/splash_art/miner_splash_art.png?fileID=2800000&amp;guid=45fc3db0d6209534ba41440b58e35778&amp;type=3#miner_splash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
+                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Char4" style="width: 90%; height: 90%; background-image: url(&apos;project://database/Assets/Sprites/miner_splash_art.png?fileID=2800000&amp;guid=45fc3db0d6209534ba41440b58e35778&amp;type=3#miner_splash_art&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

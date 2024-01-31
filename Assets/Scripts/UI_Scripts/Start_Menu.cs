@@ -24,6 +24,9 @@ public class Start_Menu : MonoBehaviour
 
     public GameObject clientUI;
 
+    public GameObject ingame1;
+
+    public GameObject ingame2;
 
     void Awake()
     {
@@ -48,10 +51,13 @@ public class Start_Menu : MonoBehaviour
         hostUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
         ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
         clientUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        ingame1.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        ingame2.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
     }
 
     private void CreateButtonClicked()
     {
+        Debug.Log(SaveName());
         if (SaveName())
         {
             if (Application.platform != RuntimePlatform.WebGLPlayer)
@@ -69,7 +75,7 @@ public class Start_Menu : MonoBehaviour
         if (SaveName())
         {
             _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
-            ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex; Debug.Log("playername:" + player_name);
+            ipEntryUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
         }
         else
         {
