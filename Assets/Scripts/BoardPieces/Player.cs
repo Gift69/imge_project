@@ -2,9 +2,11 @@ using Mirror;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : BoardPiece
 {
+    public Sprite empty;
     public int score = 0;
     public GameObject virtualPlayerPrefab;
     private Ingame_UI ui;
@@ -53,10 +55,10 @@ public class Player : BoardPiece
         actions[index].unsetValue();
 
         var button = ui.GetExecutableActionButton(index);
-        button.style.backgroundImage = null;
+        button.style.backgroundImage = new StyleBackground(empty);
         button.SetEnabled(false);
 
-        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setActionForPlayer(PassBetweenScenes.id, index, new SyncAction(Action.Type.NOTHING,new()));
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setActionForPlayer(PassBetweenScenes.id, index, new SyncAction(Action.Type.NOTHING, new()));
 
 
         actions[index] = null;
@@ -91,6 +93,23 @@ public class Player : BoardPiece
             {
                 removeActionAt(i);
                 return;
+            }
+        }
+    }
+    public void removeAllActions()
+    {
+        GameObject.Destroy(vPlayer);
+        vPlayer = null;
+        for (int i = 0; i < ACTION_COUNT; i++)
+        {
+            actions[i] = null;
+            if (virtualActionObjs[i] != null)
+            {
+                foreach (GameObject obj in virtualActionObjs[i])
+                {
+                    Destroy(obj);
+                }
+                virtualActionObjs[i] = null;
             }
         }
     }

@@ -143,6 +143,7 @@ public class NetworkLogic : NetworkBehaviour
             Debug.Log("It " + j);
             yield return new WaitUntil(() => { foreach (bool a in actionFinished) if (!a) return false; return true; });
         }
+        otherplayerActions.Clear();
 
         mode = Mode.START;
     }
@@ -178,7 +179,7 @@ public class NetworkLogic : NetworkBehaviour
     public static IEnumerator bombAction(bool[] actionActive, int index, Player player, HexField.Coord value)
     {
         //player.cell.getCellRelative(value).placeBoardPiece(player.bomb);
-        
+
         actionActive[index] = true;
         yield return null;
     }
