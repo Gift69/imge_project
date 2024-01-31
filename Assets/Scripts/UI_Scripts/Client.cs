@@ -50,10 +50,11 @@ public class Client : MonoBehaviour
         {
             if (networkLogic.started)
             {
+                PassBetweenScenes.playercount = networkLogic.playernames.Count;
                 PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
                 _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
                 ingameUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
-                GameObject.FindGameObjectWithTag("useless").SetActive(false);
+                //GameObject.FindGameObjectWithTag("useless").SetActive(false);
                 camera1.enabled = false;
                 camera2.enabled = true;
                 //networkLogicIngame.StartReal();

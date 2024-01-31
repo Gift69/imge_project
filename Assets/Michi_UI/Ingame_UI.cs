@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Ingame_UI : MonoBehaviour
 {
 
-    private NetworkLogic netLogic;
+    public NetworkLogic netLogic;
 
     private UIDocument _Doc;
 
@@ -32,6 +32,8 @@ public class Ingame_UI : MonoBehaviour
     public Sprite test;
 
     public HexField hexField;
+
+    private Sprite empty;
 
 
     // Start is called before the first frame update
@@ -72,7 +74,6 @@ public class Ingame_UI : MonoBehaviour
         action_1.Focus();
 
 
-        action_1.style.backgroundImage = new StyleBackground(test);
 
         _Doc.rootVisualElement.RegisterCallback<GeometryChangedEvent>(ev =>
        {
@@ -104,7 +105,7 @@ public class Ingame_UI : MonoBehaviour
         ordered_Action_1.SetEnabled(false);
         ordered_Action_2.SetEnabled(false);
         ordered_Action_3.SetEnabled(false);
-        ordered_Action_4.SetEnabled(false); 
+        ordered_Action_4.SetEnabled(false);
         ordered_Action_5.SetEnabled(false);
     }
     void Start()
@@ -116,7 +117,7 @@ public class Ingame_UI : MonoBehaviour
     void Update()
     {
         if (_Doc.rootVisualElement.style.display != DisplayStyle.None)
-            for (int i = 0; i < PassBetweenScenes.playercount; i++)
+            for (int i = 0; i < netLogic.otherplayerActions.Count; i++)
             {
                 SetPlayer(i, netLogic.otherplayerActions[i]);
             }
@@ -180,7 +181,6 @@ public class Ingame_UI : MonoBehaviour
     private void OrderdActionButton5OnClicked()
     {
         hexField.currentPlayer.removeActionAt(4);
-
     }
 
     public Button GetSelectableActionButton(int button)
@@ -237,12 +237,9 @@ public class Ingame_UI : MonoBehaviour
 
     public void SetPlayer(int i, PlayerActions playerActions)
     {
-        VisualElement root = _Doc.rootVisualElement.Q<VisualElement>("Enemy_" + (i+1));
-        Debug.Log(root);
+        VisualElement root = _Doc.rootVisualElement.Q<VisualElement>("Enemy_" + (i + 1));
         Label name = (Label)root.Children().ElementAt<VisualElement>(0).Children().ElementAt<VisualElement>(0);
-        Debug.Log(name);
         name.text = playerActions.playername;
-
         VisualElement a1 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(0);
         a1.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a1));
 
@@ -259,7 +256,8 @@ public class Ingame_UI : MonoBehaviour
     }
     public Sprite[] actionIcons = new Sprite[5];
 
-    public Sprite GetIcon(Action.Type type){
+    public Sprite GetIcon(Action.Type type)
+    {
         return actionIcons[(int)type];
     }
 

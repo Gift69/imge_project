@@ -43,19 +43,37 @@
                     <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-right; font-size: 18px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                        <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: none;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Enemy_3" style="flex-grow: 1; width: 100%; height: 25%;">
                     <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-right; font-size: 18px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                        <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: none;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Enemy_4" style="flex-grow: 1; width: 100%; height: 25%;">
                     <ui:VisualElement name="Player_Info" style="flex-grow: 1; height: 50%;">
                         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="noMarginAndPadding" style="height: 100%; width: 70%; -unity-text-align: middle-right; font-size: 18px; -unity-font-style: bold;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%;" />
+                    <ui:VisualElement name="Action_Info" style="flex-grow: 1; height: 50%; flex-direction: row;">
+                        <ui:VisualElement name="Action_1" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_2" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_3" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_4" style="flex-grow: 1; background-image: none;" />
+                        <ui:VisualElement name="Action_5" style="flex-grow: 1; background-image: none;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

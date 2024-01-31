@@ -44,8 +44,11 @@ public class NetworkLogic : NetworkBehaviour
         {4, new HexField.Coord[] { new(-1, 3, 0), new(1, 0, 3), new(1, -3, 0), new(-1, 0, -3) } }
     };
 
+    private bool started = false;
+
     public void StartReal()
     {
+        started = true;
         hexfield = GameObject.FindGameObjectWithTag("HexField").GetComponent<HexField>();
         if (isServer)
         {
@@ -83,7 +86,7 @@ public class NetworkLogic : NetworkBehaviour
 
     void Update()
     {
-        if (isServer)
+        if (started && isServer)
         {
             if (mode == Mode.START)
             {

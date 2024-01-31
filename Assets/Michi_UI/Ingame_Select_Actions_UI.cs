@@ -33,6 +33,8 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     public GameObject nextUI;
 
+    public Sprite empty;
+
 
 
     void Awake()
@@ -109,7 +111,6 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(nextUI.GetComponent<UIDocument>());
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
     }
 
@@ -135,7 +136,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action1ButtonOnClicked()
     {
-        action_1.style.backgroundImage = null;
+        action_1.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[0] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -145,7 +146,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action2ButtonOnClicked()
     {
-        action_2.style.backgroundImage = null;
+        action_2.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[1] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -155,7 +156,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action3ButtonOnClicked()
     {
-        action_3.style.backgroundImage = null;
+        action_3.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[2] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -165,7 +166,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action4ButtonOnClicked()
     {
-        action_4.style.backgroundImage = null;
+        action_4.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[3] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -175,7 +176,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
     }
     private void Action5ButtonOnClicked()
     {
-        action_5.style.backgroundImage = null;
+        action_5.style.backgroundImage = new StyleBackground(empty);
         selected_Actions[4] = null;
         walk.SetEnabled(true);
         collect.SetEnabled(true);
@@ -241,7 +242,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
             a4 = selected_Actions[3].type,
             a5 = selected_Actions[4].type
         };
-        netLogic.otherplayerActions.Add(playerActions);
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddActions(playerActions);
         _Doc.rootVisualElement.style.display = DisplayStyle.None;
         nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;

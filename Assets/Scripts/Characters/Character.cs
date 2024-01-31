@@ -6,11 +6,11 @@ public abstract class Character
     }
     public virtual Action GetCoinAction()
     {
-        return new StunFieldAction();
+        return new CoinAction();
     }
     public virtual Action GetDoNothingAction()
     {
-        return new MiningAction();
+        return new DoNothingAction();
     }
     public abstract Action GetSpecialAction1();
     public abstract Action GetSpecialAction2();

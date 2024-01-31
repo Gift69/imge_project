@@ -38,5 +38,11 @@ public class OnPlayerSpawn : NetworkBehaviour
         GameObject.Find("NetworkManager").GetComponent<CustumNetworkManager>().StopHost();
     }
 
+    [Command]
+    public void AddActions(PlayerActions actions)
+    {
+        GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>().otherplayerActions.Add(actions);
+    }
+
 
 }

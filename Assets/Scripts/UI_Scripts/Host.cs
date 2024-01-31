@@ -98,7 +98,7 @@ public class Host : MonoBehaviour
 
     private void StartInGameScene()
     {
-        GameObject.FindGameObjectWithTag("useless").SetActive(false);
+        //GameObject.FindGameObjectWithTag("useless").SetActive(false);
         PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
         PassBetweenScenes.playercount = networkLogic.playernames.Count;
         networkLogic.started = true;
