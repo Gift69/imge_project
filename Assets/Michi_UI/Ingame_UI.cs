@@ -36,7 +36,7 @@ public class Ingame_UI : MonoBehaviour
 
     public HexField hexField;
 
-    private Sprite empty;
+    public Sprite empty;
 
     public GameObject selectUI;
 
