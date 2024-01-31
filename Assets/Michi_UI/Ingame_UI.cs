@@ -313,7 +313,7 @@ public class Ingame_UI : MonoBehaviour
         VisualElement a5 = root.Children().ElementAt<VisualElement>(1).Children().ElementAt<VisualElement>(4);
         a5.style.backgroundImage = new StyleBackground(GetIcon(playerActions.a5));
     }
-    public Sprite[] actionIcons = new Sprite[5];
+    public Sprite[] actionIcons = new Sprite[8];
 
     public Sprite GetIcon(Action.Type type)
     {

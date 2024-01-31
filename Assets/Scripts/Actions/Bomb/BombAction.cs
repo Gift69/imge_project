@@ -24,7 +24,7 @@ public class BombAction : Action
 
     public override Sprite getIcon()
     {
-        return base.getIcon();
+        return Resources.Load<Sprite>("BOMB");;
     }
 
     public override bool requiresInput()

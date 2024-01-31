@@ -15,7 +15,7 @@ public class DoNothingAction : Action
 
 
     public override Sprite getIcon(){
-        return Resources.Load<Sprite>("do_nothing");
+        return Resources.Load<Sprite>("DO NOTHING");
     }
 
     public override bool requiresInput()

@@ -32,7 +32,7 @@ public class MiningAction : Action
 
     public override Sprite getIcon()
     {
-        return base.getIcon();
+        return Resources.Load<Sprite>("MINING");;
     }
 
     public override bool requiresInput()

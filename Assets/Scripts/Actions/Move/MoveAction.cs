@@ -21,7 +21,7 @@ public class MoveAction : Action
     }
 
     public override Sprite getIcon(){
-        return Resources.Load<Sprite>("move");;
+        return Resources.Load<Sprite>("MOVE");
     }
 
     public override bool requiresInput()
