@@ -7,3 +7,7 @@
    width:33%;
    height:52px;
 }
+
+.unity-button{
+    border-width:0px;
+}

@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Button.uss?fileID=7433441132597879392&amp;guid=cfad15388e36ec948b934876206188e7&amp;type=3#Button" />
+    <Style src="project://database/Assets/Michi_UI/Ingame_UI.uss?fileID=7433441132597879392&amp;guid=3b30b9a2cd3125d4fa735e2a1f8e5202&amp;type=3#Ingame_UI" />
     <ui:VisualElement name="Root_Canvas" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgba(117, 255, 214, 0.1);">
         <ui:VisualElement name="game_name" style="flex-grow: 1; align-self: stretch; width: 100%; height: 60%; justify-content: flex-start; align-items: stretch;">
             <ui:VisualElement name="Game_Name" style="flex-grow: 1; height: 80%; width: 100%;" />

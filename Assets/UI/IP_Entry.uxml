@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Michi_UI/Ingame_UI.uss?fileID=7433441132597879392&amp;guid=3b30b9a2cd3125d4fa735e2a1f8e5202&amp;type=3#Ingame_UI" />
     <ui:VisualElement name="root" style="flex-grow: 1; width: 100%; height: 100%; background-color: rgba(117, 255, 214, 0.1);">
         <ui:VisualElement style="flex-grow: 1; width: 100%; height: 40%; justify-content: flex-end; align-items: center;" />
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 20%; justify-content: space-between; align-items: center; align-self: auto; flex-direction: row; background-color: rgba(248, 248, 248, 0.5);">
