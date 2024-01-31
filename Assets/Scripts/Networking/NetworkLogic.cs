@@ -105,8 +105,8 @@ public class NetworkLogic : NetworkBehaviour
                         playerObj = Instantiate(minerPrefab);
                         break;
                 }
-                    playerObj.GetComponent<Spielfigur>().materialIndex = i;
-                playerObj.GetComponent<Spielfigur>().OnChangeMaterial(i,i);
+                playerObj.GetComponent<Spielfigur>().materialIndex = i;
+                playerObj.GetComponent<Spielfigur>().OnChangeMaterial(i, i);
                 NetworkServer.Spawn(playerObj);
                 Debug.Log(playerObj);
                 playerObjects.Add(playerObj);
@@ -123,6 +123,11 @@ public class NetworkLogic : NetworkBehaviour
     {
         if (started && isServer)
         {
+            for (int i = 0; i < playerObjects.Count; i++)
+            {
+                playerObjects[i].GetComponent<Spielfigur>().materialIndex = i;
+                playerObjects[i].GetComponent<Spielfigur>().OnChangeMaterial(i, i);
+            }
             if (mode == Mode.START)
             {
                 StartCoroutine(coroutine());
