@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -156,15 +157,20 @@ public class Ingame_UI : MonoBehaviour
                 _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.marginLeft = action_1.resolvedStyle.height * 0.2f;
                 _Doc.rootVisualElement.Q<VisualElement>("Right_Side").style.marginRight = action_1.resolvedStyle.height * 0.2f;
             }
-            
+
             if (netLogic.mode == NetworkLogic.Mode.ACTION_SELECTION)
             {
                 numberofstyles = 0;
                 _Doc.rootVisualElement.style.display = DisplayStyle.None;
+                _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.display = DisplayStyle.Flex;
                 selectUI.GetComponent<Ingame_Select_Actions_UI>().ClearUI();
                 selectUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
-            }else if(netLogic.mode == NetworkLogic.Mode.ACTION_EXECUTION){
-                hexField.currentPlayer.removeAllActions();
+            }
+            else if (netLogic.mode == NetworkLogic.Mode.ACTION_EXECUTION)
+            {
+                _Doc.rootVisualElement.Q<VisualElement>("Left_Side").style.display = DisplayStyle.None;
+                if (hexField.currentPlayer.vPlayer != null)
+                    hexField.currentPlayer.removeAllActions();
             }
 
             for (int i = 0; i < netLogic.otherplayerActions.Count; i++)

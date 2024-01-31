@@ -16,7 +16,7 @@ public class Player : BoardPiece
     public Action[] actions = new Action[ACTION_COUNT];
     public List<GameObject>[] virtualActionObjs = new List<GameObject>[ACTION_COUNT];
 
-    private VirtualPlayer vPlayer = null;
+    public VirtualPlayer vPlayer = null;
 
     public BoardPiece bomb;
     public VirtualPlayer VPlayer
@@ -98,7 +98,7 @@ public class Player : BoardPiece
     }
     public void removeAllActions()
     {
-        GameObject.Destroy(vPlayer);
+        GameObject.Destroy(vPlayer.gameObject);
         vPlayer = null;
         for (int i = 0; i < ACTION_COUNT; i++)
         {

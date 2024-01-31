@@ -260,17 +260,20 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         PlayerActions playerActions = new PlayerActions
         {
             playername = PassBetweenScenes.playername,
-            a1 = selected_Actions[0].type,
-            a2 = selected_Actions[1].type,
-            a3 = selected_Actions[2].type,
-            a4 = selected_Actions[3].type,
-            a5 = selected_Actions[4].type
+            a1 = selected_Actions[0] == null ? Action.Type.NOTHING : selected_Actions[0].type,
+            a2 = selected_Actions[1] == null ? Action.Type.NOTHING : selected_Actions[1].type,
+            a3 = selected_Actions[2] == null ? Action.Type.NOTHING : selected_Actions[2].type,
+            a4 = selected_Actions[3] == null ? Action.Type.NOTHING : selected_Actions[3].type,
+            a5 = selected_Actions[4] == null ? Action.Type.NOTHING : selected_Actions[4].type
         };
         numberofstyles = 0;
         PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().AddActions(playerActions);
         _Doc.rootVisualElement.style.display = DisplayStyle.None;
         nextUI.GetComponent<Ingame_UI>().ClearUI();
-        nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
+        for (int i = 0; i < selected_Actions.Length; i++)
+            if (selected_Actions[i] == null)
+                selected_Actions[i] = new DoNothingAction();
+            nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
