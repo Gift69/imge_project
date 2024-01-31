@@ -13,6 +13,9 @@ public class NetworkLogic : NetworkBehaviour
     public GameObject vPlayerPrefab;
 
     public Player[] players;
+
+    public SyncList<GameObject> playerObjects = new SyncList<GameObject>();
+
     public SyncAction[][] playerActions;
 
     public Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>> actionCallbacks = new Dictionary<Action.Type, Func<bool[], int, Player, HexField.Coord, IEnumerator>>();
@@ -75,6 +78,7 @@ public class NetworkLogic : NetworkBehaviour
                 Debug.Log(playerObj);
                 NetworkServer.Spawn(playerObj);
                 Debug.Log(playerObj);
+                playerObjects.Add(playerObj);
                 players[i] = playerObj.GetComponent<Player>();
                 hexfield.cellAt(spawnCoords[playerCount][i]).placeBoardPiece(players[i]);
             }
@@ -98,13 +102,6 @@ public class NetworkLogic : NetworkBehaviour
         }
     }
 
-    [Command]
-    public void setActionForPlayer(int playerIndex, int position, SyncAction action)
-    {
-        if(mode == Mode.ACTION_ORDERING)
-            playerActions[playerIndex][position] = action;
-    }
-
     private class WaitForFrames : CustomYieldInstruction
     {
         private int _targetFrameCount;
@@ -123,25 +120,18 @@ public class NetworkLogic : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    public void setupHexfieldInClient()
-    {
-        
-    }
-
     [Server]
     public IEnumerator coroutine()
     {
-        timer = 2;
+        timer = 20;
         mode = Mode.ACTION_SELECTION;
         yield return new WaitWhile(() => timer > 0);
-        timer = 2;
+        timer = 30;
         mode = Mode.ACTION_ORDERING;
         yield return new WaitWhile(() => timer > 0);
         // Padding time
         yield return new WaitForSeconds(0.5f);
         mode = Mode.ACTION_EXECUTION;
-        timer = 5;
 
         for (int j = 0; j < playerActions[0].Length; j++)
         {
@@ -155,7 +145,6 @@ public class NetworkLogic : NetworkBehaviour
         }
 
         mode = Mode.START;
-        timer = 0;
     }
 
     public static IEnumerator moveAction(bool[] actionActive, int index, Player player, HexField.Coord value)

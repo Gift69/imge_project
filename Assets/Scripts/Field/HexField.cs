@@ -18,8 +18,14 @@ public class HexField : MonoBehaviour
     private Player player0, player1, player2, player3;
     private Player[] players;
 
-
-    public Player currentPlayer;
+    public NetworkLogic netlogic;
+    public Player currentPlayer
+    {
+        get
+        {
+            return netlogic.playerObjects[PassBetweenScenes.id].GetComponent<Player>();
+        }
+    }
 
     public class Selection
     {
@@ -305,7 +311,8 @@ public class HexField : MonoBehaviour
         cancelSelection();
     }
 
-    public void forEach(Action<Cell> callback) {
+    public void forEach(Action<Cell> callback)
+    {
         Coord coord = new(0);
         callback(cellAt(coord));
         for (int i = 1; i <= radius; i++)
@@ -345,16 +352,20 @@ public class HexField : MonoBehaviour
             cancelSelection();
         }
         else if (Input.GetKeyDown(KeyCode.B))
-        { startSelection(new BombAction());
+        {
+            startSelection(new BombAction());
         }
         else if (Input.GetKeyDown(KeyCode.S))
-        { startSelection(new ShootAction());
+        {
+            startSelection(new ShootAction());
         }
         else if (Input.GetKeyDown(KeyCode.T))
-        { startSelection(new StunFieldAction());
+        {
+            startSelection(new StunFieldAction());
         }
         else if (Input.GetKeyDown(KeyCode.M))
-        { startSelection(new MiningAction());
+        {
+            startSelection(new MiningAction());
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {

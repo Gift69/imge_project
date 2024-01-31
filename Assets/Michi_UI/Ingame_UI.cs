@@ -26,6 +26,7 @@ public class Ingame_UI : MonoBehaviour
     private VisualElement left_Side_u;
     private VisualElement right_Side_Time;
     private VisualElement right_Side_Enemy_Actions;
+    private Label timer;
 
     public Action[] selected_Actions;
 
@@ -34,6 +35,8 @@ public class Ingame_UI : MonoBehaviour
     public HexField hexField;
 
     private Sprite empty;
+
+    public GameObject selectUI;
 
 
     // Start is called before the first frame update
@@ -57,6 +60,8 @@ public class Ingame_UI : MonoBehaviour
         left_Side_u = _Doc.rootVisualElement.Q<VisualElement>("Actions");
         right_Side_Enemy_Actions = _Doc.rootVisualElement.Q<VisualElement>("Enemy_Actions");
         right_Side_Time = _Doc.rootVisualElement.Q<VisualElement>("Time");
+        timer = _Doc.rootVisualElement.Q<Label>("Time_Label");
+
 
 
         action_1.clicked += ActionButton1OnClicked;
@@ -117,10 +122,20 @@ public class Ingame_UI : MonoBehaviour
     void Update()
     {
         if (_Doc.rootVisualElement.style.display != DisplayStyle.None)
+        {
+            if (netLogic.mode == NetworkLogic.Mode.ACTION_SELECTION)
+            {
+                _Doc.rootVisualElement.style.display = DisplayStyle.None;
+                selectUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
+            }
+
             for (int i = 0; i < netLogic.otherplayerActions.Count; i++)
             {
                 SetPlayer(i, netLogic.otherplayerActions[i]);
             }
+            timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
+
+        }
     }
 
 

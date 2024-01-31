@@ -702,6 +702,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1384098523}
     - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
+      propertyPath: selectUI
+      value: 
+      objectReference: {fileID: 432171489}
+    - target: {fileID: 1307794451702188000, guid: 9aae2bea9c011f741811fc4ba65b4d4a, type: 3}
       propertyPath: actionIcons.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 5f3e06c8e4f02154eabc81a2884f6f52, type: 3}
@@ -1655,7 +1659,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 2176404642092952621, guid: 0b1e1a97a8ead2845bda18676b77b2ef, type: 3}
   playerPrefab: {fileID: 2699525788604457909, guid: 21cffde1c9e54fa4097efd50c85659bd, type: 3}
   vPlayerPrefab: {fileID: 2699525788604457909, guid: dcd592506bcaa4a498386ccc957f4ae1, type: 3}
-  currentPlayer: {fileID: 0}
+  netlogic: {fileID: 1384098523}
 --- !u!4 &2089098711
 Transform:
   m_ObjectHideFlags: 0

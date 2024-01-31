@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using static NetworkLogic;
 
 public class OnPlayerSpawn : NetworkBehaviour
 {
@@ -44,5 +45,12 @@ public class OnPlayerSpawn : NetworkBehaviour
         GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>().otherplayerActions.Add(actions);
     }
 
+    [Command]
+    public void setActionForPlayer(int playerIndex, int position, SyncAction action)
+    {
+        var netlogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
+        if (netlogic.mode == Mode.ACTION_ORDERING)
+            netlogic.playerActions[playerIndex][position] = action;
+    }
 
 }

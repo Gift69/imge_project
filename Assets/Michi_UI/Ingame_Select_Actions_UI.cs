@@ -104,7 +104,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         action_3.clicked += Action3ButtonOnClicked;
         action_4.clicked += Action4ButtonOnClicked;
         action_5.clicked += Action5ButtonOnClicked;
-        
+
         _Doc.rootVisualElement.Q<Label>("Name").text = PassBetweenScenes.playername;
     }
 
@@ -250,11 +250,14 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_Doc.rootVisualElement.style.display != DisplayStyle.None)
         {
-            // Play the animation once
-            FinishSelecting();
+            if (netLogic.mode == NetworkLogic.Mode.ACTION_ORDERING)
+            {
+                // Play the animation once
+                FinishSelecting();
+            }
+            timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
         }
-        timer.text = ((int)Mathf.Ceil(netLogic.timer)).ToString();
     }
 }

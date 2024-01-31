@@ -11,9 +11,6 @@ public class Player : BoardPiece
 
     public const int ACTION_COUNT = 5;
 
-    [SyncVar]
-    public SyncList<SyncAction> syncActions = new SyncList<SyncAction>();
-
     public Action[] actions = new Action[ACTION_COUNT];
     public List<GameObject>[] virtualActionObjs = new List<GameObject>[ACTION_COUNT];
 
@@ -26,16 +23,9 @@ public class Player : BoardPiece
         set { vPlayer = value; }
     }
 
-    public void synchronize()
-    {
-        syncActions.Clear();
-        for(int i = 0; i < ACTION_COUNT; i++)
-            syncActions.Add(actions[i].toSync());
-    }
-
     public void selectAction(Action action)
     {
-        for(int i = 0; i < ACTION_COUNT; i++)
+        for (int i = 0; i < ACTION_COUNT; i++)
         {
             if (actions[i] == null)
             {
@@ -46,14 +36,15 @@ public class Player : BoardPiece
                 button.style.backgroundImage = new UnityEngine.UIElements.StyleBackground(action.getIcon());
                 button.SetEnabled(true);
 
-                for(int j = i; j < ACTION_COUNT && actions[j] != null; j++)
+                PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setActionForPlayer(PassBetweenScenes.id, i, action.toSync());
+
+                for (int j = i; j < ACTION_COUNT && actions[j] != null; j++)
                 {
                     virtualActionObjs[j] = actions[j].executeVirtual(VPlayer);
                 }
                 return;
             }
         }
-        synchronize();
     }
 
     public void removeActionAt(int index)
@@ -65,13 +56,16 @@ public class Player : BoardPiece
         button.style.backgroundImage = null;
         button.SetEnabled(false);
 
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setActionForPlayer(PassBetweenScenes.id, index, new SyncAction(Action.Type.NOTHING,new()));
+
+
         actions[index] = null;
 
         for (int i = 0; i < ACTION_COUNT; i++)
         {
             if (virtualActionObjs[i] != null)
             {
-                foreach(GameObject obj in virtualActionObjs[i])
+                foreach (GameObject obj in virtualActionObjs[i])
                 {
                     Destroy(obj);
                 }
@@ -80,19 +74,18 @@ public class Player : BoardPiece
         }
         cell.placeBoardPiece(VPlayer);
 
-        for(int i = 0; i < ACTION_COUNT; i++)
+        for (int i = 0; i < ACTION_COUNT; i++)
         {
             if (actions[i] == null)
                 break;
             virtualActionObjs[i] = actions[i].executeVirtual(VPlayer);
         }
 
-        synchronize();
     }
 
     public void removeAction(Action action)
     {
-        for(int i = 0; i < actions.Length; i++)
+        for (int i = 0; i < actions.Length; i++)
         {
             if (actions[i] == action)
             {
@@ -104,7 +97,7 @@ public class Player : BoardPiece
 
     public void debugState()
     {
-        for(int i = 0; i < ACTION_COUNT; i++)
+        for (int i = 0; i < ACTION_COUNT; i++)
         {
             Debug.Log(i + ": action=" + (actions[i] == null ? "null" : "(" + actions[i].getValue().x + ", " + actions[i].getValue().y + ")") + " virtual-objs=" + (virtualActionObjs[i] == null ? "null" : "not null"));
         }
