@@ -339,54 +339,6 @@ public class HexField : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            startSelection(new MoveAction());
-        }
-        else if (Input.GetKeyDown(KeyCode.J))
-        {
-            startSelection(new SwordSlashAction());
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            cancelSelection();
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            startSelection(new BombAction());
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            startSelection(new ShootAction());
-        }
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            startSelection(new StunFieldAction());
-        }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            startSelection(new MiningAction());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            currentPlayer.removeActionAt(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentPlayer.removeActionAt(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentPlayer.removeActionAt(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentPlayer.removeActionAt(3);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            currentPlayer.removeActionAt(4);
-        }
 
 
 
@@ -400,7 +352,7 @@ public class HexField : MonoBehaviour
 
             bool click = Input.GetMouseButtonUp(0);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(ray.origin, ray.direction, Color.red);
+            //Debug.DrawRay(ray.origin, ray.direction, Color.red);
             RaycastHit hit;
             bool racasthit = Physics.Raycast(ray, out hit, 200);
             if (hit.transform == null || lastParent != hit.transform)

@@ -1,32 +1,31 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spielfigur : MonoBehaviour
 {
     public enum CHAMPION
     {
-        Gentleman,
         Mage,
-        Miner,
-        Knight
+        Gentleman,
+        Knight,
+        Miner
     }
 
-    [Header("Gentleman")] [SerializeField] private GameObject gentleman_base;
+    public GameObject offset;
+
+    [Header("Gentleman")][SerializeField] private GameObject gentleman_base;
     [SerializeField] private GameObject gentleman_extras;
     [SerializeField] private GameObject gentleman_outline;
 
-    [Header("Mage")] [SerializeField] private GameObject mage_base;
+    [Header("Mage")][SerializeField] private GameObject mage_base;
     [SerializeField] private GameObject mage_extras;
     [SerializeField] private GameObject mage_outline;
 
-    [Header("Miner")] [SerializeField] private GameObject miner_base;
+    [Header("Miner")][SerializeField] private GameObject miner_base;
     [SerializeField] private GameObject miner_extras;
     [SerializeField] private GameObject miner_outline;
 
-    [Header("Knight")] [SerializeField] private GameObject knight_base;
+    [Header("Knight")][SerializeField] private GameObject knight_base;
     [SerializeField] private GameObject knight_extras;
     [SerializeField] private GameObject knight_outline;
 
@@ -38,17 +37,18 @@ public class Spielfigur : MonoBehaviour
         Red
     }
 
-    [Header("Colors")] [SerializeField] private Material pink;
+    [Header("Colors")][SerializeField] private Material pink;
     [SerializeField] private Material yellow;
     [SerializeField] private Material blue;
     [SerializeField] private Material red;
 
-    [Header("Other Materials")] [SerializeField]
+    [Header("Other Materials")]
+    [SerializeField]
     private Material outline_material;
 
     [SerializeField] private Material extras_material;
 
-    [Header("Effects")] [SerializeField] private GameObject stunned_effect;
+    [Header("Effects")][SerializeField] private GameObject stunned_effect;
 
     [Header("TEST")] public bool test = false;
 
@@ -56,6 +56,12 @@ public class Spielfigur : MonoBehaviour
     private GameObject _extras;
     private GameObject _outline;
     private GameObject _stunned;
+
+    [SerializeField] private GameObject gentleman;
+    [SerializeField] private GameObject mage;
+    [SerializeField] private GameObject miner;
+    [SerializeField] private GameObject knight;
+
 
     public void SetupFigure(CHAMPION champion, COLOR color)
     {
@@ -68,40 +74,38 @@ public class Spielfigur : MonoBehaviour
             _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
         };
 
-        Transform t = transform;
-        Quaternion r = Quaternion.Euler(0, 180, 0);
         switch (champion)
         {
             case CHAMPION.Gentleman:
-                _base = Instantiate(gentleman_base, t.position, r, t);
-                _extras = Instantiate(gentleman_extras, t.position, r, t);
-                _outline = Instantiate(gentleman_outline, t.position, r, t);
+                gentleman.SetActive(true);
+                gentleman_base.GetComponent<Renderer>().material = material;
+                gentleman_extras.GetComponent<Renderer>().material = extras_material;
+                gentleman_outline.GetComponent<Renderer>().material = outline_material;
                 break;
             case CHAMPION.Mage:
-                _base = Instantiate(mage_base, t.position, r, t);
-                _extras = Instantiate(mage_extras, t.position, r, t);
-                _outline = Instantiate(mage_outline, t.position, r, t);
+                mage.SetActive(true);
+                mage_base.GetComponent<Renderer>().material = material;
+                mage_extras.GetComponent<Renderer>().material = extras_material;
+                mage_outline.GetComponent<Renderer>().material = outline_material;
                 break;
             case CHAMPION.Miner:
-                _base = Instantiate(miner_base, t.position, r, t);
-                _extras = Instantiate(miner_extras, t.position, r, t);
-                _outline = Instantiate(miner_outline, t.position, r, t);
+                miner.SetActive(true);
+                miner_base.GetComponent<Renderer>().material = material;
+                miner_extras.GetComponent<Renderer>().material = extras_material;
+                miner_outline.GetComponent<Renderer>().material = outline_material;
                 break;
             case CHAMPION.Knight:
-                _base = Instantiate(knight_base, t.position, r, t);
-                _extras = Instantiate(knight_extras, t.position, r, t);
-                _outline = Instantiate(knight_outline, t.position, r, t);
+                knight.SetActive(true);
+                knight_base.GetComponent<Renderer>().material = material;
+                knight_extras.GetComponent<Renderer>().material = extras_material;
+                knight_outline.GetComponent<Renderer>().material = outline_material;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(champion), champion, null);
         }
 
-        _base.GetComponent<Renderer>().material = material;
-        _extras.GetComponent<Renderer>().material = extras_material;
-        _outline.GetComponent<Renderer>().material = outline_material;
 
-        _stunned = Instantiate(stunned_effect, t.position, r, t);
-        _stunned.SetActive(false);
+        //  _stunned.SetActive(false);
     }
 
     public void setStunned(bool stunned)

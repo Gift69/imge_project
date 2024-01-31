@@ -1,13 +1,13 @@
-public class TestCharacter : Character
+public class Knight : Character
 {
     public override Action GetSpecialAction1()
     {
-        return new ShootAction();
+        return new SwordSlashAction();
     }
 
     public override Action GetSpecialAction2()
     {
-        return new MoveAction();
+        return new DoNothingAction();
     }
 
 }

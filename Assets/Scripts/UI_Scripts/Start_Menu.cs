@@ -4,7 +4,7 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class Start_Menu : MonoBehaviour
 {
@@ -13,8 +13,16 @@ public class Start_Menu : MonoBehaviour
     private Button create;
     private Button join;
     private TextField playername;
-    private List<String> random_names = new List<string> { "q", "w", "e", "r", "t", "z", "u", "i" };
+
+    private List<String> random_names = new List<string>
+    {
+        "Veteran Bison", "Classy Antelope", "Nick Nock", "Showmaker Playmaker", "T1 Faker", "xxGameMasterxx",
+        "Gift96", "Atomseuche3", "schmiedl", "CPP modern cpp", "x86_assembly_pro", "i_lov_coc(clash_of_clans)", 
+        "hooooogriiiida", "gp main",
+    };
+
     public String player_name;
+
     //private String randomName;
     private NetworkManager manager;
 
@@ -38,12 +46,11 @@ public class Start_Menu : MonoBehaviour
         playername = _uiDocument.rootVisualElement.Q<TextField>("player_name");
         playername.label = "Name : ";
         playername.maxLength = 30;
-        //playername.value = randomName;
-        playername.value = RandomName(random_names);
+        RandomName();
         create.clicked += CreateButtonClicked;
         join.clicked += JoinButtonClicked;
 
-
+        _uiDocument.rootVisualElement.Q<Button>("RandomName").clicked += RandomName;
     }
 
     void Start()
@@ -64,7 +71,9 @@ public class Start_Menu : MonoBehaviour
             {
                 manager.StartHost();
             }
-            GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames.Add(PassBetweenScenes.playername);
+
+            GameObject.Find("ConnectedPlayers").GetComponent<ConnectedPlayers>().playernames
+                .Add(PassBetweenScenes.playername);
             _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
             hostUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
         }
@@ -96,18 +105,8 @@ public class Start_Menu : MonoBehaviour
         return true;
     }
 
-    private string RandomName(List<String> rn)
+    private void RandomName()
     {
-        if (rn == null || rn.Count == 0)
-        {
-            throw new ArgumentException("List Empty");
-        }
-
-        Random random = new Random();
-        int randomidx = random.Next(0, rn.Count);
-        return rn[randomidx];
+        playername.value = random_names[Random.Range(0, random_names.Count)];
     }
-
-
-
 }

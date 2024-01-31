@@ -1,13 +1,18 @@
 .noMarginAndPadding {
-    margin: 0px;
-    padding:0px;
+    margin: 0;
+    padding: 0;
 }
 
-.actionButton{
-   width:33%;
-   height:52px;
+.actionButton {
+    width: 33%;
+    height: 52px;
 }
 
-.unity-button{
-    border-width:0px;
+.unity-button {
+    border-width: 0;
+}
+
+.highlighted {
+    border-width:5px;
+    border-color:rgb(255,220,20);
 }
