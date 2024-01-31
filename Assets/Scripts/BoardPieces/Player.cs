@@ -18,7 +18,8 @@ public class Player : BoardPiece
 
     public VirtualPlayer vPlayer = null;
 
-    public BoardPiece bomb;
+    public int stunDuration = 0;
+
     public VirtualPlayer VPlayer
     {
         get { if (vPlayer == null) cell.placeBoardPiece(vPlayer = Instantiate(virtualPlayerPrefab).GetComponent<VirtualPlayer>()); return vPlayer; }

@@ -18,6 +18,11 @@ public class Cell : MonoBehaviour
 
     private GameObject piece, outerIndicator, innerIndicator;
 
+    public List<BoardPiece> getBoardPieces()
+    {
+        return _boardPieces;
+    }
+
     public void setCoord(HexField.Coord coord)
     {
         this._coord = coord;
