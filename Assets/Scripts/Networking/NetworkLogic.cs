@@ -10,7 +10,13 @@ public class NetworkLogic : NetworkBehaviour
 {
     public SyncList<int> pickedCharacter = new SyncList<int>();
     public SyncList<PlayerActions> otherplayerActions = new SyncList<PlayerActions>();
-    public GameObject playerPrefab;
+    public GameObject magePrefab;
+    public GameObject knightPrefab;
+
+    public GameObject minerPrefab;
+
+    public GameObject gentlemanPrefab;
+
     public GameObject vPlayerPrefab;
 
     public Player[] players;
@@ -84,9 +90,23 @@ public class NetworkLogic : NetworkBehaviour
             GameObject playerObj;
             for (int i = 0; i < playerCount; i++)
             {
-                playerObj = Instantiate(playerPrefab);
-                playerObj.GetComponent<Spielfigur>().SetupFigure((Spielfigur.CHAMPION)pickedCharacter[i], (Spielfigur.COLOR)i);
-                Debug.Log(playerObj);
+                switch (pickedCharacter[i])
+                {
+                    case 0:
+                        playerObj = Instantiate(magePrefab);
+                        break;
+                    case 1:
+                        playerObj = Instantiate(gentlemanPrefab);
+                        break;
+                    case 2:
+                        playerObj = Instantiate(knightPrefab);
+                        break;
+                    default:
+                        playerObj = Instantiate(minerPrefab);
+                        break;
+                }
+                    playerObj.GetComponent<Spielfigur>().materialIndex = i;
+                playerObj.GetComponent<Spielfigur>().OnChangeMaterial(i,i);
                 NetworkServer.Spawn(playerObj);
                 Debug.Log(playerObj);
                 playerObjects.Add(playerObj);
