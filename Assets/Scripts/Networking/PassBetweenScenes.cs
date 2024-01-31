@@ -7,4 +7,5 @@ public class PassBetweenScenes
     public static int playercount;
     public static GameObject playerInstance;
     public static int id;
+    public static int selctedCharacter;
 }

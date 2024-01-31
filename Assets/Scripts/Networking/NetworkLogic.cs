@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class NetworkLogic : NetworkBehaviour
 {
+    public SyncList<int> pickedCharacter = new SyncList<int>();
     public SyncList<PlayerActions> otherplayerActions = new SyncList<PlayerActions>();
     public GameObject playerPrefab;
     public GameObject vPlayerPrefab;
@@ -49,6 +50,15 @@ public class NetworkLogic : NetworkBehaviour
 
     private bool started = false;
 
+    void Start()
+    {
+        if (isServer)
+        {
+            for (int i = 0; i < 4; i++)
+                pickedCharacter.Add(0);
+        }
+    }
+
     public void StartReal()
     {
         started = true;
@@ -75,6 +85,7 @@ public class NetworkLogic : NetworkBehaviour
             for (int i = 0; i < playerCount; i++)
             {
                 playerObj = Instantiate(playerPrefab);
+                playerObj.GetComponent<Spielfigur>().SetupFigure((Spielfigur.CHAMPION)pickedCharacter[i], (Spielfigur.COLOR)i);
                 Debug.Log(playerObj);
                 NetworkServer.Spawn(playerObj);
                 Debug.Log(playerObj);
@@ -178,10 +189,10 @@ public class NetworkLogic : NetworkBehaviour
 
     public static IEnumerator bombAction(bool[] actionActive, int index, Player player, HexField.Coord value)
     {
-        GameObject bomb= GameObject.FindWithTag("bomb");
-        GameObject bomb1= Instantiate(bomb, player.transform.position, Quaternion.identity);
-        BoardPiece bomb_=bomb1.GetComponent<BoardPiece>();
-        player.cell.getCellRelative(value).placeBoardPiece( bomb_);
+        GameObject bomb = GameObject.FindWithTag("bomb");
+        GameObject bomb1 = Instantiate(bomb, player.transform.position, Quaternion.identity);
+        BoardPiece bomb_ = bomb1.GetComponent<BoardPiece>();
+        player.cell.getCellRelative(value).placeBoardPiece(bomb_);
         actionActive[index] = true;
         yield return null;
     }

@@ -53,4 +53,12 @@ public class OnPlayerSpawn : NetworkBehaviour
             netlogic.playerActions[playerIndex][position] = action;
     }
 
+
+    [Command]
+    public void setPickedCharacter(int id, int characterId)
+    {
+        var netlogic = GameObject.FindGameObjectWithTag("NetworkLogic").GetComponent<NetworkLogic>();
+        netlogic.pickedCharacter[id] = characterId;
+    }
+
 }

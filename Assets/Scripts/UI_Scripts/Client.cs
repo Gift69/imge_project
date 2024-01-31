@@ -40,7 +40,17 @@ public class Client : MonoBehaviour
         player2 = _uiDocument.rootVisualElement.Q<Label>("player2_name");
         player3 = _uiDocument.rootVisualElement.Q<Label>("player3_name");
 
+        character1 = _uiDocument.rootVisualElement.Q<Button>("Char1");
+        character2 = _uiDocument.rootVisualElement.Q<Button>("Char2");
+        character3 = _uiDocument.rootVisualElement.Q<Button>("Char3");
+        character4 = _uiDocument.rootVisualElement.Q<Button>("Char4");
+
+
         back.clicked += BackToPrevScene;
+        character1.clicked += Character1Selected;
+        character2.clicked += Character2Selected;
+        character3.clicked += Character3Selected;
+        character4.clicked += Character4Selected;
 
     }
 
@@ -48,10 +58,25 @@ public class Client : MonoBehaviour
     {
         if (_uiDocument.rootVisualElement.style.display != DisplayStyle.None)
         {
+            PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
             if (networkLogic.started)
             {
+                switch (PassBetweenScenes.selctedCharacter)
+                {
+                    case 0:
+                        ingameUI.GetComponent<Ingame_Select_Actions_UI>().character = new Mage();
+                        break;
+                    case 1:
+                        ingameUI.GetComponent<Ingame_Select_Actions_UI>().character = new Gentleman();
+                        break;
+                    case 2:
+                        ingameUI.GetComponent<Ingame_Select_Actions_UI>().character = new Knight();
+                        break;
+                    case 3:
+                        ingameUI.GetComponent<Ingame_Select_Actions_UI>().character = new Miner();
+                        break;
+                }
                 PassBetweenScenes.playercount = networkLogic.playernames.Count;
-                PassBetweenScenes.id = networkLogic.playernames.IndexOf(PassBetweenScenes.playername);
                 _uiDocument.rootVisualElement.style.display = DisplayStyle.None;
                 ingameUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
                 //GameObject.FindGameObjectWithTag("useless").SetActive(false);
@@ -106,4 +131,48 @@ public class Client : MonoBehaviour
         startUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
+
+    public void Character1Selected()
+    {
+        character1.AddToClassList("highlighted");
+        character2.RemoveFromClassList("highlighted");
+        character3.RemoveFromClassList("highlighted");
+        character4.RemoveFromClassList("highlighted");
+        PassBetweenScenes.selctedCharacter = 0;
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setPickedCharacter(PassBetweenScenes.id, PassBetweenScenes.selctedCharacter);
+        //SetPlayerCharacter().style.backgroundImage = new StyleBackground(chosenChar1);
+    }
+
+    public void Character2Selected()
+    {
+        character2.AddToClassList("highlighted");
+        character1.RemoveFromClassList("highlighted");
+        character3.RemoveFromClassList("highlighted");
+        character4.RemoveFromClassList("highlighted");
+        PassBetweenScenes.selctedCharacter = 1;
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setPickedCharacter(PassBetweenScenes.id, PassBetweenScenes.selctedCharacter);
+
+    }
+
+    public void Character3Selected()
+    {
+        character3.AddToClassList("highlighted");
+        character2.RemoveFromClassList("highlighted");
+        character1.RemoveFromClassList("highlighted");
+        character4.RemoveFromClassList("highlighted");
+        PassBetweenScenes.selctedCharacter = 2;
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setPickedCharacter(PassBetweenScenes.id, PassBetweenScenes.selctedCharacter);
+
+    }
+
+    public void Character4Selected()
+    {
+        character4.AddToClassList("highlighted");
+        character2.RemoveFromClassList("highlighted");
+        character3.RemoveFromClassList("highlighted");
+        character1.RemoveFromClassList("highlighted");
+        PassBetweenScenes.selctedCharacter = 3;
+        PassBetweenScenes.playerInstance.GetComponent<OnPlayerSpawn>().setPickedCharacter(PassBetweenScenes.id, PassBetweenScenes.selctedCharacter);
+
+    }
 }

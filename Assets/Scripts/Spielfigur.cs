@@ -8,10 +8,10 @@ public class Spielfigur : MonoBehaviour
 {
     public enum CHAMPION
     {
-        Gentleman,
         Mage,
-        Miner,
-        Knight
+        Gentleman,
+        Knight,
+        Miner
     }
 
     [Header("Gentleman")] [SerializeField] private GameObject gentleman_base;

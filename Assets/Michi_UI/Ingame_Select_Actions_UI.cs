@@ -28,7 +28,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     public float f = 0.5f;
 
-    private Character character;
+    public Character character;
 
     private Action[] selected_Actions = new Action[5];
 
@@ -45,7 +45,6 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
     void Awake()
     {
-        character = new TestCharacter();
         _Doc = GetComponent<UIDocument>();
         walk = _Doc.rootVisualElement.Q<Button>("Walk");
         collect = _Doc.rootVisualElement.Q<Button>("Collect");
@@ -68,13 +67,6 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
 
         left_Side = _Doc.rootVisualElement.Q<VisualElement>("Left_Side");
 
-
-
-        walk.style.backgroundImage = new StyleBackground(character.GetMoveAction().getIcon());
-        collect.style.backgroundImage = new StyleBackground(character.GetCoinAction().getIcon());
-        do_nothing.style.backgroundImage = new StyleBackground(character.GetDoNothingAction().getIcon());
-        special_action_1.style.backgroundImage = new StyleBackground(character.GetSpecialAction1().getIcon());
-        special_action_2.style.backgroundImage = new StyleBackground(character.GetSpecialAction2().getIcon());
 
 
 
@@ -273,7 +265,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         for (int i = 0; i < selected_Actions.Length; i++)
             if (selected_Actions[i] == null)
                 selected_Actions[i] = new DoNothingAction();
-            nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
+        nextUI.GetComponent<Ingame_UI>().SetActions(selected_Actions);
         nextUI.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
@@ -283,7 +275,15 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
         {
             if (styled && numberofstyles < 3)
             {
-                if (numberofstyles == 2)
+                if (numberofstyles == 0)
+                {
+                    walk.style.backgroundImage = new StyleBackground(character.GetMoveAction().getIcon());
+                    collect.style.backgroundImage = new StyleBackground(character.GetCoinAction().getIcon());
+                    do_nothing.style.backgroundImage = new StyleBackground(character.GetDoNothingAction().getIcon());
+                    special_action_1.style.backgroundImage = new StyleBackground(character.GetSpecialAction1().getIcon());
+                    special_action_2.style.backgroundImage = new StyleBackground(character.GetSpecialAction2().getIcon());
+                }
+                else if (numberofstyles == 2)
                     styled = false;
                 numberofstyles++;
                 player_info.style.width = left_Side.resolvedStyle.height * 0.5f;
@@ -301,6 +301,7 @@ public class Ingame_Select_Actions_UI : MonoBehaviour
                 walk.style.height = walk.resolvedStyle.width;
                 do_nothing.style.height = do_nothing.resolvedStyle.width;
             }
+
             if (netLogic.mode == NetworkLogic.Mode.ACTION_ORDERING)
             {
                 // Play the animation once
