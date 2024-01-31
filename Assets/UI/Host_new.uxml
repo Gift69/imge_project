@@ -63,14 +63,14 @@
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 100%; height: 20%; flex-direction: row;">
             <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
                 <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: column; justify-content: space-around; align-self: auto; align-items: center;">
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="width: 70%; height: 50%; align-self: center; align-items: center; justify-content: space-between; flex-direction: column; background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/back_button.png?fileID=2800000&amp;guid=324fef9b519ed72439d3ea1176908fd2&amp;type=3#back_button&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="width: 70%; height: 50%; align-self: center; align-items: center; justify-content: space-between; flex-direction: column; background-color: rgba(188, 188, 188, 0); background-image: url(&apos;project://database/Assets/Sprites/new%20Buttons/BACK.png?fileID=2800000&amp;guid=43d07c5900c4a844ab2445fdaba47518&amp;type=3#BACK&apos;); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%;" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
                 <ui:VisualElement style="flex-grow: 1; flex-direction: column; width: 50%; height: 100%;" />
                 <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; justify-content: space-around; align-items: center;">
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="start_button" style="width: 70%; height: 50%; background-image: url(&apos;project://database/Assets/Sprites/start_button.png?fileID=2800000&amp;guid=163922ea0c787d540a37f1c23ab345f9&amp;type=3#start_button&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="start_button" style="width: 70%; height: 50%; background-image: url(&apos;project://database/Assets/Sprites/new%20Buttons/START.png?fileID=2800000&amp;guid=4b7bbb0c126034446b6949ed39bcff9e&amp;type=3#START&apos;); background-color: rgba(188, 188, 188, 0); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
