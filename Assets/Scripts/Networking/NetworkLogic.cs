@@ -118,6 +118,7 @@ public class NetworkLogic : NetworkBehaviour
 
             actionCallbacks.Add(Action.Type.MOVE, moveAction);
             actionCallbacks.Add(Action.Type.NOTHING, nothingAction);
+            actionCallbacks.Add(Action.Type.BOMB, bombAction);
         }
     }
 
@@ -201,8 +202,8 @@ public class NetworkLogic : NetworkBehaviour
     public static IEnumerator moveAction(Finish finish, Player player, HexField.Coord value)
     {
         float x = 0;
-        Vector3 start = player.cell.transform.position + Vector3.up * 0.5f;
-        Vector3 end = player.cell.getCellRelative(value).transform.position + Vector3.up * 0.5f;
+        Vector3 start = player.cell.transform.position + Vector3.up * 0.4f;
+        Vector3 end = player.cell.getCellRelative(value).transform.position + Vector3.up * 0.4f;
         while (x < 0.5)
         {
             player.transform.position = start * (1 - x) + end * x;
